@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0e3046db3cb0142ad96b7bc7f87b69, type: 3}
   m_Name: Ak47
   m_EditorClassIdentifier: 
-  SpawnElement: {fileID: 0}
-  CountElement: 0
+  spawnElement: {fileID: 0}
+  countElement: 0
   nameGun: 
   damage: 0
   maxammo: 0
