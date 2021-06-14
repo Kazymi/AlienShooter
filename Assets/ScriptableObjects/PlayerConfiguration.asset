@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c834d22f1c1cdd245a0b97319113f758, type: 3}
-  m_Name: Player
+  m_Name: PlayerConfiguration
   m_EditorClassIdentifier: 
   speed: 3
   hp: 0

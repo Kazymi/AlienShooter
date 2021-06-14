@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
     private Joystick _lookJoystick;
     private FloatingJoystick _joystick;
-    public void Initialized(Joystick joystick)
+    public void Initialize(Joystick joystick)
     {
         _lookJoystick = joystick;
         _joystick = _lookJoystick.GetComponent<FloatingJoystick>();

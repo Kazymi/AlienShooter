@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,11 +6,11 @@ public class Player : MonoBehaviour
     [SerializeField] private Joystick lookJoystick;
     [SerializeField] private PlayerConfiguration playerConfiguration;
     [SerializeField] private PlayerMove playerMove;
-    [SerializeField] private PlayerLook PlayerLook;
+    [SerializeField] private PlayerLook playerLook;
 
     private void Start()
     {
-        playerMove.Initialized(playerConfiguration,moveJoystick);
-        PlayerLook.Initialized(lookJoystick);
+        playerMove.Initialize(playerConfiguration,moveJoystick);
+        playerLook.Initialize(lookJoystick);
     }
 }
