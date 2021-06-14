@@ -23,7 +23,6 @@ public class PlayerMove : MonoBehaviour
     }
     private void Move()
     {
-        
         _moveDir = new Vector3(_joystick.Horizontal, 0, _joystick.Vertical);
         _moveDir = transform.TransformDirection(_moveDir);
         _moveDir *= _playerConfiguration.Speed*Time.deltaTime;
