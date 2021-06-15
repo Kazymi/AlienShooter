@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class Ak47 : WeaponControlFire
 {
+    private InputHandler _inputHandler;
     public override void Fire()
     {
         if(_lockFire || _reloaded) return;
@@ -17,9 +19,14 @@ public class Ak47 : WeaponControlFire
     }
     private void Update()
     {
-        Fire();
+        if(_inputHandler.Fire) Fire();
     }
 
+    [Inject]
+    private void Construct(InputHandler inputHandler)
+    {
+        _inputHandler = inputHandler;
+    }
     public override void InitializeWeapon(WeaponConfiguration weaponConfiguration)
     {
         base.InitializeWeapon(weaponConfiguration);
