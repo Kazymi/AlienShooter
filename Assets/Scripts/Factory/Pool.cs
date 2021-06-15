@@ -6,8 +6,6 @@ public class Pool
     private List<GameObject> _pooledObjects;
     private GameObject _elementSpawn;
 
-    public List<GameObject> PoolGameObjects { get => _pooledObjects; }
-
     public Pool(GameObject element, int count)
     {
         _elementSpawn = element;

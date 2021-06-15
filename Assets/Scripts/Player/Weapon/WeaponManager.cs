@@ -3,25 +3,25 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] private List<WeaponConfiguration> WeaponConfigurations;
+    [SerializeField] private List<WeaponConfiguration> weaponConfigurations;
 
-    private Dictionary<string,GameObject> spawnedWeaponsGameObjects = new Dictionary<string, GameObject>();
-
+    private Dictionary<string, GameObject> _weapons = new Dictionary<string, GameObject>();
     private void Start()
     {
-       foreach(var i in WeaponConfigurations)
+       foreach(var i in weaponConfigurations)
         {
-            i.InitializeFactory();
+            NewWeapon(i.WeaponGameObject, i.Name);
         }
     }
-
-    public void NewWeapon(GameObject weapon,string name)
+    private void NewWeapon(GameObject weapon,string name)
     {
-        if(!spawnedWeaponsGameObjects.ContainsKey(name))
-        spawnedWeaponsGameObjects.Add(name, weapon);
+        GameObject newGun = Instantiate(weapon);
+        newGun.SetActive(false);
+        _weapons.Add(name, newGun);
     }
-    private void Update()
+
+    public GameObject GetWeaponByName(string name)
     {
-        Debug.Log(spawnedWeaponsGameObjects.Count);
+        return _weapons[name];
     }
 }

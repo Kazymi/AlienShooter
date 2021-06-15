@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    private Pool _pool;
-    private WeaponConfiguration _gunConfiguration;
-
-    public Pool Pool => Pool;
-
-    public void Initialize(Pool pool,WeaponConfiguration gunConfiguration)
+    public void Initialize(WeaponConfiguration gunConfiguration)
     {
-        _gunConfiguration = gunConfiguration;
-        _pool = pool;
+        var weapon = GetComponent<IWeapon>();
+        if(weapon == null) Debug.LogError("IWeapon == null");
+        weapon.InitializeFactory();
+        weapon.InitializeWeapon(gunConfiguration);
     }
 }

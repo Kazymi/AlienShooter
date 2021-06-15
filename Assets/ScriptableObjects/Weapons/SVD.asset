@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c0e3046db3cb0142ad96b7bc7f87b69, type: 3}
-  m_Name: Ak47
+  m_Name: SVD
   m_EditorClassIdentifier: 
-  spawnElement: {fileID: 0}
-  countElement: 0
-  nameGun: 
+  nameGun: SVD
   damage: 0
   maxammo: 0
   fireRate: 0
+  timeReloded: 0
+  weaponGameObject: {fileID: 8387725256405865282, guid: 3aab2225767eca043bf8263c64805d28, type: 3}
+  ammoConfiguration: {fileID: 0}

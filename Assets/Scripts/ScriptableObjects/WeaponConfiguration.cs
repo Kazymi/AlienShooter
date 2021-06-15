@@ -2,42 +2,19 @@ using UnityEngine;
 using Zenject;
 
 [CreateAssetMenu(fileName = "New weapon", menuName = "Weapon")]
-public class WeaponConfiguration : Factory
+public class WeaponConfiguration : ScriptableObject
 {
     [SerializeField] private string nameGun;
     [SerializeField] private float damage;
-    [SerializeField] private float maxammo;
+    [SerializeField] private int maxammo;
     [Range(0,1)] [SerializeField] private float fireRate;
-
-    private WeaponManager _weaponManager;
-
-    [Inject]
-    private void Construct(WeaponManager weaponManager)
-    {
-        _weaponManager = weaponManager;
-    }
-
-    public override void Create(Vector3 positionSpawn)
-    {
-        CreateNewGun(positionSpawn);
-    }
-
-    public override void Create(Vector3 positionSpawn, Quaternion rotation)
-    {
-        CreateNewGun(positionSpawn).transform.rotation = rotation;
-    }
-
-    private GameObject CreateNewGun(Vector3 positionSpawn)
-    {
-        var newObject = Pool.Pull();
-        newObject.GetComponent<Weapon>().Initialize(Pool, this);
-        newObject.transform.position = positionSpawn;
-        _weaponManager.NewWeapon(newObject, nameGun);
-        return newObject;
-    }
-    public override void InitializeFactory()
-    {
-        pool = new Pool(SpawnElement, 0);
-        Create(Vector3.zero);
-    }
+    [Range(0,3)] [SerializeField] private float timeReloded;
+    [SerializeField] private GameObject weaponGameObject;
+    [SerializeField] private AmmoConfiguration ammoConfiguration;
+    public string Name => nameGun;
+    public GameObject WeaponGameObject => weaponGameObject;
+    public AmmoConfiguration AmmoConfiguration => ammoConfiguration;
+    public float FireRate => fireRate;
+    public float TimeReloded => timeReloded;
+    public int MapAmmo => maxammo;
 }

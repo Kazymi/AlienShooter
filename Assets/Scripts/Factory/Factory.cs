@@ -1,21 +1,27 @@
 using UnityEngine;
 
-public abstract class Factory : ScriptableObject
+public class Factory
 {
-    [SerializeField] private GameObject spawnElement;
-    [SerializeField] private int countElement;
-
-    protected Pool pool { get; set; }
-
-    public Pool Pool => pool;
-    public GameObject SpawnElement => spawnElement;
-
-    public abstract void Create(Vector3 positionSpawn);
-
-    public abstract void Create(Vector3 positionSpawn, Quaternion rotation);
+    private GameObject _spawnElement;
+    private int _countElement;
+    private Pool pool { get; set; }
     
-    public virtual void InitializeFactory()
+    public Pool Pool => pool;
+
+    public GameObject Create(Vector3 positionSpawn)
     {
-        pool = new Pool(spawnElement, countElement);
+       return pool.Pull();
+    }
+
+    public void Destoy(GameObject gameObject)
+    {
+        pool.Push(gameObject);
+    }
+
+    public virtual void InitializeFactory(GameObject spawnElement,int countElement)
+    {
+        _spawnElement = spawnElement;
+        _countElement = countElement;
+        pool = new Pool(_spawnElement, _countElement);
     }
 }
