@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameGun: Ak-47
   damage: 0
-  maxAmmo: 0
-  fireRate: 0
-  timeReloaded: 0
+  maxAmmo: 30
+  fireRate: 0.062
+  timeReloaded: 1.29
   weaponGameObject: {fileID: 6086792541865072287, guid: 3fb5433795c33b448994faacad65bcd0, type: 3}
-  ammoConfiguration: {fileID: 0}
+  ammoConfiguration: {fileID: 11400000, guid: fdbc49d6823346147bc17b1feac5259b, type: 2}

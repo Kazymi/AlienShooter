@@ -27,7 +27,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Move()
     {
-        var moveDir = mobile ? new Vector3(_joystick.Horizontal, 0, _joystick.Vertical) : new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        var moveDir = mobile ? new Vector3(-_joystick.Horizontal, 0, -_joystick.Vertical) : new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         moveDir = transform.TransformDirection(moveDir);
         moveDir *= _playerConfiguration.Speed * Time.deltaTime;

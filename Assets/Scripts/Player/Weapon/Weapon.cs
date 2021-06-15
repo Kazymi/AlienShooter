@@ -4,9 +4,10 @@ public class Weapon : MonoBehaviour
 {
     public void Initialize(WeaponConfiguration gunConfiguration)
     {
-        var weapon = GetComponent<IWeapon>();
+        transform.localPosition = Vector3.zero;
+        var weapon = GetComponent<WeaponControlFire>();
         if(weapon == null) Debug.LogError("IWeapon == null");
-        weapon.InitializeFactory();
         weapon.InitializeWeapon(gunConfiguration);
+        weapon.InitializeFactory();
     }
 }
