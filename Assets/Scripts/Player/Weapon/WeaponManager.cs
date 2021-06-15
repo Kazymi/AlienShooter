@@ -5,22 +5,24 @@ public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private List<WeaponConfiguration> weaponConfigurations;
 
-    private Dictionary<string, GameObject> _weapons = new Dictionary<string, GameObject>();
+    private Dictionary<string, Weapon> _weapons = new Dictionary<string, Weapon>();
+    
     private void Start()
     {
        foreach(var i in weaponConfigurations)
-        {
-            NewWeapon(i.WeaponGameObject, i.Name);
-        }
+       {
+           NewWeapon(i.WeaponGameObject, i.Name);
+       }
     }
-    private void NewWeapon(GameObject weapon,string name)
+    
+    private void NewWeapon(Weapon weapon,string name)
     {
-        GameObject newGun = Instantiate(weapon);
-        newGun.SetActive(false);
+        var newGun = Instantiate(weapon);
+        newGun.gameObject.SetActive(false);
         _weapons.Add(name, newGun);
     }
 
-    public GameObject GetWeaponByName(string name)
+    public Weapon GetWeaponByName(string name)
     {
         return _weapons[name];
     }

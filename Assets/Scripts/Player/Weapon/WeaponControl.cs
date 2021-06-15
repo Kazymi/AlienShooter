@@ -7,7 +7,7 @@ public class WeaponControl : MonoBehaviour
     [SerializeField] private WeaponConfiguration startWeapon;
     [SerializeField] private Transform positionWeapon;
 
-    private GameObject _currentWeapon;
+    private Weapon _currentWeapon;
     private List<WeaponConfiguration> _spawnedWeapon = new List<WeaponConfiguration>(){null,null};
     private WeaponManager _weaponManager;
     private int _idCurrentGun;
@@ -43,7 +43,7 @@ public class WeaponControl : MonoBehaviour
         foreach (var i in _spawnedWeapon)
         {
             if(i!=null)
-            _weaponManager.GetWeaponByName(i.Name).SetActive(false);
+            _weaponManager.GetWeaponByName(i.Name).gameObject.SetActive(false);
         }
     }
     private void SpawnGun(int idWeapon)
@@ -51,8 +51,8 @@ public class WeaponControl : MonoBehaviour
         OffAllGun();
         _currentWeapon = _weaponManager.GetWeaponByName(_spawnedWeapon[idWeapon].Name);
         _currentWeapon.transform.parent = positionWeapon;
-        _currentWeapon.GetComponent<Weapon>().Initialize(_spawnedWeapon[idWeapon]);
-        _currentWeapon.SetActive(true);
+        // _currentWeapon.Initialize(_spawnedWeapon[idWeapon]);
+        _currentWeapon.gameObject.SetActive(true);
     }
 
     public void NewWeapon(WeaponConfiguration weaponConfiguration)

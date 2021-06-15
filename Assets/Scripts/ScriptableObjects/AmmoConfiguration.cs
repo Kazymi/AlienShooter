@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AmmoConfiguration : ScriptableObject
@@ -8,5 +6,5 @@ public class AmmoConfiguration : ScriptableObject
     [SerializeField] private float speedAmmo;
 
     public float SpeedAmmo => speedAmmo * Time.deltaTime;
-    public GameObject AmmpGameObject => ammoGameObject;
+    public GameObject AmmoGameObject => ammoGameObject;
 }

@@ -4,24 +4,23 @@ public class Factory
 {
     private GameObject _spawnElement;
     private int _countElement;
-    private Pool pool { get; set; }
     
-    public Pool Pool => pool;
+    private Pool pool { get; set; }
+
+    public Factory(GameObject spawnElement,int countElement)
+    {
+        _spawnElement = spawnElement;
+        _countElement = countElement;
+        pool = new Pool(_spawnElement, _countElement);
+    }
 
     public GameObject Create(Vector3 positionSpawn)
     {
        return pool.Pull();
     }
 
-    public void Destoy(GameObject gameObject)
+    public void Destroy(GameObject gameObject)
     {
         pool.Push(gameObject);
-    }
-
-    public virtual void InitializeFactory(GameObject spawnElement,int countElement)
-    {
-        _spawnElement = spawnElement;
-        _countElement = countElement;
-        pool = new Pool(_spawnElement, _countElement);
     }
 }

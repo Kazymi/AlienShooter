@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameGun: SVD
   damage: 0
-  maxammo: 0
+  maxAmmo: 0
   fireRate: 0
-  timeReloded: 0
-  weaponGameObject: {fileID: 8387725256405865282, guid: 3aab2225767eca043bf8263c64805d28, type: 3}
+  timeReloaded: 0
+  weaponGameObject: {fileID: 6086792541865072287, guid: 3aab2225767eca043bf8263c64805d28, type: 3}
   ammoConfiguration: {fileID: 0}

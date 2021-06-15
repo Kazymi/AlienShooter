@@ -4,7 +4,8 @@ using UnityEngine;
 public class Pool
 {
     private List<GameObject> _pooledObjects;
-    private GameObject _elementSpawn;
+    
+    private readonly GameObject _elementSpawn;
 
     public Pool(GameObject element, int count)
     {

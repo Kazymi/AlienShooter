@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameGun: M4
   damage: 0
-  maxammo: 0
+  maxAmmo: 0
   fireRate: 0
-  weaponGameObject: {fileID: 8387725256405865282, guid: cce9184596f248443b7f93e179d27dda, type: 3}
+  timeReloaded: 0
+  weaponGameObject: {fileID: 6086792541865072287, guid: cce9184596f248443b7f93e179d27dda, type: 3}
+  ammoConfiguration: {fileID: 0}
