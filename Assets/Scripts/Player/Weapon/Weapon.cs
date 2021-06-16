@@ -23,7 +23,11 @@ public class Weapon : MonoBehaviour
     {
         if(_lockFire || _reloaded) return;
         _ammo--;
-        if (_ammo == 0) StartCoroutine(Reloaded());
+        if (_ammo <= 0)
+        { 
+            StartCoroutine(Reloaded());
+            return;
+        }
         GameObject ammo = _factory.Create(positionSpawnAmmo.position);
         ammo.GetComponent<IAmmo>().Initialize(_currentWeaponConfiguration,_factory);
         ammo.transform.position = positionSpawnAmmo.position;
@@ -33,9 +37,12 @@ public class Weapon : MonoBehaviour
     public void Initialize(WeaponConfiguration gunConfiguration)
     {
         transform.localPosition = Vector3.zero;
+        _reloaded = false;
+        _lockFire = false;
         InitializeWeapon(gunConfiguration);
         InitializeFactory();
         if(_initialized) return;
+        _ammo = _weaponConfiguration.MaxAmmo;
         FirstInitialize(gunConfiguration);
     }
 
@@ -52,7 +59,6 @@ public class Weapon : MonoBehaviour
     private void InitializeWeapon(WeaponConfiguration weaponConfiguration)
     {
         _weaponConfiguration = weaponConfiguration;
-        _ammo = _weaponConfiguration.MaxAmmo;
     }
 
     private IEnumerator FireRateTimer()
@@ -68,7 +74,7 @@ public class Weapon : MonoBehaviour
         _ammo = _weaponConfiguration.MaxAmmo;
         _reloaded = false;
     }
-[Inject]
+    [Inject]
     private void Construct(InputHandler inputHandler)
     {
         _inputHandler = inputHandler;
