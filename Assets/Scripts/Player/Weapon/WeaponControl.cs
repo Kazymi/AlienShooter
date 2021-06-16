@@ -11,7 +11,7 @@ public class WeaponControl : MonoBehaviour
     private List<WeaponConfiguration> _spawnedWeapon = new List<WeaponConfiguration>(){null,null};
     
     [Inject]
-    private WeaponManager _weaponManager;
+    private WeaponManager _weaponManager; // TODO:
     
     private int _idCurrentGun;
 
