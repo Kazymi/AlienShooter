@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7614466922300569429}
   - component: {fileID: 6086792541865072287}
-  - component: {fileID: -6015066722305408228}
+  - component: {fileID: 7592835521960944829}
   m_Layer: 0
   m_Name: Ak47
   m_TagString: Untagged
@@ -171,7 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994d7d8fd1e1e9e47a97ea56fdb44962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-6015066722305408228
+  positionSpawnAmmo: {fileID: 5659459268133409024}
+--- !u!114 &7592835521960944829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,7 +181,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8387725256405865282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c98746e5d69cbee4e92075f59677b902, type: 3}
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionSpawnAmmo: {fileID: 5659459268133409024}
+  _containerSource: 0

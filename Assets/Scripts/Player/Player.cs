@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Joystick lookJoystick;
     [SerializeField] private PlayerConfiguration playerConfiguration;
     [SerializeField] private WeaponControl weaponControl;
+    [SerializeField] private PlayerScanner playerScanner;
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private PlayerLook playerLook;
 
@@ -14,5 +15,6 @@ public class Player : MonoBehaviour
     {
         playerMove.Initialize(playerConfiguration,moveJoystick);
         playerLook.Initialize(lookJoystick);
+        playerScanner.Initialize(playerLook);
     }
 }

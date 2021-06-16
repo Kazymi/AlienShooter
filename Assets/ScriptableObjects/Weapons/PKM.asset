@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameGun: PKM
   damage: 0
-  maxAmmo: 0
-  fireRate: 0
-  timeReloaded: 0
+  maxAmmo: 125
+  fireRate: 0.15
+  timeReloaded: 3
   weaponGameObject: {fileID: 6086792541865072287, guid: 53b5d5c083e2e0742921a5369506a48f, type: 3}
-  ammoConfiguration: {fileID: 0}
+  ammoConfiguration: {fileID: 11400000, guid: fdbc49d6823346147bc17b1feac5259b, type: 2}

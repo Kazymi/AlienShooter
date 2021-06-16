@@ -4,8 +4,8 @@ using Zenject;
 
 public class LocationInstaller : MonoInstaller
 {
-    [SerializeField] private GameObject weaponManagerPrefab;
-    [SerializeField] private GameObject inputHandlerPrefab;
+    [SerializeField] private WeaponManager weaponManagerPrefab;
+    [SerializeField] private InputHandler inputHandlerPrefab;
     [SerializeField] private FireButton fireButton;
     [SerializeField] private Transform spawnPosition;
 
@@ -17,22 +17,16 @@ public class LocationInstaller : MonoInstaller
 
     private void CreateWeaponManager()
     {
-        var weaponManager = Container
-            .InstantiatePrefabForComponent<WeaponManager>(weaponManagerPrefab, spawnPosition.position, Quaternion.identity, null);
-
         Container
               .Bind<WeaponManager>()
-              .FromInstance(weaponManager)
+              .FromInstance(weaponManagerPrefab)
               .AsSingle();
     } 
     private void CreateInputHandler()
     {
-        var inputHandler = Container
-            .InstantiatePrefabForComponent<InputHandler>(inputHandlerPrefab, spawnPosition.position, Quaternion.identity, null);
-        inputHandler.FireButton = fireButton;
         Container
               .Bind<InputHandler>()
-              .FromInstance(inputHandler)
+              .FromInstance(inputHandlerPrefab)
               .AsSingle();
     }
 }

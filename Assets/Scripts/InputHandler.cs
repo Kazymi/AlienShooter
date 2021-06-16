@@ -10,5 +10,5 @@ public class InputHandler : MonoBehaviour
     {
         set => fireButton = value;
     }
-    public bool Fire => fireButton.PointDown;
+    public bool Fire => fireButton.PointDown || Input.GetKey(KeyCode.Q);
 }

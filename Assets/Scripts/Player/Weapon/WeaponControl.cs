@@ -9,7 +9,10 @@ public class WeaponControl : MonoBehaviour
 
     private Weapon _currentWeapon;
     private List<WeaponConfiguration> _spawnedWeapon = new List<WeaponConfiguration>(){null,null};
+    
+    [Inject]
     private WeaponManager _weaponManager;
+    
     private int _idCurrentGun;
 
     private void Start()
@@ -31,11 +34,6 @@ public class WeaponControl : MonoBehaviour
         _idCurrentGun = _idCurrentGun == 0 ? 1 : 0;
         if(_spawnedWeapon[_idCurrentGun] == null) return;
         SpawnGun(_idCurrentGun);
-    }
-    [Inject]
-    private void Construct(WeaponManager weaponManager)
-    {
-        _weaponManager = weaponManager;
     }
 
     private void OffAllGun()
