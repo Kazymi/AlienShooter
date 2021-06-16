@@ -19,6 +19,19 @@ public class Weapon : MonoBehaviour
         if(_inputHandler.Fire) Fire();
     }
     
+    public void Initialize(WeaponConfiguration gunConfiguration)
+    {
+        transform.localPosition = Vector3.zero;
+        _reloaded = false;
+        _lockFire = false;
+        InitializeWeapon(gunConfiguration);
+        InitializeFactory();
+        if(_initialized) return;
+        _initialized = true;
+        _currentWeaponConfiguration = gunConfiguration.AmmoConfiguration;
+        _ammo = _weaponConfiguration.MaxAmmo;
+    }
+    
     private void Fire()
     {
         if(_lockFire || _reloaded) return;
@@ -34,23 +47,7 @@ public class Weapon : MonoBehaviour
         ammo.transform.rotation = positionSpawnAmmo.rotation;
         StartCoroutine(FireRateTimer());
     }
-    public void Initialize(WeaponConfiguration gunConfiguration)
-    {
-        transform.localPosition = Vector3.zero;
-        _reloaded = false;
-        _lockFire = false;
-        InitializeWeapon(gunConfiguration);
-        InitializeFactory();
-        if(_initialized) return;
-        _ammo = _weaponConfiguration.MaxAmmo;
-        FirstInitialize(gunConfiguration);
-    }
-
-    private void FirstInitialize(WeaponConfiguration gunConfiguration)
-    {
-        _initialized = true;
-        _currentWeaponConfiguration = gunConfiguration.AmmoConfiguration;
-    }
+    
     private void InitializeFactory()
     {
         _factory = new Factory(_weaponConfiguration.AmmoConfiguration.AmmoGameObject,30);
@@ -67,6 +64,7 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(_weaponConfiguration.FireRate);
         _lockFire = false;
     }
+    
     private IEnumerator Reloaded()
     {
         _reloaded = true;
@@ -74,6 +72,7 @@ public class Weapon : MonoBehaviour
         _ammo = _weaponConfiguration.MaxAmmo;
         _reloaded = false;
     }
+    
     [Inject]
     private void Construct(InputHandler inputHandler)
     {

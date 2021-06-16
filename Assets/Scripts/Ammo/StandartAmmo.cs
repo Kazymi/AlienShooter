@@ -18,7 +18,7 @@ public class StandartAmmo : MonoBehaviour,IAmmo
         transform.position += transform.forward * (_ammoConfiguration.SpeedAmmo * Time.deltaTime);
     }
 
-    IEnumerator Destroy()
+    private IEnumerator Destroy()
     {
         yield return new WaitForSeconds(_ammoConfiguration.LifeTime);
         _factory.Destroy(gameObject);

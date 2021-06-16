@@ -28,6 +28,11 @@ public class PlayerScanner : MonoBehaviour
         }
     }
     
+    public void Initialize(PlayerLook playerLook)
+    {
+        _playerLook = playerLook;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         var i = other.GetComponent<ITarget>();
@@ -65,11 +70,6 @@ public class PlayerScanner : MonoBehaviour
             return _targerts[VARIABLE.Key];
         }
         return null;
-    }
-
-    public void Initialize(PlayerLook playerLook)
-    {
-        _playerLook = playerLook;
     }
     
     private void AddTarget(Transform target)

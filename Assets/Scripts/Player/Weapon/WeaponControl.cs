@@ -28,6 +28,21 @@ public class WeaponControl : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E)) NextWeapon();
     }
 
+    public void NewWeapon(WeaponConfiguration weaponConfiguration)
+    {
+        if (_spawnedWeapon[0] == null)
+        {
+            SetWeapon(weaponConfiguration, 0);
+            return;
+        }
+        if (_spawnedWeapon[1] == null)
+        {
+            SetWeapon(weaponConfiguration, 1);
+            return;
+        }
+        SetWeapon(weaponConfiguration, _idCurrentGun);
+    }
+    
     private void NextWeapon()
     {
         if(_spawnedWeapon[0]==null && _spawnedWeapon[1] == null) return;
@@ -51,21 +66,6 @@ public class WeaponControl : MonoBehaviour
         _currentWeapon.transform.parent = positionWeapon;
         _currentWeapon.Initialize(_spawnedWeapon[idWeapon]);
         _currentWeapon.gameObject.SetActive(true);
-    }
-
-    public void NewWeapon(WeaponConfiguration weaponConfiguration)
-    {
-        if (_spawnedWeapon[0] == null)
-        {
-            SetWeapon(weaponConfiguration, 0);
-            return;
-        }
-        if (_spawnedWeapon[1] == null)
-        {
-            SetWeapon(weaponConfiguration, 1);
-            return;
-        }
-        SetWeapon(weaponConfiguration, _idCurrentGun);
     }
 
     private void SetWeapon(WeaponConfiguration weaponConfiguration, int id)

@@ -16,15 +16,15 @@ public class WeaponManager : MonoBehaviour
        }
     }
     
+    public Weapon GetWeaponByName(string name)
+    {
+        return _weapons[name];
+    }
+    
     private void NewWeapon(Weapon weapon,string name)
     {
         var newGun = Instantiate(weapon,spawnGunPosition);
         newGun.gameObject.SetActive(false);
         _weapons.Add(name, newGun);
-    }
-
-    public Weapon GetWeaponByName(string name)
-    {
-        return _weapons[name];
     }
 }

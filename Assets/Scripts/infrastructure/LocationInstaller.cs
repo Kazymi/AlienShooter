@@ -6,8 +6,6 @@ public class LocationInstaller : MonoInstaller
 {
     [SerializeField] private WeaponManager weaponManagerPrefab;
     [SerializeField] private InputHandler inputHandlerPrefab;
-    [SerializeField] private FireButton fireButton;
-    [SerializeField] private Transform spawnPosition;
 
     public override void InstallBindings()
     {
