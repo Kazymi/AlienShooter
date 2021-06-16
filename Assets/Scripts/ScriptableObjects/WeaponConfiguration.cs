@@ -4,7 +4,6 @@ using UnityEngine;
 public class WeaponConfiguration : ScriptableObject
 {
     [SerializeField] private string nameGun;
-    [SerializeField] private float damage;
     [SerializeField] private int maxAmmo;
     [Range(0,1)] [SerializeField] private float fireRate;
     [Range(0,3)] [SerializeField] private float timeReloaded;

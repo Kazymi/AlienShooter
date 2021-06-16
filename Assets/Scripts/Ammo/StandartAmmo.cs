@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody),typeof(Collider))]
 
 public class StandartAmmo : MonoBehaviour,IAmmo
 {
@@ -22,5 +25,16 @@ public class StandartAmmo : MonoBehaviour,IAmmo
     {
         yield return new WaitForSeconds(_ammoConfiguration.LifeTime);
         _factory.Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var i = (other.GetComponent<IDamageable>());
+        if (i != null)
+        {
+            i.TakeDamage(_ammoConfiguration.Damage);
+            _factory.Destroy(gameObject);
+        }
+        
     }
 }

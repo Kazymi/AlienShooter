@@ -16,7 +16,7 @@ public class SpawnerSpider : MonoBehaviour
     }
     private void SpawnEnemy()
     {
-        _factory.Create(Vector3.zero).GetComponent<Enemy>().Initialize(enemyConfiguration,playerTranform);
+        _factory.Create(Vector3.zero).GetComponent<Enemy>().Initialize(enemyConfiguration,playerTranform,_factory);
     }
 
     IEnumerator Spawn()
