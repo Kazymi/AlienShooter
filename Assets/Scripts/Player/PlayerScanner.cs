@@ -61,20 +61,31 @@ public class PlayerScanner : MonoBehaviour
 
     private Transform GetNearestEnemy()
     {
-        var closestDistance = Vector3.Distance(transform.position, _targerts[0].position);
-        var closestTarget = _targerts[0];
-
-        for (int i = 1; i < _targerts.Count; i++)
+        // var closestDistance = Vector3.Distance(transform.position, _targerts[0].position);
+        // var closestTarget = _targerts[0];
+        //
+        // for (int i = 1; i < _targerts.Count; i++)
+        // {
+        //     var distance = Vector3.Distance(transform.position, _targerts[0].position); // TODO: can be calculated without sqrt
+        //     if (distance > closestDistance)
+        //     {
+        //         closestDistance = distance;
+        //         closestTarget = _targerts[i];
+        //     }
+        // }
+        //
+        // return closestTarget;
+        Dictionary<int, float> _targetsDistance = new Dictionary<int, float>();
+        for (int i = 0; i < _targerts.Count; i++)
         {
-            var distance = Vector3.Distance(transform.position, _targerts[0].position); // TODO: can be calculated without sqrt
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestTarget = _targerts[i];
-            }
+            _targetsDistance.Add(i,Vector3.Distance(transform.position, _targerts[i].position));
         }
-        
-        return closestTarget;
+        var sortedDict = from entry in _targetsDistance orderby entry.Value ascending select entry;
+        foreach (var VARIABLE in sortedDict)
+        {
+            return _targerts[VARIABLE.Key];
+        }
+        return null;
     }
     
     private void AddTarget(Transform target)

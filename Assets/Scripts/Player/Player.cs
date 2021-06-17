@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IDeathInitialize
 {
     [SerializeField] private Joystick moveJoystick;
-    [SerializeField] private Joystick lookJoystick;
     [SerializeField] private PlayerConfiguration playerConfiguration;
     [SerializeField] private WeaponControl weaponControl;
     [SerializeField] private PlayerScanner playerScanner;
+    [SerializeField] private PlayerHealth _playerHealth;
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private PlayerLook playerLook;
 
@@ -14,7 +14,13 @@ public class Player : MonoBehaviour
     private void Start()
     {
         playerMove.Initialize(playerConfiguration,moveJoystick);
-        playerLook.Initialize(lookJoystick);
+        playerLook.Initialize(moveJoystick);
         playerScanner.Initialize(playerLook);
+        _playerHealth.Initialize(playerConfiguration.HP,this);
+    }
+
+    public void DeadInitialize()
+    {
+        
     }
 }

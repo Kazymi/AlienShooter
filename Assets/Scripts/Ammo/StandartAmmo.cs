@@ -29,7 +29,7 @@ public class StandartAmmo : MonoBehaviour,IAmmo
 
     private void OnTriggerEnter(Collider other)
     {
-        var i = (other.GetComponent<IDamageable>());
+        var i = (other.GetComponent<Damageable>());
         if (i != null)
         {
             i.TakeDamage(_ammoConfiguration.Damage);

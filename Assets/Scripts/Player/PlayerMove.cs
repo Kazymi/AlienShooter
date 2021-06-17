@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private bool mobile = true;
-
     private PlayerConfiguration _playerConfiguration;
     private Joystick _joystick;
     private CharacterController _characterController;

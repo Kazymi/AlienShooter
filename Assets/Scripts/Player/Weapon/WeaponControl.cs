@@ -30,15 +30,13 @@ public class WeaponControl : MonoBehaviour
 
     public void NewWeapon(WeaponConfiguration weaponConfiguration)
     {
-        if (_spawnedWeapon[0] == null)
+        for (int i = 0; i < _spawnedWeapon.Count; i++)
         {
-            SetWeapon(weaponConfiguration, 0);
-            return;
-        }
-        if (_spawnedWeapon[1] == null)
-        {
-            SetWeapon(weaponConfiguration, 1);
-            return;
+            if (_spawnedWeapon[i] == null)
+            {
+                SetWeapon(weaponConfiguration,i);
+                return;;
+            }
         }
         SetWeapon(weaponConfiguration, _idCurrentGun);
     }
@@ -64,6 +62,7 @@ public class WeaponControl : MonoBehaviour
         OffAllGun();
         _currentWeapon = _weaponManager.GetWeaponByName(_spawnedWeapon[idWeapon].Name);
         _currentWeapon.transform.parent = positionWeapon;
+        _currentWeapon.transform.localRotation = Quaternion.identity;
         _currentWeapon.Initialize(_spawnedWeapon[idWeapon]);
         _currentWeapon.gameObject.SetActive(true);
     }

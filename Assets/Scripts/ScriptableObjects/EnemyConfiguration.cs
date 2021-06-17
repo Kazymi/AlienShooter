@@ -5,9 +5,11 @@ public class EnemyConfiguration : ScriptableObject
 {
     [SerializeField] private float speed;
     [SerializeField] private float hp;
+    [SerializeField] private float damage;
     [SerializeField] private GameObject enemyGameObject;
 
     public float Speed => speed;
+    public float Damage => damage;
     public float HP => hp;
     public GameObject EnemyGameObject => enemyGameObject;
 }

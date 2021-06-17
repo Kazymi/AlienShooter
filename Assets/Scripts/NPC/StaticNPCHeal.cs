@@ -1,15 +1,16 @@
+using System;
 using UnityEngine;
 
-public class StaticNPCHeal : MonoBehaviour,IDamageable
+public class StaticNPCHeal : Damageable,IDeathInitialize,ITarget
 {
-
-    public void TakeDamage(float damage)
+    [SerializeField] private float Health;
+    private void Start()
     {
-        throw new System.NotImplementedException();
+        Initialize(Health,this);
     }
 
-    public void Dead()
+    public void DeadInitialize()
     {
-        throw new System.NotImplementedException();
+        Destroy(gameObject);
     }
 }
