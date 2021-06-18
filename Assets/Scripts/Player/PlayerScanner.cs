@@ -8,12 +8,6 @@ public class PlayerScanner : MonoBehaviour
     private PlayerLook _playerLook;
     private List<Transform> _targerts = new List<Transform>();
 
-    private void Awake()
-    {
-        GetComponent<Collider>().isTrigger = true; // TODO: set it in editor
-        GetComponent<Rigidbody>().isKinematic = true;
-    }
-
     private void Update()
     {
         CheckAllTargets();
@@ -55,7 +49,8 @@ public class PlayerScanner : MonoBehaviour
     {
         foreach (var VARIABLE in _targerts)
         {
-            if (VARIABLE.gameObject.activeSelf == false) _targerts.Remove(VARIABLE);
+            if (VARIABLE.gameObject.activeInHierarchy == false){ _targerts.Remove(VARIABLE);}
+            return;
         }
     }
 
@@ -78,7 +73,7 @@ public class PlayerScanner : MonoBehaviour
         Dictionary<int, float> _targetsDistance = new Dictionary<int, float>();
         for (int i = 0; i < _targerts.Count; i++)
         {
-            _targetsDistance.Add(i,Vector3.Distance(transform.position, _targerts[i].position));
+            _targetsDistance.Add(i,Distance(transform.position, _targerts[i].position));
         }
         var sortedDict = from entry in _targetsDistance orderby entry.Value ascending select entry;
         foreach (var VARIABLE in sortedDict)
@@ -86,6 +81,13 @@ public class PlayerScanner : MonoBehaviour
             return _targerts[VARIABLE.Key];
         }
         return null;
+    }
+    private float Distance(Vector3 a, Vector3 b)
+    {
+        float num1 = a.x - b.x;
+        float num2 = a.y - b.y;
+        float num3 = a.z - b.z;
+        return num1 * num1 + num2 * num2 + num3 * num3;
     }
     
     private void AddTarget(Transform target)

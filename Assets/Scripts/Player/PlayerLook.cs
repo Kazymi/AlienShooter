@@ -20,14 +20,12 @@ public class PlayerLook : MonoBehaviour
     {
         if (_lookAtTarget)
         {
-            var lookPos = _target.position - transform.position;
-            lookPos.y = 0;
-            var rotation = Quaternion.LookRotation(lookPos);
-            rotatingPlayerTranform.rotation = Quaternion.Slerp(transform.rotation, rotation,1);
+            Vector3 target = new Vector3(_target.position.x, rotatingPlayerTranform.position.y, _target.position.z);
+            var rotation = Quaternion.LookRotation(target - rotatingPlayerTranform.position);
+            rotatingPlayerTranform.rotation = Quaternion.Slerp(rotatingPlayerTranform.rotation, rotation, Time.deltaTime * 10);
         }
         else
         {
-
             if (_lookJoystick.Direction != Vector2.zero)
             {
                 rotatingPlayerTranform.eulerAngles = new Vector3(
