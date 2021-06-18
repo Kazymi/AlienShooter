@@ -6,12 +6,12 @@ using UnityEngine;
 public class PlayerScanner : MonoBehaviour
 {
     private PlayerLook _playerLook;
-    private List<Transform> _targerts = new List<Transform>();
+    private List<Transform> _targets = new List<Transform>();
 
     private void Update()
     {
         CheckAllTargets();
-        if (_targerts.Count != 0)
+        if (_targets.Count != 0)
         {
             _playerLook.LookAtTarget = true;
             _playerLook.Target = GetNearestEnemy();
@@ -47,38 +47,38 @@ public class PlayerScanner : MonoBehaviour
 
     private void CheckAllTargets()
     {
-        foreach (var VARIABLE in _targerts)
+        foreach (var VARIABLE in _targets)
         {
-            if (VARIABLE.gameObject.activeInHierarchy == false){ _targerts.Remove(VARIABLE);}
+            if (VARIABLE.gameObject.activeInHierarchy == false){ _targets.Remove(VARIABLE);}
             return;
         }
     }
 
     private Transform GetNearestEnemy()
     {
-        // var closestDistance = Vector3.Distance(transform.position, _targerts[0].position);
-        // var closestTarget = _targerts[0];
-        //
-        // for (int i = 1; i < _targerts.Count; i++)
-        // {
-        //     var distance = Vector3.Distance(transform.position, _targerts[0].position); // TODO: can be calculated without sqrt
-        //     if (distance > closestDistance)
-        //     {
-        //         closestDistance = distance;
-        //         closestTarget = _targerts[i];
-        //     }
-        // }
-        //
-        // return closestTarget;
-        Dictionary<int, float> _targetsDistance = new Dictionary<int, float>();
-        for (int i = 0; i < _targerts.Count; i++)
+        /*var closestDistance = Vector3.Distance(transform.position, _targets[0].position);
+        var closestTarget = _targets[0];
+        
+        for (int i = 1; i < _targets.Count; i++)
         {
-            _targetsDistance.Add(i,Distance(transform.position, _targerts[i].position));
+            var distance = Vector3.Distance(transform.position, _targets[i].position); // TODO: can be calculated without sqrt
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestTarget = _targets[i];
+            }
+        }
+        return closestTarget;*/
+        
+        Dictionary<int, float> _targetsDistance = new Dictionary<int, float>();
+        for (int i = 0; i < _targets.Count; i++)
+        {
+            _targetsDistance.Add(i,Distance(transform.position, _targets[i].position));
         }
         var sortedDict = from entry in _targetsDistance orderby entry.Value ascending select entry;
         foreach (var VARIABLE in sortedDict)
         {
-            return _targerts[VARIABLE.Key];
+            return _targets[VARIABLE.Key];
         }
         return null;
     }
@@ -92,11 +92,11 @@ public class PlayerScanner : MonoBehaviour
     
     private void AddTarget(Transform target)
     {
-        _targerts.Add(target);
+        _targets.Add(target);
     }
 
     private void RemoveTarget(Transform target)
     {
-        _targerts.Remove(target);
+        _targets.Remove(target);
     }
 }

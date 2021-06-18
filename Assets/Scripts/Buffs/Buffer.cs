@@ -4,6 +4,55 @@
 
      public class Buffer : MonoBehaviour
      {
+         /*
+          
+          // Base buff script, every concrete buff derives from it
+          public abstract class Buff : ScriptableObject
+         {
+             [SerializedField] float activeTime;
+             
+             float _timer; 
+         
+             public abstract void Initialize(Player player);
+              
+             public virtual void OnActivation();
+             public virtual bool Perform(); // Applies effect and counts timer. Returns true if timer is up.
+         }
+         
+         // Main player component. Detects collisions with buffs. Activates effects.
+          public class Buffer: MonoBehaviour
+         {
+           [SerializedField] List<Buff> buffs;
+           
+           List<Buff> _activeBuffs;
+            
+            public void Initialize()
+            {
+                foreach(var buff in buffs)
+                {
+                    buff.Initialize(player);
+                }
+            }
+            
+            void OnTriggerEnter(Collision other)
+            {
+                var buff = other.GetComponent<BuffPickUp>();
+                if(buff != null)
+                {
+                    buff.OnActivation();  
+                }
+            }
+            
+            void Update()
+            {
+                  foreach(var buff in buffs)
+                {
+                    buff.Perform();
+                }
+            }
+         }
+         
+         */
          private ISpeed _speed;
          private Damageable _damageable;
          
