@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
     private float _ammo;
     private void Update()
     {
+        // TODO: WeaponControl should trigger it
         if(_inputHandler.Fire) Fire();
     }
     

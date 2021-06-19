@@ -11,6 +11,7 @@ public class SpawnerSpider : MonoBehaviour
     private Factory _factory;
     private void Start()
     {
+        // TODO: move hardcoded value
         _factory = new Factory(enemyConfiguration.EnemyGameObject,10);
         StartCoroutine(Spawn());
     }
@@ -23,6 +24,7 @@ public class SpawnerSpider : MonoBehaviour
     {
         while (true)
         {
+            // TODO: move hardcoded value
             yield return new WaitForSeconds(1f);
             SpawnEnemy();
         }

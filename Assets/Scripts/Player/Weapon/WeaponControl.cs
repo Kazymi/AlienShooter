@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+// TODO: Looks like WeaponControl and Weapon can be merged. All you really need is to pickup/switch weapon and shoot it. Any other parameter or visual can be found in WeaponConfig
+// TODO: at the same time it will be to long
+// TODO: **Let's discuss it on Monday**
 public class WeaponControl : MonoBehaviour
 {
     [SerializeField] private WeaponConfiguration startWeapon;
@@ -10,8 +13,9 @@ public class WeaponControl : MonoBehaviour
     private Weapon _currentWeapon;
     private List<WeaponConfiguration> _spawnedWeapon = new List<WeaponConfiguration>(){null,null};
     
+    // TODO: use method injection
     [Inject]
-    private WeaponManager _weaponManager; // TODO:
+    private WeaponManager _weaponManager;
     
     private int _idCurrentGun;
 
@@ -35,7 +39,7 @@ public class WeaponControl : MonoBehaviour
             if (_spawnedWeapon[i] == null)
             {
                 SetWeapon(weaponConfiguration,i);
-                return;;
+                return;
             }
         }
         SetWeapon(weaponConfiguration, _idCurrentGun);

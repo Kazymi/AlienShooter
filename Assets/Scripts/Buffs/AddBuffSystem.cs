@@ -7,6 +7,7 @@ public class AddBuffSystem : MonoBehaviour
 
     private void Update()
     {
+        // TODO: ???
         if(addBuff) 
         {
             buffer.TakeBuff(typeBuff);

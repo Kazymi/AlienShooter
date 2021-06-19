@@ -6,9 +6,11 @@ public class InputHandler : MonoBehaviour
 {
     [SerializeField] private FireButton fireButton;
     
+    // TODO: never used
     public  FireButton FireButton
     {
         set => fireButton = value;
     }
+    
     public bool Fire => fireButton.PointDown || Input.GetKey(KeyCode.Q);
 }

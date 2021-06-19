@@ -12,6 +12,8 @@ public class Player : MonoBehaviour,IDeathInitialize
     [SerializeField] private PlayerLook playerLook;
 
     public WeaponControl WeaponControl => weaponControl;
+    
+    // TODO: can be completely removed by creating dedicated injection installer
     private void Start()
     {
         playerMove.Initialize(playerConfiguration,moveJoystick);
@@ -20,7 +22,8 @@ public class Player : MonoBehaviour,IDeathInitialize
         playerHealth.Initialize(playerConfiguration.HP,this);
         buffer.Initialize(playerMove,playerHealth);
     }
-
+    
+    // TODO: ???
     public void DeadInitialize()
     {
         

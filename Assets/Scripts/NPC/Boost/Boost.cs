@@ -4,6 +4,7 @@ public class Boost : MonoBehaviour
 {
     [SerializeField] private WeaponConfiguration weaponConfiguration;
 
+    // TODO: let's invert this. Player should pick up weapons and boosts, items shouldn't have access to player components
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerTrigger>())

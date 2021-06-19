@@ -8,11 +8,13 @@ public class PlayerScanner : MonoBehaviour
     private PlayerLook _playerLook;
     private List<Transform> _targets = new List<Transform>();
 
+    // TODO: "scanner" only looking for target and provides info on it
     private void Update()
     {
         CheckAllTargets();
         if (_targets.Count != 0)
         {
+            // TODO: _playerLook should act on it's own
             _playerLook.LookAtTarget = true;
             _playerLook.Target = GetNearestEnemy();
         }
@@ -56,6 +58,7 @@ public class PlayerScanner : MonoBehaviour
 
     private Transform GetNearestEnemy()
     {
+        // TODO: I've fixed the error. Now it works
         /*var closestDistance = Vector3.Distance(transform.position, _targets[0].position);
         var closestTarget = _targets[0];
         
@@ -87,6 +90,7 @@ public class PlayerScanner : MonoBehaviour
         float num1 = a.x - b.x;
         float num2 = a.y - b.y;
         float num3 = a.z - b.z;
+        // TODO: It's actually returns square of distance
         return num1 * num1 + num2 * num2 + num3 * num3;
     }
     

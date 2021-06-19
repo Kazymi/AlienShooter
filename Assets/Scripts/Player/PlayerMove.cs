@@ -4,11 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMove : MonoBehaviour,ISpeed
 {
+    // TODO: PlayerMovement shouldn't be aware of input scheme. Make Input class which reads from joystick or keyboard and only exposes resulting Vector2
     [SerializeField] private bool mobile = true;
     private Joystick _joystick;
     private CharacterController _characterController;
     private float _currentSpeed;
     
+    // TODO: not movement's job to keep track of buffs. It only can expose public ChangeSpeed() method, which can be triggered by dedicated buffs component
     public Dictionary<TypeBuff, float> ActiveBuffs { get; set; }
 
     private void Start()

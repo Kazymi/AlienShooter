@@ -9,6 +9,7 @@ public class EnemyMove : MonoBehaviour,ISpeed
 {
     private NavMeshAgent _navMeshAgent;
     private float _currentSpeed;
+    // TODO: <***>
     public Dictionary<TypeBuff, float> ActiveBuffs { get; set; }
 
     public void Initialize(Transform playerTransform, float speed)
@@ -36,11 +37,14 @@ public class EnemyMove : MonoBehaviour,ISpeed
             ActiveBuffs.Remove(buff);
         }
     }
+    
+    // TODO: do it in Update()
     private IEnumerator MoveToPlayer(Transform playerTransform)
     {
         while (true)
         {
             yield return new WaitForSeconds(0.3f);
+            // TODO: doesn't look like speed changes every iteration
             _navMeshAgent.speed = _currentSpeed;
             _navMeshAgent.SetDestination(playerTransform.position);
         }
