@@ -11,6 +11,7 @@ public class WeaponControl : MonoBehaviour
     [SerializeField] private Transform positionWeapon;
 
     private Weapon _currentWeapon;
+    private InputHandler _inputHandler;
     private List<WeaponConfiguration> _spawnedWeapon = new List<WeaponConfiguration>(){null,null};
     private WeaponManager _weaponManager;
     private int _idCurrentGun;
@@ -26,12 +27,14 @@ public class WeaponControl : MonoBehaviour
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.E)) NextWeapon();
+        if(_inputHandler.Fire) _currentWeapon.Fire();
     }
 
     [Inject]
-    public void Construct(WeaponManager weaponManager)
+    public void Construct(WeaponManager weaponManager,InputHandler inputHandler)
     {
         _weaponManager = weaponManager;
+        _inputHandler = inputHandler;
     }
     
     public void NewWeapon(WeaponConfiguration weaponConfiguration)

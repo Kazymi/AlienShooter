@@ -2,16 +2,17 @@ using UnityEngine;
 public class AddBuffSystem : MonoBehaviour
 {
     [SerializeField] private Buffer buffer;
-    [SerializeField] private Effect typeBuff;
-    [SerializeField] private bool addBuff;
+    [SerializeField] private TypeBuff typeEffect;
+    [SerializeField] private float timer;
+    [SerializeField] private float valueEffect;
+    [SerializeField] private bool addEffect;
 
     private void Update()
     {
-        // TODO: ???
-        if(addBuff) 
+        if(addEffect) 
         {
-            buffer.TakeEffect(typeBuff);
-            addBuff = false;
+         buffer.TakeEffect(typeEffect,timer,valueEffect);
+         addEffect = false;
         }
     }
 }

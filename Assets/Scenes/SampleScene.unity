@@ -776,7 +776,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6012356689482448283, guid: af596ed187240be4a93228d9a2958984, type: 3}
       propertyPath: mobile
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6012356689482448283, guid: af596ed187240be4a93228d9a2958984, type: 3}
       propertyPath: fireButton
@@ -1477,8 +1477,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffer: {fileID: 559860987}
-  typeBuff: {fileID: 11400000, guid: 11a0e3f742bf1b24fadbc79e4ef0dd7c, type: 2}
-  addBuff: 0
+  typeEffect: 3
+  timer: 5
+  valueEffect: 7
+  addEffect: 0
 --- !u!4 &1159815403
 Transform:
   m_ObjectHideFlags: 0
@@ -1509,7 +1511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1159937839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1524,8 +1526,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyConfiguration: {fileID: 11400000, guid: 4f55b4784ca3e064f9b4e2449503aa93, type: 2}
   playerTranform: {fileID: 559860984}
-  countEnemy: 0
-  spawnTimer: 1
+  countEnemy: 4
+  spawnTimer: 0.3
 --- !u!4 &1159937840
 Transform:
   m_ObjectHideFlags: 0

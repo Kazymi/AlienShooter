@@ -2,7 +2,7 @@ using UnityEngine.AI;
 using UnityEngine;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyMove : MonoBehaviour,IChangeSpeed
+public class EnemyMove : MonoBehaviour,IMovenment
 {
     private NavMeshAgent _navMeshAgent;
     private float _currentSpeed;

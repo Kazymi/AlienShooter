@@ -2,16 +2,14 @@
 
 public abstract class Effect
     {
-        protected IChangeSpeed _changeSpeed;
-        protected Damageable _damageable;
         protected float _timer;
 
-        public virtual void ActivateBuffAction()
+        public virtual void ActivateAction()
         {
             
         }
 
-        public virtual void DeactivateBuffAction()
+        public virtual void DeactivateAction()
         {
             
         }
@@ -21,21 +19,18 @@ public abstract class Effect
             
         }
 
-        public Effect(IChangeSpeed changeSpeed, Damageable damageable, float timerEffect)
+        public Effect(float timerEffect)
         {
-            _changeSpeed = changeSpeed;
-            _damageable = damageable;
             _timer = timerEffect;
-            ActivateBuffAction();
         }
         
-        public virtual bool CheckBuff()
+        public virtual bool CheckEffect()
         {
             EffectOnTick();
             _timer -= Time.deltaTime;
             if (_timer <= 0)
             {
-                DeactivateBuffAction();
+                DeactivateAction();
                 return true;
             }
             else return false;

@@ -34,8 +34,11 @@ public class StandartAmmo : MonoBehaviour,IAmmo
         {
             i.TakeDamage(_ammoConfiguration.Damage);
         }
-        StopAllCoroutines();
-        _factory.Destroy(gameObject);
 
+        if (other.GetComponent<PlayerScanner>() == null)
+        {
+            StopAllCoroutines();
+            _factory.Destroy(gameObject);
+        }
     }
 }

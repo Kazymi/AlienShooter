@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMove : MonoBehaviour,IChangeSpeed
+public class PlayerMove : MonoBehaviour,IMovenment
 {
     private InputHandler _inputHandler;
     private CharacterController _characterController;
