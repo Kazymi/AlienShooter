@@ -8,40 +8,26 @@ public class Buffer : MonoBehaviour
     private Damageable _damageable;
     private List<Effect> _effects = new List<Effect>();
     private bool _activeEffect;
-   
+    private EffectConfig _effectConfig;
     public void Initialize(IMovenment changeSpeed, Damageable damageable)
     {
         _changeSpeed = changeSpeed;
         _damageable = damageable;
+        _effectConfig = new EffectConfig()
+        {
+            Damageable = damageable,
+            Movenment = _changeSpeed
+        };
         DictionaryInitialize();
     }
 
-    public void TakeEffect(EffectConfiguration effectConfiguration)
+    public void TakeEffect(EffectSystem effectSystem)
     {
-        CreateNewEffect(effectConfiguration);
+        _effects.Add(effectSystem.GenerateEffect(_effectConfig));
         if (_activeEffect == false)
         {
             _activeEffect = true;
             StartCoroutine(CheckEffects());
-        }
-    }
-
-    private void CreateNewEffect(EffectConfiguration effectConfiguration)
-    {
-        switch (effectConfiguration.TypeEffect)
-        {
-            case TypeBuff.Fire:
-                _effects.Add(new EffectFireDamage(_damageable, effectConfiguration.TimeEffect, effectConfiguration.ValueEffect));
-                return;
-            case TypeBuff.Speed:
-                _effects.Add(new EffectSpeedBoost(_changeSpeed, effectConfiguration.TimeEffect, effectConfiguration.ValueEffect));
-                return;
-            case TypeBuff.Invincible:
-                _effects.Add(new EffectInvincible(effectConfiguration.TimeEffect,_damageable));
-                return;
-            case TypeBuff.Freeze:
-                _effects.Add(new EffectFreeze(effectConfiguration.TimeEffect,_changeSpeed,effectConfiguration.ValueEffect));
-                return;
         }
     }
 

@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fd5bf4c87074b44bf523c5f7c6612cf, type: 3}
-  m_Name: SpeedBoostLVL_1
+  m_Script: {fileID: 11500000, guid: 4faa6affc3564542832a70e5114efe32, type: 3}
+  m_Name: SpeedBost_1
   m_EditorClassIdentifier: 
-  timeEffect: 20
-  valueEffect: 3
-  typeEffect: 3
+  timer: 0
+  speedBostValue: 0
