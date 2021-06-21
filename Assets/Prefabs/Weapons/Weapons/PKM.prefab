@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 246021504920101994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dulo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 7614466922300569429}
   - component: {fileID: 6086792541865072287}
   - component: {fileID: -1724783013799957611}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PKM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 7049035563740814951}
   - component: {fileID: 5848876943157853370}
   - component: {fileID: 3129379920839186329}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ak
   m_TagString: Untagged
   m_Icon: {fileID: 0}

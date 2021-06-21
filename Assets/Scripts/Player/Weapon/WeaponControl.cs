@@ -27,7 +27,7 @@ public class WeaponControl : MonoBehaviour
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.E)) NextWeapon();
-        if(_inputHandler.Fire) _currentWeapon.Fire();
+        if(_inputHandler.Fire && _currentWeapon != null) _currentWeapon.Fire();
     }
 
     [Inject]

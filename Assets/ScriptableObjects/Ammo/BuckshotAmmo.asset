@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf7a959887847804797686291645a34d, type: 3}
-  m_Name: Spider
+  m_Script: {fileID: 11500000, guid: b5139d21297e5cf4e823eb3dba3c91c3, type: 3}
+  m_Name: BuckshotAmmo
   m_EditorClassIdentifier: 
-  speed: 3
-  hp: 8
-  damage: 0
-  enemyGameObject: {fileID: 6653171933686412266, guid: 6d7c3621f9d06c740a1631e9a0bd1104, type: 3}
+  ammoGameObject: {fileID: 6537170405328664152, guid: 87c81de2c8df498419f18f5fe3c4535c, type: 3}
+  speedAmmo: 9
+  damage: 4
+  lifeTime: 5

@@ -16,9 +16,9 @@ public class Buffer : MonoBehaviour
         DictionaryInitialize();
     }
 
-    public void TakeEffect(TypeBuff effect,float timeEffect,float valueEffect)
+    public void TakeEffect(EffectConfiguration effectConfiguration)
     {
-        CreateNewEffect(effect,timeEffect,valueEffect);
+        CreateNewEffect(effectConfiguration);
         if (_activeEffect == false)
         {
             _activeEffect = true;
@@ -26,21 +26,21 @@ public class Buffer : MonoBehaviour
         }
     }
 
-    private void CreateNewEffect(TypeBuff effect, float timeEffect, float valueEffect)
+    private void CreateNewEffect(EffectConfiguration effectConfiguration)
     {
-        switch (effect)
+        switch (effectConfiguration.TypeEffect)
         {
             case TypeBuff.Fire:
-                _effects.Add(new EffectFireDamage(_damageable, timeEffect, valueEffect));
+                _effects.Add(new EffectFireDamage(_damageable, effectConfiguration.TimeEffect, effectConfiguration.ValueEffect));
                 return;
             case TypeBuff.Speed:
-                _effects.Add(new EffectSpeedBoost(_changeSpeed, timeEffect, valueEffect));
+                _effects.Add(new EffectSpeedBoost(_changeSpeed, effectConfiguration.TimeEffect, effectConfiguration.ValueEffect));
                 return;
             case TypeBuff.Invincible:
-                _effects.Add(new EffectInvincible(timeEffect,_damageable));
+                _effects.Add(new EffectInvincible(effectConfiguration.TimeEffect,_damageable));
                 return;
             case TypeBuff.Freeze:
-                _effects.Add(new EffectFreeze(timeEffect,_changeSpeed,valueEffect));
+                _effects.Add(new EffectFreeze(effectConfiguration.TimeEffect,_changeSpeed,effectConfiguration.ValueEffect));
                 return;
         }
     }
