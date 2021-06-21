@@ -1,8 +1,8 @@
 using UnityEngine;
+using Zenject;
 
 public class Player : MonoBehaviour,IDeathInitialize
 {
-    [SerializeField] private Joystick moveJoystick;
     [SerializeField] private PlayerConfiguration playerConfiguration;
     [SerializeField] private WeaponControl weaponControl;
     [SerializeField] private PlayerScanner playerScanner;
@@ -11,18 +11,24 @@ public class Player : MonoBehaviour,IDeathInitialize
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private PlayerLook playerLook;
 
+    private InputHandler _inputHandler;
     public WeaponControl WeaponControl => weaponControl;
     
     // TODO: can be completely removed by creating dedicated injection installer
     private void Start()
     {
-        playerMove.Initialize(playerConfiguration,moveJoystick);
-        playerLook.Initialize(moveJoystick);
+        playerMove.Initialize(playerConfiguration,_inputHandler);
+        playerLook.Initialize(_inputHandler);
         playerScanner.Initialize(playerLook);
         playerHealth.Initialize(playerConfiguration.HP,this);
         buffer.Initialize(playerMove,playerHealth);
     }
-    
+
+    [Inject]
+    public void Construct(InputHandler inputHandler)
+    {
+        _inputHandler = inputHandler;
+    }
     // TODO: ???
     public void DeadInitialize()
     {

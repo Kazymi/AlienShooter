@@ -1,52 +1,39 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyMove : MonoBehaviour,ISpeed
+public class EnemyMove : MonoBehaviour,IChangeSpeed
 {
     private NavMeshAgent _navMeshAgent;
     private float _currentSpeed;
-    // TODO: <***>
-    public Dictionary<TypeBuff, float> ActiveBuffs { get; set; }
-
+    private Transform _target;
     public void Initialize(Transform playerTransform, float speed)
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _currentSpeed = speed;
         _navMeshAgent.speed = _currentSpeed;
-        StartCoroutine(MoveToPlayer(playerTransform));
-    }
-    
-    public void AddBuff(TypeBuff buff, float valueSpeed)
-    {
-        if (!ActiveBuffs.ContainsKey(buff))
-        {
-            ActiveBuffs.Add(buff,valueSpeed);
-            _currentSpeed += valueSpeed;
-        }
+        _target = playerTransform;
     }
 
-    public void DeactivateBuff(TypeBuff buff)
+    private void Update()
     {
-        if (ActiveBuffs.ContainsKey(buff))
-        {
-            _currentSpeed -= ActiveBuffs[buff];
-            ActiveBuffs.Remove(buff);
-        }
+        _navMeshAgent.SetDestination(_target.position);
     }
-    
-    // TODO: do it in Update()
-    private IEnumerator MoveToPlayer(Transform playerTransform)
+
+    public void AddSpeed(float valueChange)
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.3f);
-            // TODO: doesn't look like speed changes every iteration
-            _navMeshAgent.speed = _currentSpeed;
-            _navMeshAgent.SetDestination(playerTransform.position);
-        }
+        _currentSpeed += valueChange;
+        ChangeSpeed();
+    }
+    public void RemoveSpeed(float valueChange)
+    {
+        _currentSpeed -= valueChange;
+        ChangeSpeed();
+    }
+
+    private void ChangeSpeed()
+    {
+        float currentSpeed = _currentSpeed > 0 ? _currentSpeed : 0;
+        _navMeshAgent.speed = currentSpeed;
     }
 }

@@ -12,11 +12,7 @@ public class WeaponControl : MonoBehaviour
 
     private Weapon _currentWeapon;
     private List<WeaponConfiguration> _spawnedWeapon = new List<WeaponConfiguration>(){null,null};
-    
-    // TODO: use method injection
-    [Inject]
     private WeaponManager _weaponManager;
-    
     private int _idCurrentGun;
 
     private void Start()
@@ -32,6 +28,12 @@ public class WeaponControl : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E)) NextWeapon();
     }
 
+    [Inject]
+    public void Construct(WeaponManager weaponManager)
+    {
+        _weaponManager = weaponManager;
+    }
+    
     public void NewWeapon(WeaponConfiguration weaponConfiguration)
     {
         for (int i = 0; i < _spawnedWeapon.Count; i++)
@@ -75,7 +77,7 @@ public class WeaponControl : MonoBehaviour
     {
         OffAllGun();
         if(_spawnedWeapon[id] != null)
-        _weaponManager.GetWeaponByName(_spawnedWeapon[id].Name).transform.parent = _weaponManager.SpawnGunPosition;
+        _weaponManager.GetWeaponByName(_spawnedWeapon[id].Name).transform.parent = _weaponManager.transform;
         _spawnedWeapon[id] = weaponConfiguration;
         SpawnGun(id);
     }

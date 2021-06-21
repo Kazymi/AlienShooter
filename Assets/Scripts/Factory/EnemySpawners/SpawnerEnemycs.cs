@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerSpider : MonoBehaviour
+public class SpawnerEnemy : MonoBehaviour
 {
     [SerializeField] private EnemyConfiguration enemyConfiguration;
     [SerializeField] private Transform playerTranform;
+    [SerializeField] private int countEnemy;
+    [SerializeField] private float spawnTimer = 1f;
     
     private Factory _factory;
     private void Start()
     {
-        // TODO: move hardcoded value
-        _factory = new Factory(enemyConfiguration.EnemyGameObject,10);
+        _factory = new Factory(enemyConfiguration.EnemyGameObject,countEnemy);
         StartCoroutine(Spawn());
     }
     private void SpawnEnemy()
@@ -24,8 +25,7 @@ public class SpawnerSpider : MonoBehaviour
     {
         while (true)
         {
-            // TODO: move hardcoded value
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(spawnTimer);
             SpawnEnemy();
         }
     }

@@ -4,12 +4,9 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private List<WeaponConfiguration> weaponConfigurations;
-    [SerializeField] private Transform spawnGunPosition;
     
     private Dictionary<string, Weapon> _weapons = new Dictionary<string, Weapon>();
 
-    public Transform SpawnGunPosition => spawnGunPosition;
-    
     private void Start()
     {
        foreach(var i in weaponConfigurations)
@@ -25,8 +22,7 @@ public class WeaponManager : MonoBehaviour
     
     private void NewWeapon(Weapon weapon,string name)
     {
-        // TODO: just spawn weapons under this transform
-        var newGun = Instantiate(weapon,spawnGunPosition);
+        var newGun = Instantiate(weapon,transform);
         newGun.gameObject.SetActive(false);
         _weapons.Add(name, newGun);
     }

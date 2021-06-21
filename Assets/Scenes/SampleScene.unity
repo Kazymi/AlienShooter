@@ -724,7 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4894ccdab55e66e4688d3918ad81e73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotatingPlayerTranform: {fileID: 213604246}
+  rotatingPlayerTransform: {fileID: 213604246}
 --- !u!114 &559860983 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6652338051780734518, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
@@ -775,9 +775,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 461910499}
     m_Modifications:
     - target: {fileID: -6012356689482448283, guid: af596ed187240be4a93228d9a2958984, type: 3}
+      propertyPath: mobile
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6012356689482448283, guid: af596ed187240be4a93228d9a2958984, type: 3}
       propertyPath: fireButton
       value: 
       objectReference: {fileID: 1323085630}
+    - target: {fileID: -6012356689482448283, guid: af596ed187240be4a93228d9a2958984, type: 3}
+      propertyPath: moveJoystick
+      value: 
+      objectReference: {fileID: 968901222}
     - target: {fileID: 174104983467477346, guid: af596ed187240be4a93228d9a2958984, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1516,6 +1524,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyConfiguration: {fileID: 11400000, guid: 4f55b4784ca3e064f9b4e2449503aa93, type: 2}
   playerTranform: {fileID: 559860984}
+  countEnemy: 0
+  spawnTimer: 1
 --- !u!4 &1159937840
 Transform:
   m_ObjectHideFlags: 0

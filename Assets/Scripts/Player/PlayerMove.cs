@@ -2,20 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMove : MonoBehaviour,ISpeed
+public class PlayerMove : MonoBehaviour,IChangeSpeed
 {
-    // TODO: PlayerMovement shouldn't be aware of input scheme. Make Input class which reads from joystick or keyboard and only exposes resulting Vector2
-    [SerializeField] private bool mobile = true;
-    private Joystick _joystick;
+    private InputHandler _inputHandler;
     private CharacterController _characterController;
-    private float _currentSpeed;
-    
-    // TODO: not movement's job to keep track of buffs. It only can expose public ChangeSpeed() method, which can be triggered by dedicated buffs component
-    public Dictionary<TypeBuff, float> ActiveBuffs { get; set; }
+    private float _speed;
 
     private void Start()
     {
-        ActiveBuffs = new Dictionary<TypeBuff, float>();
         _characterController = GetComponent<CharacterController>();
     }
 
@@ -24,36 +18,28 @@ public class PlayerMove : MonoBehaviour,ISpeed
         Move();
     }
 
-    public void Initialize(PlayerConfiguration playerConfiguration, Joystick joystick)
+    public void Initialize(PlayerConfiguration playerConfiguration, InputHandler inputHandler)
     {
-        _joystick = joystick;
-        _currentSpeed = playerConfiguration.Speed;
-    }
-    
-    public void AddBuff(TypeBuff buff, float valueSpeed)
-    {
-        if (!ActiveBuffs.ContainsKey(buff))
-        {
-            ActiveBuffs.Add(buff,valueSpeed);
-            _currentSpeed += valueSpeed;
-        }
+        _inputHandler = inputHandler;
+        _speed = playerConfiguration.Speed;
     }
 
-    public void DeactivateBuff(TypeBuff buff)
-    {
-        if (ActiveBuffs.ContainsKey(buff))
-        {
-            _currentSpeed -= ActiveBuffs[buff];
-            ActiveBuffs.Remove(buff);
-        }
-    }
-    
     private void Move()
     {
-        var moveDir = mobile ? new Vector3(-_joystick.Horizontal, 0, -_joystick.Vertical) : new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
+        float _currentSpeed = _speed > 0 ? _speed : 0;
+        var moveDir = new Vector3(_inputHandler.MoveDirection.x, 0, _inputHandler.MoveDirection.y);
         moveDir = transform.TransformDirection(moveDir);
         moveDir *= _currentSpeed * Time.deltaTime;
         _characterController.Move(moveDir);
+    }
+
+    public void AddSpeed(float valueChange)
+    {
+        _speed += valueChange;
+    }
+
+    public void RemoveSpeed(float valueChange)
+    {
+        _speed -= valueChange;
     }
 }

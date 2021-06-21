@@ -4,9 +4,8 @@ using Zenject;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] protected Transform positionSpawnAmmo;
-
-    private InputHandler _inputHandler;
+    [SerializeField] private Transform positionSpawnAmmo;
+    
     private Factory _factory;
     private WeaponConfiguration _weaponConfiguration;
     private AmmoConfiguration _currentWeaponConfiguration;
@@ -14,26 +13,21 @@ public class Weapon : MonoBehaviour
     private bool _lockFire;
     private bool _reloaded;
     private float _ammo;
-    private void Update()
-    {
-        // TODO: WeaponControl should trigger it
-        if(_inputHandler.Fire) Fire();
-    }
-    
+
     public void Initialize(WeaponConfiguration gunConfiguration)
     {
         transform.localPosition = Vector3.zero;
         _reloaded = false;
         _lockFire = false;
         InitializeWeapon(gunConfiguration);
-        InitializeFactory();
         if(_initialized) return;
         _initialized = true;
+        InitializeFactory();
         _currentWeaponConfiguration = gunConfiguration.AmmoConfiguration;
         _ammo = _weaponConfiguration.MaxAmmo;
     }
     
-    private void Fire()
+    public void Fire()
     {
         if(_lockFire || _reloaded) return;
         _ammo--;
@@ -72,11 +66,5 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(_weaponConfiguration.TimeReloaded);
         _ammo = _weaponConfiguration.MaxAmmo;
         _reloaded = false;
-    }
-    
-    [Inject]
-    private void Construct(InputHandler inputHandler)
-    {
-        _inputHandler = inputHandler;
     }
 }

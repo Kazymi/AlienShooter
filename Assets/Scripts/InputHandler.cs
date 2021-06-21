@@ -1,16 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
+    [SerializeField] private bool mobile;
     [SerializeField] private FireButton fireButton;
-    
-    // TODO: never used
-    public  FireButton FireButton
+    [SerializeField] private Joystick moveJoystick;
+
+    private Vector2 _moveDirection;
+
+    public Vector2 MoveDirection => _moveDirection;
+
+    private void Update()
     {
-        set => fireButton = value;
+        _moveDirection = Direction();
     }
-    
+
     public bool Fire => fireButton.PointDown || Input.GetKey(KeyCode.Q);
+
+    private Vector2 Direction()
+    {
+        if (mobile)
+        {
+            return moveJoystick.Direction;
+        }
+        else
+        {
+            return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        }
+    }
 }

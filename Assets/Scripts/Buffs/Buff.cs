@@ -1,7 +1,7 @@
 ﻿public class Buff
 {
     private float _timeBuff;
-    private BuffConfiguration _buffConfiguration;
+    private Effect _buffConfiguration;
 
     public float TimeBuff
     {
@@ -9,11 +9,8 @@
         set => _timeBuff = value;
     }
 
-    public BuffConfiguration BuffConfiguration => _buffConfiguration;
-
-    public Buff(BuffConfiguration buffConfiguration)
+    public Buff(Effect buffConfiguration)
     {
-        _timeBuff = buffConfiguration.TimerBuff;
         _buffConfiguration = buffConfiguration;
     }
 }

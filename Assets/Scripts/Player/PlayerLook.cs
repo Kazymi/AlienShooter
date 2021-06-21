@@ -5,8 +5,7 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private Transform rotatingPlayerTransform; 
     private Transform _target;
     private bool _lookAtTarget;
-    // TODO: should read Vector2 from some Input class
-    private Joystick _lookJoystick;
+    private InputHandler _inputHandler;
     
     public bool LookAtTarget
     {
@@ -27,15 +26,15 @@ public class PlayerLook : MonoBehaviour
         }
         else
         {
-            if (_lookJoystick.Direction != Vector2.zero)
+            if (_inputHandler.MoveDirection != Vector2.zero)
             {
                 rotatingPlayerTransform.eulerAngles = new Vector3(
-                    0, Mathf.Atan2(-_lookJoystick.Horizontal, -_lookJoystick.Vertical) * 180 / Mathf.PI, 0);
+                    0, Mathf.Atan2(_inputHandler.MoveDirection.x, _inputHandler.MoveDirection.y) * 180 / Mathf.PI, 0);
             }
         }
     }
-    public void Initialize(Joystick joystick)
+    public void Initialize(InputHandler inputHandler)
     {
-        _lookJoystick = joystick;
+        _inputHandler = inputHandler;
     }
 }

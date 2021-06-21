@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: badf59511fb44aafbf8e0abfe786c363, type: 3}
-  m_Name: Speed
+  m_Script: {fileID: 11500000, guid: 0da62e5161a842a6bdf7685b41fa5d91, type: 3}
+  m_Name: SpeedBost_1
   m_EditorClassIdentifier: 
-  timeBuff: 15
-  typeBuff: 3
+  timeBuff: 0
+  valueBoost: 0
