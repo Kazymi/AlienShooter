@@ -1,29 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Buffer : MonoBehaviour
 {
-    private IMovenment _changeSpeed;
-    private Damageable _damageable;
+    [SerializeField] private bool player;
+    [SerializeField] private bool spawnVFX;
+    [SerializeField] private Transform VFXPositionSpawn;
+    
     private List<Effect> _effects = new List<Effect>();
     private bool _activeEffect;
+    private VFXManager _vfxManager;
     private EffectConfig _effectConfig;
     public void Initialize(IMovenment changeSpeed, Damageable damageable)
     {
-        _changeSpeed = changeSpeed;
-        _damageable = damageable;
         _effectConfig = new EffectConfig()
         {
             Damageable = damageable,
-            Movenment = _changeSpeed
+            Movenment = changeSpeed
         };
-        DictionaryInitialize();
     }
-
     public void TakeEffect(EffectSystem effectSystem)
     {
-        _effects.Add(effectSystem.GenerateEffect(_effectConfig));
+        var effect = effectSystem.GenerateEffect(_effectConfig);
+        _effects.Add(effect);
+        if (spawnVFX && effectSystem.VFXConfiguration != null)
+        {
+            if (effectSystem.VFXConfiguration.OnlyPlayer)
+            {
+                if (player) SpawnVFX(effectSystem.VFXConfiguration, effect);
+            }
+            else
+            {
+                SpawnVFX(effectSystem.VFXConfiguration, effect);
+            }
+        }
         if (_activeEffect == false)
         {
             _activeEffect = true;
@@ -31,11 +43,12 @@ public class Buffer : MonoBehaviour
         }
     }
 
-    private void DictionaryInitialize() //???
+    [Inject]
+    public void Construct(VFXManager vfxManager)
     {
-
+        _vfxManager = vfxManager;
+        Debug.Log("++");
     }
-   
     IEnumerator CheckEffects()
     {
         while (_activeEffect)
@@ -51,6 +64,12 @@ public class Buffer : MonoBehaviour
             }
         }
     }
-   
 
+    private void SpawnVFX(VFXConfiguration vfxConfiguration,Effect effect)
+    {
+        var vfx = _vfxManager.GetVisualEffect(vfxConfiguration);
+        vfx.InitializeEffect(effect);
+        vfx.transform.parent = VFXPositionSpawn;
+        vfx.transform.localPosition= Vector3.zero;
+    }
 }

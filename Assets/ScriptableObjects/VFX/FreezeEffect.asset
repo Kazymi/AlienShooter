@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd3d164a39289346ad31747e8d4fe8a, type: 3}
+  m_Name: FreezeEffect
+  m_EditorClassIdentifier: 
+  visualEffect: {fileID: 6123523944865834298, guid: d7d40bc685f1dbe4db75aab1a8022e9a, type: 3}
+  countElement: 3
+  onlyPlayer: 0

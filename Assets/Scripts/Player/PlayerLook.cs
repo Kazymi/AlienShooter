@@ -28,8 +28,9 @@ public class PlayerLook : MonoBehaviour
         {
             if (_inputHandler.MoveDirection != Vector2.zero)
             {
-                rotatingPlayerTransform.eulerAngles = new Vector3(
-                    0, Mathf.Atan2(_inputHandler.MoveDirection.x, _inputHandler.MoveDirection.y) * 180 / Mathf.PI, 0);
+                var i = new Vector3(0, Mathf.Atan2(_inputHandler.MoveDirection.x, _inputHandler.MoveDirection.y) * 180 / Mathf.PI, 0);
+               rotatingPlayerTransform.rotation= Quaternion.Lerp(rotatingPlayerTransform.rotation, Quaternion.Euler(i), Time.deltaTime*4.0f);
+
             }
         }
     }

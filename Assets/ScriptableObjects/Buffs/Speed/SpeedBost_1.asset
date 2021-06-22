@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4faa6affc3564542832a70e5114efe32, type: 3}
   m_Name: SpeedBost_1
   m_EditorClassIdentifier: 
-  timer: 0
-  speedBostValue: 0
+  timer: 4
+  vfxConfiguration: {fileID: 11400000, guid: dfeb175741d04f84d858c7b0557d84e2, type: 2}
+  speedBostValue: 1

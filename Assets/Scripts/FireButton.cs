@@ -1,22 +1,22 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class FireButton : MonoBehaviour,IPointerUpHandler,IPointerDownHandler
 {
-    private bool _pointDown;
-    
+    private Button _button;
     // TODO: can be merged into auto-property
-    public bool PointDown => _pointDown;
-    
+    public bool PointDown { get; private set; }
+
     // TODO: you can just use Unity button and subscribe on it's click event, also it gives visual customization options
     // TODO: if you click on image then move finger and only after that let go, _pointDown will remain true 
     public void OnPointerUp(PointerEventData eventData)
     {
-        _pointDown = false;
+        PointDown = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        _pointDown = true;
+        PointDown = true;
     }
 }

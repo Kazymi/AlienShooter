@@ -6,11 +6,13 @@ public class LocationInstaller : MonoInstaller
 {
     [SerializeField] private WeaponManager weaponManagerPrefab;
     [SerializeField] private InputHandler inputHandlerPrefab;
+    [SerializeField] private VFXManager vfxManager;
 
     public override void InstallBindings()
     {
         CreateWeaponManager();
         CreateInputHandler();
+        CreateVFXManager();
     }
 
     private void CreateWeaponManager()
@@ -18,6 +20,13 @@ public class LocationInstaller : MonoInstaller
         Container
               .Bind<WeaponManager>()
               .FromInstance(weaponManagerPrefab)
+              .AsSingle();
+    } 
+    private void CreateVFXManager()
+    {
+        Container
+              .Bind<VFXManager>()
+              .FromInstance(vfxManager)
               .AsSingle();
     } 
     private void CreateInputHandler()

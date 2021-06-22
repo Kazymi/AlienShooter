@@ -14,7 +14,6 @@ public class Player : MonoBehaviour,IDeathInitialize
     private InputHandler _inputHandler;
     public WeaponControl WeaponControl => weaponControl;
     
-    // TODO: can be completely removed by creating dedicated injection installer
     private void Start()
     {
         playerMove.Initialize(playerConfiguration,_inputHandler);
@@ -29,7 +28,7 @@ public class Player : MonoBehaviour,IDeathInitialize
     {
         _inputHandler = inputHandler;
     }
-    // TODO: ???
+    
     public void DeadInitialize()
     {
         
