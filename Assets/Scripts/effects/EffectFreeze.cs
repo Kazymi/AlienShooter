@@ -1,7 +1,7 @@
 ﻿public class EffectFreeze : Effect
 {
-    private IMovenment _movenment;
-    private float _valueSpeed;
+    private readonly IMovenment _movenment;
+    private readonly float _valueSpeed;
     public EffectFreeze(float timerEffect,IMovenment movenment,float valueSpeed) : base(timerEffect)
     {
         _movenment = movenment;

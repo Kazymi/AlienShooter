@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class pivotControl : MonoBehaviour
+public class PivotControl : MonoBehaviour
 {
     private void OnDrawGizmos()
     {

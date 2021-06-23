@@ -1,13 +1,12 @@
-using System;
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody),typeof(Collider))]
 
 public class ArmorPiercingAmmo : MonoBehaviour,IAmmo
 {
-    [SerializeField] private int maxEnemy = 3;
+    [SerializeField] private int maxEnemyPenetration = 3;
     [SerializeField][Range(0,100)] private int damageReduction = 25;
     [SerializeField] private LayerMask ignoreLayer;
     
@@ -46,7 +45,7 @@ public class ArmorPiercingAmmo : MonoBehaviour,IAmmo
             i.TakeDamage(_ammoConfiguration.Damage);
         }
 
-        if (other.gameObject.layer == ignoreLayer || _enemyPassed==maxEnemy)
+        if (other.gameObject.layer == ignoreLayer || _enemyPassed==maxEnemyPenetration)
         {
             StopAllCoroutines();
             _factory.Destroy(gameObject);

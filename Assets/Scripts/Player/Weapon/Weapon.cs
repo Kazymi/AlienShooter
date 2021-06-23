@@ -12,7 +12,9 @@ public class Weapon : MonoBehaviour
     private bool _initialized;
     private bool _lockFire;
     private bool _reloaded;
-    private float _ammo;
+    private int _ammo;
+
+    public int Ammo => _ammo;
 
     public void Initialize(WeaponConfiguration gunConfiguration)
     {

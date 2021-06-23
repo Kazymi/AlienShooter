@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -9,25 +10,32 @@ public class WeaponControl : MonoBehaviour
 {
     [SerializeField] private WeaponConfiguration startWeapon;
     [SerializeField] private Transform positionWeapon;
-
+    [SerializeField] private StatisticUI statisticUI;
+    
     private Weapon _currentWeapon;
     private InputHandler _inputHandler;
     private List<WeaponConfiguration> _spawnedWeapon = new List<WeaponConfiguration>(){null,null};
     private WeaponManager _weaponManager;
     private int _idCurrentGun;
 
+    public Weapon CurrentWeapon => _currentWeapon;
     private void Start()
     {
-        if (startWeapon != null)
-        {
-            NewWeapon(startWeapon);
-        }
+        StartCoroutine(SpawnStartGun());
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E)) NextWeapon();
-        if(_inputHandler.Fire && _currentWeapon != null) _currentWeapon.Fire();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            NextWeapon();
+        }
+
+        if (_inputHandler.Fire && _currentWeapon != null)
+        {
+            statisticUI.UpdateAmmo();
+            _currentWeapon.Fire();
+        }
     }
 
     [Inject]
@@ -58,6 +66,14 @@ public class WeaponControl : MonoBehaviour
         SpawnGun(_idCurrentGun);
     }
 
+    private IEnumerator SpawnStartGun()
+    {
+        yield return new WaitForEndOfFrame();
+        if (startWeapon != null)
+        {
+            NewWeapon(startWeapon);
+        }
+    }
     private void OffAllGun()
     {
         foreach (var i in _spawnedWeapon)
@@ -74,6 +90,7 @@ public class WeaponControl : MonoBehaviour
         _currentWeapon.transform.localRotation = Quaternion.identity;
         _currentWeapon.Initialize(_spawnedWeapon[idWeapon]);
         _currentWeapon.gameObject.SetActive(true);
+        statisticUI.UpdateAmmo();
     }
 
     private void SetWeapon(WeaponConfiguration weaponConfiguration, int id)

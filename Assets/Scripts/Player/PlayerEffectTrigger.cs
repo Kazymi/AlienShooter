@@ -10,7 +10,7 @@ public class PlayerEffectTrigger : MonoBehaviour
         var i = other.GetComponent<EffectSpawn>();
         if (i != null)
         {
-            buffer.TakeEffect(i.CurrentEffectSystem);
+            buffer.TakeEffect(i.EffectSystem);
             i.Destroy();
         }
     }

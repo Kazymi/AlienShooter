@@ -47,7 +47,6 @@ public class Buffer : MonoBehaviour
     public void Construct(VFXManager vfxManager)
     {
         _vfxManager = vfxManager;
-        Debug.Log("++");
     }
     IEnumerator CheckEffects()
     {

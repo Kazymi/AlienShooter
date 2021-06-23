@@ -38622,6 +38622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectSystem: {fileID: 11400000, guid: 3a1735fbb03ed2146b2394f9a61e9d2d, type: 2}
+  typeBuff: 3
 --- !u!1 &7019964107198234519
 GameObject:
   m_ObjectHideFlags: 0

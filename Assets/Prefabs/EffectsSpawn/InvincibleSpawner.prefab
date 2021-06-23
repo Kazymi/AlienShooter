@@ -9670,6 +9670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectSystem: {fileID: 11400000, guid: 950f4bfb9e6b22f4583adbf592f0bb8c, type: 2}
+  typeBuff: 1
 --- !u!1 &2782469952620439323
 GameObject:
   m_ObjectHideFlags: 0

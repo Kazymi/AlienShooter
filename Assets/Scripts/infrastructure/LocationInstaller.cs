@@ -7,31 +7,33 @@ public class LocationInstaller : MonoInstaller
     [SerializeField] private WeaponManager weaponManagerPrefab;
     [SerializeField] private InputHandler inputHandlerPrefab;
     [SerializeField] private VFXManager vfxManager;
-    [SerializeField] private EffectManager effectManager;
+    [SerializeField] private SpawnManager spawnManager;
+    [SerializeField] private Player player;
 
     public override void InstallBindings()
     {
-        CreateWeaponManager();
-        CreateInputHandler();
-        CreateVFXManager();
-        CreateEffectManger();
+        BindWeaponManager();
+        BindInputHandler();
+        BindVFXManager();
+        BindSpawnManger();
+        BindPlayer();;
     }
 
-    private void CreateWeaponManager()
+    private void BindWeaponManager()
     {
         Container
               .Bind<WeaponManager>()
               .FromInstance(weaponManagerPrefab)
               .AsSingle();
     } 
-    private void CreateVFXManager()
+    private void BindVFXManager()
     {
         Container
               .Bind<VFXManager>()
               .FromInstance(vfxManager)
               .AsSingle();
     } 
-    private void CreateInputHandler()
+    private void BindInputHandler()
     {
         Container
               .Bind<InputHandler>()
@@ -39,11 +41,19 @@ public class LocationInstaller : MonoInstaller
               .AsSingle();
     }
 
-    private void CreateEffectManger()
+    private void BindSpawnManger()
     {
         Container
-            .Bind<EffectManager>()
-            .FromInstance(effectManager)
+            .Bind<SpawnManager>()
+            .FromInstance(spawnManager)
+            .AsSingle();
+    }
+
+    private void BindPlayer()
+    {
+        Container
+            .Bind<Player>()
+            .FromInstance(player)
             .AsSingle();
     }
 }

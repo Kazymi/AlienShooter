@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 20
   vfxConfiguration: {fileID: 11400000, guid: 7bbd08aa25f23ff4784b4a37e6ae0586, type: 2}
-  typeBuff: 0
+  typeBuff: 1
