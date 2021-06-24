@@ -6,23 +6,21 @@ using UnityEngine;
 
 public class StandartAmmo : MonoBehaviour,IAmmo
 {
-    [SerializeField] private LayerMask ignoreLayer;
-    
     private AmmoConfiguration _ammoConfiguration;
     private Factory _factory;
-    
-    public void Initialize(AmmoConfiguration ammoConfiguration, Factory parentFactory)
-    {
-        _ammoConfiguration = ammoConfiguration;
-        _factory = parentFactory;
-        StartCoroutine(Destroy());
-    }
 
     private void Update()
     {
         transform.position += transform.forward * (_ammoConfiguration.SpeedAmmo * Time.deltaTime);
     }
 
+    public void Initialize(AmmoConfiguration ammoConfiguration, Factory parentFactory)
+    {
+        _ammoConfiguration = ammoConfiguration;
+        _factory = parentFactory;
+        StartCoroutine(Destroy());
+    }
+    
     private IEnumerator Destroy()
     {
         yield return new WaitForSeconds(_ammoConfiguration.LifeTime);
@@ -36,11 +34,7 @@ public class StandartAmmo : MonoBehaviour,IAmmo
         {
             i.TakeDamage(_ammoConfiguration.Damage);
         }
-
-        if (other.gameObject.layer == ignoreLayer)
-        {
-            StopAllCoroutines();
-            _factory.Destroy(gameObject);
-        }
+        StopAllCoroutines();
+        _factory.Destroy(gameObject);
     }
 }

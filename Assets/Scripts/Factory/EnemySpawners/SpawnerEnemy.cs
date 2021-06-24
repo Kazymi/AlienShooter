@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 public class SpawnerEnemy : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class SpawnerEnemy : MonoBehaviour
     [SerializeField] private int countEnemy;
     [SerializeField] private float spawnTimer = 1f;
     [SerializeField] private DropItems dropItems;
+    [SerializeField] private List<SpawnPosition> _spawnPositions;
     
     private Factory _factory;
     private SpawnManager _spawnManager;
@@ -19,9 +21,20 @@ public class SpawnerEnemy : MonoBehaviour
         _factory = new Factory(enemyConfiguration.EnemyGameObject,countEnemy);
         StartCoroutine(Spawn());
     }
+    
     private void SpawnEnemy()
     {
-        _factory.Create(Vector3.zero).GetComponent<Enemy>().Initialize(enemyConfiguration,playerTranform,_factory,dropItems,_spawnManager);
+       var spawnPositionID = Random.Range(0, _spawnPositions.Count);
+       var randomRadiusX = _spawnPositions[spawnPositionID].MaxX / 2;
+       var randomRadiusZ = _spawnPositions[spawnPositionID].MaxZ / 2;
+       
+       var posX = Random.Range(-randomRadiusX, randomRadiusX) +
+                  _spawnPositions[spawnPositionID].gameObject.transform.position.x;
+       var posZ = Random.Range(-randomRadiusZ, randomRadiusZ) +
+                  _spawnPositions[spawnPositionID].gameObject.transform.position.z;
+       
+       var positionSpawn = new Vector3(posX, 0, posZ);
+       _factory.Create(positionSpawn).GetComponent<Enemy>().Initialize(enemyConfiguration,playerTranform,_factory,dropItems,_spawnManager);
     }
 
     [Inject]
@@ -29,7 +42,8 @@ public class SpawnerEnemy : MonoBehaviour
     {
         _spawnManager = spawnManager;
     }
-    IEnumerator Spawn()
+    
+    private IEnumerator Spawn()
     {
         while (true)
         {

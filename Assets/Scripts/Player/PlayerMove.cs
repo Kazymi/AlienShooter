@@ -30,6 +30,10 @@ public class PlayerMove : MonoBehaviour,IMovenment
         var moveDir = new Vector3(_inputHandler.MoveDirection.x, 0, _inputHandler.MoveDirection.y);
         moveDir = transform.TransformDirection(moveDir);
         moveDir *= _currentSpeed * Time.deltaTime;
+        if (!_characterController.isGrounded)
+        {
+            moveDir.y -= 1f*Time.deltaTime;
+        }
         _characterController.Move(moveDir);
     }
 

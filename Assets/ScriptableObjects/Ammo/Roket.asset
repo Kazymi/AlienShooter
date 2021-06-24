@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Roket
   m_EditorClassIdentifier: 
   ammoGameObject: {fileID: 2445363086061055655, guid: ae8f91e00ee112a4391898c8711e77d3, type: 3}
-  speedAmmo: 3
+  speedAmmo: 7
   damage: 25
   lifeTime: 3

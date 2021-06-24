@@ -8,8 +8,7 @@ public class ArmorPiercingAmmo : MonoBehaviour,IAmmo
 {
     [SerializeField] private int maxEnemyPenetration = 3;
     [SerializeField][Range(0,100)] private int damageReduction = 25;
-    [SerializeField] private LayerMask ignoreLayer;
-    
+
     private int _enemyPassed;
     private float _currentDamage;
     private AmmoConfiguration _ammoConfiguration;
@@ -44,8 +43,13 @@ public class ArmorPiercingAmmo : MonoBehaviour,IAmmo
             _currentDamage -= _currentDamage * (damageReduction / 100);  
             i.TakeDamage(_ammoConfiguration.Damage);
         }
+        else
+        {
+            StopAllCoroutines();
+            _factory.Destroy(gameObject);
+        }
 
-        if (other.gameObject.layer == ignoreLayer || _enemyPassed==maxEnemyPenetration)
+        if (_enemyPassed==maxEnemyPenetration)
         {
             StopAllCoroutines();
             _factory.Destroy(gameObject);

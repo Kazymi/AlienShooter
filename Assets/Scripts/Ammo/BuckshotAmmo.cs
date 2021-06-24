@@ -12,7 +12,7 @@ public class BuckshotAmmo : MonoBehaviour,IAmmo
     private Factory _buckshotFactory;
     private bool _initialized;
 
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         float rayRange = 1.0f;
         float halfFOV = angle / 2.0f;

@@ -1,5 +1,6 @@
 using UnityEngine.AI;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMove : MonoBehaviour,IMovenment
@@ -7,6 +8,12 @@ public class EnemyMove : MonoBehaviour,IMovenment
     private NavMeshAgent _navMeshAgent;
     private float _currentSpeed;
     private Transform _target;
+
+    private void Update()
+    {
+        _navMeshAgent.SetDestination(_target.position);
+    }
+    
     public void Initialize(Transform playerTransform, float speed)
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -15,16 +22,12 @@ public class EnemyMove : MonoBehaviour,IMovenment
         _target = playerTransform;
     }
 
-    private void Update()
-    {
-        _navMeshAgent.SetDestination(_target.position);
-    }
-
     public void AddSpeed(float valueChange)
     {
         _currentSpeed += valueChange;
         ChangeSpeed();
     }
+    
     public void RemoveSpeed(float valueChange)
     {
         _currentSpeed -= valueChange;

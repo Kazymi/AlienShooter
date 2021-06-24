@@ -15,7 +15,8 @@ public class EnemyDamageDealer : MonoBehaviour
     {
         _damage = damage;
     }
-    private void OnTriggerStay(Collider other)
+    
+    private void OnTriggerEnter(Collider other)
     {
         if(_damageLock) return;
         var playerHealth = other.GetComponent<PlayerHealth>();

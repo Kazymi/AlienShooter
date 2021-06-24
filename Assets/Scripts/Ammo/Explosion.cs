@@ -8,38 +8,48 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] private float radius;
     [SerializeField] private float lifeTime;
+    [SerializeField] private GameObject effectExplosion;
+    [SerializeField] private bool exploded;
+
+    private void Update()
+    {
+        if(exploded)
+        {
+            exploded = false;
+            Initialize(10);}
+    }
 
     private float _damage;
 
     public float Lifetime => lifeTime;
-
-    public void Initialize(float damage)
-    {
-        _damage = damage;
-        StartCoroutine(StartExplosion());
-    }
 
     private void OnDrawGizmos()
     {
         Gizmos.color=Color.red;
         Gizmos.DrawWireSphere(transform.position,radius);
     }
-
-    IEnumerator StartExplosion()
+    
+    public void Initialize(float damage)
     {
-        Collider[] hitColliders = new Collider[25];
-        int numColliders = Physics.OverlapSphereNonAlloc(transform.position, radius, hitColliders);
-        for (int i = 0; i < numColliders; i++)
+        Debug.Log("++");
+        _damage = damage;
+        effectExplosion.SetActive(true);
+        StartCoroutine(StartExplosion());
+    }
+
+    private IEnumerator StartExplosion()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
+        foreach (var i in hitColliders)
         {
-            var damageDealer = hitColliders[i].GetComponent<Damageable>();
-            if (damageDealer != null)
+            var damageDealer = i.GetComponent<Damageable>();
+            if (damageDealer != null && i.gameObject.activeInHierarchy)
             {
                 damageDealer.TakeDamage(_damage);
             }
         }
-
         yield return new WaitForSeconds(lifeTime);
-        gameObject.SetActive(false);
+        effectExplosion.SetActive(false);
     }
     
     

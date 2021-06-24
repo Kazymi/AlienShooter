@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3960179105624433368}
   - component: {fileID: 2924157706930057413}
   - component: {fileID: 2650423117160783535}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Buckshot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

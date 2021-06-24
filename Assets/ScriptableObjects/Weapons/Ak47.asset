@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ak47
   m_EditorClassIdentifier: 
   nameGun: Ak-47
-  maxAmmo: 20
-  fireRate: 0.3
-  timeReloaded: 1.5
+  maxAmmo: 30
+  fireRate: 0.142
+  timeReloaded: 1.78
   weaponGameObject: {fileID: 6086792541865072287, guid: 3fb5433795c33b448994faacad65bcd0, type: 3}
-  ammoConfiguration: {fileID: 11400000, guid: 0a93f09d0a5ae9b41af774913984c836, type: 2}
+  ammoConfiguration: {fileID: 11400000, guid: fdbc49d6823346147bc17b1feac5259b, type: 2}

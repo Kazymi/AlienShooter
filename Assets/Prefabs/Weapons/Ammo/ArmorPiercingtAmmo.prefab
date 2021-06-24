@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3960179105624433368}
   - component: {fileID: 2924157706930057413}
   - component: {fileID: 1544718092788143153}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: ArmorPiercingtAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f77f9f1dbb10e4fb985aa2d1190f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemy: 3
+  maxEnemyPenetration: 3
   damageReduction: 25
   ignoreLayer:
     serializedVersion: 2
@@ -98,6 +98,10 @@ PrefabInstance:
     - target: {fileID: 5481131208548253871, guid: 5e2a1164dc632754fb8914ce621c95c7, type: 3}
       propertyPath: m_Name
       value: rifle_bullet_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481131208548253871, guid: 5e2a1164dc632754fb8914ce621c95c7, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5546156403083984208, guid: 5e2a1164dc632754fb8914ce621c95c7, type: 3}
       propertyPath: m_RootOrder

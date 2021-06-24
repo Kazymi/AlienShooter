@@ -44,11 +44,11 @@ public class Buffer : MonoBehaviour
     }
 
     [Inject]
-    public void Construct(VFXManager vfxManager)
+    private void Construct(VFXManager vfxManager)
     {
         _vfxManager = vfxManager;
     }
-    IEnumerator CheckEffects()
+    private IEnumerator CheckEffects()
     {
         while (_activeEffect)
         {

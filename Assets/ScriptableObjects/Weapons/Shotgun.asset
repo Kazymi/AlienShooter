@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0e3046db3cb0142ad96b7bc7f87b69, type: 3}
+  m_Name: Shotgun
+  m_EditorClassIdentifier: 
+  nameGun: Shotgun
+  maxAmmo: 8
+  fireRate: 0.311
+  timeReloaded: 2.03
+  weaponGameObject: {fileID: 1509990458203124470, guid: f62f25c0be45236478768af5fba42d6a, type: 3}
+  ammoConfiguration: {fileID: 11400000, guid: 0a93f09d0a5ae9b41af774913984c836, type: 2}
