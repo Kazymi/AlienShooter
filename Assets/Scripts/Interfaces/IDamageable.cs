@@ -3,7 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public abstract class Damageable : MonoBehaviour
 {
-   private float _currentHealth;
+   protected float _currentHealth;
+   protected float _maxHealth;
    private IDeathInitialize _deathInitialize;
    private bool invincible;
 
@@ -13,6 +14,7 @@ public abstract class Damageable : MonoBehaviour
    }
    public void Initialize(float health, IDeathInitialize deathInitialize)
    {
+      _maxHealth = health;
       _currentHealth = health;
       _deathInitialize = deathInitialize;
    }

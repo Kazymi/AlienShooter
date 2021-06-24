@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class PlayerScanner : MonoBehaviour
 {
     [SerializeField] private float radius;
@@ -66,5 +66,11 @@ public class PlayerScanner : MonoBehaviour
         float num3 = a.z - b.z;
         // TODO: It's actually returns square of distance
         return num1 * num1 + num2 * num2 + num3 * num3;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
