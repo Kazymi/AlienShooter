@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0e3046db3cb0142ad96b7bc7f87b69, type: 3}
   m_Name: RPG7
   m_EditorClassIdentifier: 
-  nameGun: SVD
+  nameGun: RPG
   maxAmmo: 10
-  fireRate: 0.311
-  timeReloaded: 2.03
-  weaponGameObject: {fileID: 6086792541865072287, guid: 3aab2225767eca043bf8263c64805d28, type: 3}
-  ammoConfiguration: {fileID: 11400000, guid: fdbc49d6823346147bc17b1feac5259b, type: 2}
+  fireRate: 1
+  timeReloaded: 3
+  weaponGameObject: {fileID: 6607493620821395168, guid: 237c95c1a9a67424c8e4bbbba77cd3f9, type: 3}
+  ammoConfiguration: {fileID: 11400000, guid: 48ebdaa3c421d7940a67347084a39207, type: 2}

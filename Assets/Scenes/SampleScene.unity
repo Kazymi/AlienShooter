@@ -1660,6 +1660,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2af311ff680ea439daeff22207022f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1399250370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1399250374}
+  - component: {fileID: 1399250373}
+  - component: {fileID: 1399250372}
+  - component: {fileID: 1399250371}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1399250371
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399250370}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1399250372
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399250370}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1399250373
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399250370}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1399250374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399250370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25695333, y: 0.43, z: 6.68}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1410880722 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4880755842838724767, guid: 77c5981ab7672cb4ea0d78a9f9ed5727, type: 3}
@@ -1683,6 +1778,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1142108929}
     m_Modifications:
+    - target: {fileID: 1186623879224074304, guid: 77c5981ab7672cb4ea0d78a9f9ed5727, type: 3}
+      propertyPath: weaponConfigurations.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186623879224074304, guid: 77c5981ab7672cb4ea0d78a9f9ed5727, type: 3}
+      propertyPath: weaponConfigurations.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 85568502f846e2c409481e47bcce9cab, type: 2}
     - target: {fileID: 4880755842838724767, guid: 77c5981ab7672cb4ea0d78a9f9ed5727, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2165,7 +2268,7 @@ PrefabInstance:
     - target: {fileID: 559860985, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
       propertyPath: startWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 1453fb4e83d2b86499e28e6859ccad4a, type: 2}
+      objectReference: {fileID: 11400000, guid: 85568502f846e2c409481e47bcce9cab, type: 2}
     - target: {fileID: 559860985, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
       propertyPath: statisticUI
       value: 
