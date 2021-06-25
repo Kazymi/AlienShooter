@@ -14,7 +14,7 @@
         _movenment.RemoveSpeed(_valueSpeed);
     }
 
-    public override void DeactivateAction()
+    protected override void DeactivateAction()
     {
         _movenment.AddSpeed(_valueSpeed);
     }

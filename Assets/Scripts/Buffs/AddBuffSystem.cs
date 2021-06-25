@@ -7,10 +7,8 @@ public class AddBuffSystem : MonoBehaviour
 
     private void Update()
     {
-        if(addEffect) 
-        {
-         buffer.TakeEffect(effesSystem);
-         addEffect = false;
-        }
+        if (!addEffect) return;
+        buffer.TakeEffect(effesSystem);
+        addEffect = false;
     }
 }

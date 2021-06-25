@@ -3,7 +3,8 @@ public class EffectFireDamage : Effect
 {
     private float _damage;
     private Damageable _damageable;
-    public override void EffectOnTick()
+
+    protected override void EffectOnTick()
     {
         _damageable.TakeDamage(_damage*Time.deltaTime);
     }

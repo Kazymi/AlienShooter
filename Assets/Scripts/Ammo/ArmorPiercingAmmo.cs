@@ -49,10 +49,8 @@ public class ArmorPiercingAmmo : MonoBehaviour,IAmmo
             _factory.Destroy(gameObject);
         }
 
-        if (_enemyPassed==maxEnemyPenetration)
-        {
-            StopAllCoroutines();
-            _factory.Destroy(gameObject);
-        }
+        if (_enemyPassed != maxEnemyPenetration) return;
+        StopAllCoroutines();
+        _factory.Destroy(gameObject);
     }
 }

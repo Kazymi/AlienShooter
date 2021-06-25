@@ -14,12 +14,12 @@ public class BuckshotAmmo : MonoBehaviour,IAmmo
 
     private void OnDrawGizmosSelected()
     {
-        float rayRange = 1.0f;
-        float halfFOV = angle / 2.0f;
-        Quaternion leftRayRotation = Quaternion.AngleAxis( -halfFOV, Vector3.up );
-        Quaternion rightRayRotation = Quaternion.AngleAxis( halfFOV, Vector3.up );
-        Vector3 leftRayDirection = leftRayRotation * transform.forward;
-        Vector3 rightRayDirection = rightRayRotation * transform.forward;
+        const float rayRange = 1.0f;
+        var halfFOV = angle / 2.0f;
+        var leftRayRotation = Quaternion.AngleAxis( -halfFOV, Vector3.up );
+        var rightRayRotation = Quaternion.AngleAxis( halfFOV, Vector3.up );
+        var leftRayDirection = leftRayRotation * transform.forward;
+        var rightRayDirection = rightRayRotation * transform.forward;
         Gizmos.DrawRay( transform.position, leftRayDirection * rayRange );
         Gizmos.DrawRay( transform.position, rightRayDirection * rayRange );
     }
@@ -36,10 +36,10 @@ public class BuckshotAmmo : MonoBehaviour,IAmmo
             _initialized = true;
         }
 
-        for (int i = 0; i < buckshotCount; i++)
+        for (var i = 0; i < buckshotCount; i++)
         {
            var newBuckshot = _buckshotFactory.Create(transform.position);
-           float rotate = angle / 2;
+           var rotate = angle / 2;
            newBuckshot.transform.parent = transform;
            var iAmmo = newBuckshot.GetComponent<IAmmo>();
            if (iAmmo != null)

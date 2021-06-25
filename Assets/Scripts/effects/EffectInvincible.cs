@@ -12,7 +12,7 @@
             _damageable.Invincible = true;
         }
 
-        public override void DeactivateAction()
+        protected override void DeactivateAction()
         {
             _damageable.Invincible = false;
         }

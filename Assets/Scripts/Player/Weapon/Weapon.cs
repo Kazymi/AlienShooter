@@ -12,9 +12,9 @@ public class Weapon : MonoBehaviour
     private bool _initialized;
     private bool _lockFire;
     private bool _reloaded;
-    private int _ammo;
 
-    public int Ammo => _ammo;
+    public int Ammo { get; private set; }
+    public bool Reloaded => _reloaded;
 
     public void Initialize(WeaponConfiguration gunConfiguration)
     {
@@ -26,23 +26,30 @@ public class Weapon : MonoBehaviour
         _initialized = true;
         InitializeFactory();
         _currentWeaponConfiguration = gunConfiguration.AmmoConfiguration;
-        _ammo = _weaponConfiguration.MaxAmmo;
+        Ammo = _weaponConfiguration.MaxAmmo;
     }
     
     public void Fire()
     {
         if(_lockFire || _reloaded) return;
-        _ammo--;
-        if (_ammo <= 0)
+        Ammo--;
+        if (Ammo <= 0)
         { 
-            StartCoroutine(Reloaded());
+            StartCoroutine(StartReloaded());
             return;
         }
-        GameObject ammo = _factory.Create(positionSpawnAmmo.position);
+        var ammo = _factory.Create(positionSpawnAmmo.position);
         ammo.GetComponent<IAmmo>().Initialize(_currentWeaponConfiguration,_factory);
         ammo.transform.position = positionSpawnAmmo.position;
         ammo.transform.rotation = positionSpawnAmmo.rotation;
         StartCoroutine(FireRateTimer());
+    }
+    private IEnumerator StartReloaded()
+    {
+        _reloaded = true;
+        yield return new WaitForSeconds(_weaponConfiguration.TimeReloaded);
+        Ammo = _weaponConfiguration.MaxAmmo;
+        _reloaded = false;
     }
     
     private void InitializeFactory()
@@ -60,13 +67,5 @@ public class Weapon : MonoBehaviour
         _lockFire = true;
         yield return new WaitForSeconds(_weaponConfiguration.FireRate);
         _lockFire = false;
-    }
-    
-    private IEnumerator Reloaded()
-    {
-        _reloaded = true;
-        yield return new WaitForSeconds(_weaponConfiguration.TimeReloaded);
-        _ammo = _weaponConfiguration.MaxAmmo;
-        _reloaded = false;
     }
 }

@@ -7,10 +7,8 @@ public class WeaponPlayerTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var i = other.GetComponent<WeaponSpawn>();
-        if (i!=null)
-        {
-            weaponControl.NewWeapon(i.WeaponConfiguration);
-            i.Destroy();
-        }
+        if (i == null) return;
+        weaponControl.NewWeapon(i.WeaponConfiguration);
+        i.Destroy();
     }
 }

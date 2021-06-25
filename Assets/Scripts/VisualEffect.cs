@@ -19,6 +19,10 @@ public class VisualEffect : MonoBehaviour
         StartCoroutine(StartEffect(effect));
     }
 
+    public void DestoryEffect()
+    {
+        _factory.Destroy(gameObject);
+    }
     IEnumerator StartEffect(Effect effect)
     {
         while (true)
@@ -40,6 +44,6 @@ public class VisualEffect : MonoBehaviour
         }
 
         transform.parent = null;
-        _factory.Destroy(gameObject);
+        DestoryEffect();
     }
 }

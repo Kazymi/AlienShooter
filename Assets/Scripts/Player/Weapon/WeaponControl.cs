@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -31,11 +32,10 @@ public class WeaponControl : MonoBehaviour
             NextWeapon();
         }
 
-        if (_inputHandler.Fire && _currentWeapon != null)
-        {
-            statisticUI.UpdateAmmo();
-            _currentWeapon.Fire();
-        }
+        if (_currentWeapon == null) return;
+        if (!_inputHandler.Fire) return;
+        statisticUI.UpdateAmmo();
+        _currentWeapon.Fire();
     }
 
     [Inject]
@@ -44,16 +44,13 @@ public class WeaponControl : MonoBehaviour
         _weaponManager = weaponManager;
         _inputHandler = inputHandler;
     }
-    
     public void NewWeapon(WeaponConfiguration weaponConfiguration)
     {
-        for (int i = 0; i < _spawnedWeapon.Count; i++)
+        for (var i = 0; i < _spawnedWeapon.Count; i++)
         {
-            if (_spawnedWeapon[i] == null)
-            {
-                SetWeapon(weaponConfiguration,i);
-                return;
-            }
+            if (_spawnedWeapon[i] != null) continue;
+            SetWeapon(weaponConfiguration,i);
+            return;
         }
         SetWeapon(weaponConfiguration, _idCurrentGun);
     }
@@ -76,9 +73,8 @@ public class WeaponControl : MonoBehaviour
     }
     private void OffAllGun()
     {
-        foreach (var i in _spawnedWeapon)
+        foreach (var i in _spawnedWeapon.Where(i => i!=null))
         {
-            if(i!=null)
             _weaponManager.GetWeaponByName(i.Name).gameObject.SetActive(false);
         }
     }
@@ -97,7 +93,7 @@ public class WeaponControl : MonoBehaviour
     {
         OffAllGun();
         if(_spawnedWeapon[id] != null)
-        _weaponManager.GetWeaponByName(_spawnedWeapon[id].Name).transform.parent = _weaponManager.transform;
+            _weaponManager.GetWeaponByName(_spawnedWeapon[id].Name).transform.parent = _weaponManager.transform;
         _spawnedWeapon[id] = weaponConfiguration;
         SpawnGun(id);
     }

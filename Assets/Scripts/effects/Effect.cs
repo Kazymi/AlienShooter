@@ -2,34 +2,33 @@
 
 public abstract class Effect
     {
-        protected float _timer;
-        public float Timer => _timer;
+        public float Timer { get; private set; }
 
         public virtual void ActivateAction()
         {
             
         }
 
-        public virtual void DeactivateAction()
+        protected virtual void DeactivateAction()
         {
             
         }
 
-        public virtual void EffectOnTick()
+        protected virtual void EffectOnTick()
         {
             
         }
 
-        public Effect(float timerEffect)
+        protected Effect(float timerEffect)
         {
-            _timer = timerEffect;
+            Timer = timerEffect;
         }
         
         public virtual bool CheckEffect()
         {
             EffectOnTick();
-            _timer -= Time.deltaTime;
-            if (_timer <= 0)
+            Timer -= Time.deltaTime;
+            if (Timer <= 0)
             {
                 DeactivateAction();
                 return true;

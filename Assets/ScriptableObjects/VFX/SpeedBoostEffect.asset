@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SpeedBoostEffect
   m_EditorClassIdentifier: 
   visualEffect: {fileID: 1689340144833224218, guid: 2abaed083dd6b564ea86ac63f52efe85, type: 3}
-  countElement: 3
+  countElement: 4
   onlyPlayer: 1

@@ -13,10 +13,9 @@ public class Explosion : MonoBehaviour
 
     private void Update()
     {
-        if(exploded)
-        {
-            exploded = false;
-            Initialize(10);}
+        if (!exploded) return;
+        exploded = false;
+        Initialize(10);
     }
 
     private float _damage;
@@ -31,7 +30,6 @@ public class Explosion : MonoBehaviour
     
     public void Initialize(float damage)
     {
-        Debug.Log("++");
         _damage = damage;
         effectExplosion.SetActive(true);
         StartCoroutine(StartExplosion());
@@ -39,7 +37,7 @@ public class Explosion : MonoBehaviour
 
     private IEnumerator StartExplosion()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
+        var hitColliders = Physics.OverlapSphere(transform.position, radius);
         foreach (var i in hitColliders)
         {
             var damageDealer = i.GetComponent<Damageable>();

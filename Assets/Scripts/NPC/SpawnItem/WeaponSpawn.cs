@@ -15,6 +15,10 @@ public class WeaponSpawn : MonoBehaviour
 
     public void Destroy()
     {
+        if (_factory == null)
+        {
+            Destroy(gameObject); return;
+        }
         _factory.Destroy(gameObject);
     }
 }

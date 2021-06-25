@@ -10,11 +10,18 @@ public class Buffer : MonoBehaviour
     [SerializeField] private Transform VFXPositionSpawn;
     
     private List<Effect> _effects = new List<Effect>();
+    private List<VisualEffect> _visualEffects = new List<VisualEffect>();
     private bool _activeEffect;
     private VFXManager _vfxManager;
     private EffectConfig _effectConfig;
+
     public void Initialize(IMovenment changeSpeed, Damageable damageable)
     {
+        foreach (var i in _visualEffects)
+        {
+            i.DestoryEffect();
+        }
+        _effects = new List<Effect>();
         _effectConfig = new EffectConfig()
         {
             Damageable = damageable,
@@ -55,7 +62,8 @@ public class Buffer : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
             foreach (var i in _effects)
             {
-                if(i.CheckEffect()) {_effects.Remove(i); break;}
+                if (!i.CheckEffect()) continue;
+                _effects.Remove(i); break;
             }
             if (_effects.Count == 0)
             {
@@ -67,6 +75,7 @@ public class Buffer : MonoBehaviour
     private void SpawnVFX(VFXConfiguration vfxConfiguration,Effect effect)
     {
         var vfx = _vfxManager.GetVisualEffect(vfxConfiguration);
+        _visualEffects.Add(vfx);
         vfx.InitializeEffect(effect);
         vfx.transform.parent = VFXPositionSpawn;
         vfx.transform.localPosition= Vector3.zero;

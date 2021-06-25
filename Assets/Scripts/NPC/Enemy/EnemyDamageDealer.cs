@@ -14,6 +14,7 @@ public class EnemyDamageDealer : MonoBehaviour
     public void Initialize(float damage)
     {
         _damage = damage;
+        _damageLock = false;
     }
     
     private void OnTriggerEnter(Collider other)

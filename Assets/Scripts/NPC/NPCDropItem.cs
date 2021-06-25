@@ -20,12 +20,12 @@ public class NPCDropItem : MonoBehaviour
         Transform itemTransform;
         if (Random.Range(0, 2) == 1)
         {
-            itemTransform = _spawnManager.GetEffect(
+            itemTransform = _spawnManager.Spawn(
                 _dropItems.EffectSystems[Random.Range(0, _dropItems.EffectSystems.Count)]);
         }
         else
         {
-            itemTransform = _spawnManager.GetWeapon(
+            itemTransform = _spawnManager.Spawn(
                 _dropItems.WeaponConfigurations[Random.Range(0, _dropItems.WeaponConfigurations.Count)]);
         }
         itemTransform.position = transform.position;

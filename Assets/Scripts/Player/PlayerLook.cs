@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-    [SerializeField] private Transform rotatingPlayerTransform; 
+    [SerializeField] private Transform rotatingPlayerTransform;
+    
     private Transform _target;
     private bool _lookAtTarget;
     private InputHandler _inputHandler;
@@ -18,7 +19,7 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
-        if (_lookAtTarget)
+        if (_lookAtTarget && _target != null)
         {
             Vector3 target = new Vector3(_target.position.x, rotatingPlayerTransform.position.y, _target.position.z);
             var rotation = Quaternion.LookRotation(target - rotatingPlayerTransform.position);
