@@ -8,8 +8,8 @@ public class Buffer : MonoBehaviour
     [SerializeField] private bool player;
     [SerializeField] private bool spawnVFX;
     [SerializeField] private Transform VFXPositionSpawn;
-    
-    private List<Effect> _effects = new List<Effect>();
+
+    private Dictionary<TypeBuff, Effect> _effects = new Dictionary<TypeBuff, Effect>();
     private List<VisualEffect> _visualEffects = new List<VisualEffect>();
     private bool _activeEffect;
     private VFXManager _vfxManager;
@@ -21,7 +21,8 @@ public class Buffer : MonoBehaviour
         {
             i.DestoryEffect();
         }
-        _effects = new List<Effect>();
+
+        _effects = new Dictionary<TypeBuff, Effect>();
         _effectConfig = new EffectConfig()
         {
             Damageable = damageable,
@@ -30,8 +31,13 @@ public class Buffer : MonoBehaviour
     }
     public void TakeEffect(EffectSystem effectSystem)
     {
+        if (_effects.ContainsKey(effectSystem.TypeBuff))
+        {
+            _effects[effectSystem.TypeBuff].Timer += effectSystem.Timer;
+            return;
+        }
         var effect = effectSystem.GenerateEffect(_effectConfig);
-        _effects.Add(effect);
+        _effects.Add(effectSystem.TypeBuff,effect);
         if (spawnVFX && effectSystem.VFXConfiguration != null)
         {
             if (effectSystem.VFXConfiguration.OnlyPlayer)
@@ -62,8 +68,8 @@ public class Buffer : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
             foreach (var i in _effects)
             {
-                if (!i.CheckEffect()) continue;
-                _effects.Remove(i); break;
+                if (!i.Value.CheckEffect()) continue;
+                _effects.Remove(i.Key); break;
             }
             if (_effects.Count == 0)
             {

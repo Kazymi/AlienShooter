@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 126373631245061676}
   - component: {fileID: 8708334601565923142}
   - component: {fileID: 1748584726502532035}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Roket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7025019999686932498, guid: 18a2e96bced3cad49b74e8a1f79b4183, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7025019999686932499, guid: 18a2e96bced3cad49b74e8a1f79b4183, type: 3}
       propertyPath: m_Materials.Array.size
@@ -183,11 +183,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7025020000189556490, guid: 18a2e96bced3cad49b74e8a1f79b4183, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7025020000189583180, guid: 18a2e96bced3cad49b74e8a1f79b4183, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18a2e96bced3cad49b74e8a1f79b4183, type: 3}
@@ -198,6 +198,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8362209008699174598}
     m_Modifications:
+    - target: {fileID: 1381650198692682368, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2099313365787149310, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -242,9 +246,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3761082380935333623, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795560072963054929, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795560074252289896, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6885476824952390795, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}
       propertyPath: m_Name
       value: Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885476824952390795, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7210974195320757533, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}
@@ -333,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5809823269168808164, guid: 435db10d5bbe519418cea4ce4a81af3f, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 435db10d5bbe519418cea4ce4a81af3f, type: 3}

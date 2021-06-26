@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using Random = UnityEngine.Random;
 
 public class SpawnerEnemy : MonoBehaviour
 {
@@ -13,15 +11,27 @@ public class SpawnerEnemy : MonoBehaviour
     [SerializeField] private float spawnTimer = 1f;
     [SerializeField] private DropItems dropItems;
     [SerializeField] private List<SpawnPosition> _spawnPositions;
-    
+
+    private GameMenu _gameMenu;
     private Factory _factory;
     private SpawnManager _spawnManager;
+    private SignalBus _signalBus;
     private void Start()
     {
-        _factory = new Factory(enemyConfiguration.EnemyGameObject,countEnemy);
+        _factory = new Factory(enemyConfiguration.EnemyGameObject,countEnemy,transform);
         StartCoroutine(Spawn());
     }
-    
+
+    private void OnEnable()
+    {
+        _signalBus.Subscribe<PlayerDeadSignal>(StopAllCoroutines);
+    }
+
+    private void OnDisable()
+    {
+        _signalBus.Unsubscribe<PlayerDeadSignal>(StopAllCoroutines);
+    }
+
     private void SpawnEnemy()
     {
        var spawnPositionID = Random.Range(0, _spawnPositions.Count);
@@ -34,13 +44,20 @@ public class SpawnerEnemy : MonoBehaviour
                   _spawnPositions[spawnPositionID].gameObject.transform.position.z;
        
        var positionSpawn = new Vector3(posX, 0, posZ);
-       _factory.Create(positionSpawn).GetComponent<Enemy>().Initialize(enemyConfiguration,playerTranform,_factory,dropItems,_spawnManager);
+       _factory.Create(positionSpawn).GetComponent<Enemy>().Initialize(enemyConfiguration,
+           playerTranform,
+           _factory,
+           dropItems,
+           _spawnManager,
+           _gameMenu);
     }
 
     [Inject]
-    private void Construct(SpawnManager spawnManager)
+    private void Construct(SpawnManager spawnManager,SignalBus signalBus,GameMenu gameMenu)
     {
         _spawnManager = spawnManager;
+        _signalBus = signalBus;
+        _gameMenu = gameMenu;
     }
     
     private IEnumerator Spawn()

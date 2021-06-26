@@ -6,11 +6,13 @@ public class Pool
     private List<GameObject> _pooledObjects;
     
     private readonly GameObject _elementSpawn;
+    private Transform _poolParent;
 
-    public Pool(GameObject element, int count)
+    public Pool(GameObject element, int count, Transform poolParent)
     {
         _elementSpawn = element;
         Prepolulate(count);
+        _poolParent = poolParent;
     }
 
     public GameObject Pull()
@@ -23,11 +25,13 @@ public class Pool
             _pooledObjects.RemoveAt(0);
         }
         returnValue.SetActive(true);
+        returnValue.transform.parent = _poolParent;
         return returnValue;
     }
 
     public void Push(GameObject element)
     {
+        element.transform.parent = _poolParent;
         element.SetActive(false);
         _pooledObjects.Add(element);
     }

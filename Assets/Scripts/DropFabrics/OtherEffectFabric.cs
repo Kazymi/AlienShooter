@@ -5,11 +5,11 @@
     {
         private Dictionary<OtherEffect, Factory> _factories = new Dictionary<OtherEffect, Factory>();
         
-        public OtherEffectFabric(List<OtherEffect> otherEffect, int countElement)
+        public OtherEffectFabric(List<OtherEffect> otherEffect, int countElement,Transform parent)
         {
             foreach (var i in otherEffect)
             {
-               _factories.Add(i,new Factory(i.gameObject,countElement)); 
+               _factories.Add(i,new Factory(i.gameObject,countElement,parent)); 
             }
         }
         

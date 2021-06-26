@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 707306807256171802}
   - component: {fileID: 707306807256171803}
   - component: {fileID: 707306807256171800}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TrafficCone_AA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4872,7 +4872,7 @@ GameObject:
   - component: {fileID: 3288189012980685367}
   - component: {fileID: 3288189012980685369}
   - component: {fileID: 3288189012980685368}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glow_AB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9757,7 +9757,7 @@ GameObject:
   - component: {fileID: 4746647792742912245}
   - component: {fileID: 313528817903776029}
   - component: {fileID: 313528816628226499}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: svd_weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14602,7 +14602,7 @@ GameObject:
   - component: {fileID: 7750349522205961783}
   - component: {fileID: 7750349522205961769}
   - component: {fileID: 7750349522205961782}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Embers_AA
   m_TagString: Untagged
   m_Icon: {fileID: 0}

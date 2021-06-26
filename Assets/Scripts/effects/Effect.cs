@@ -2,7 +2,7 @@
 
 public abstract class Effect
     {
-        public float Timer { get; private set; }
+        public float Timer { get; set; }
 
         public virtual void ActivateAction()
         {

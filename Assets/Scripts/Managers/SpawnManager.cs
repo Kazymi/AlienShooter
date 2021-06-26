@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +14,9 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        _otherEffectFabric = new OtherEffectFabric(otherEffects, countElement);
-        _effectFabric = new EffectFabric(effectSystems, countElement);
-        _weaponFabric = new WeaponFabric(weaponSpawns, countElement);
+        _otherEffectFabric = new OtherEffectFabric(otherEffects, countElement,transform);
+        _effectFabric = new EffectFabric(effectSystems, countElement,transform);
+        _weaponFabric = new WeaponFabric(weaponSpawns, countElement,transform);
     }
 
     public Transform Spawn(EffectSystem effectSystem)

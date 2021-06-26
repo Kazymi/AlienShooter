@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2167972701744058345}
   - component: {fileID: 6597971809116040705}
   - component: {fileID: 6597971810579302111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: shotgun_weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4858,7 +4858,7 @@ GameObject:
   - component: {fileID: 3767139560422895915}
   - component: {fileID: 3767139560422895925}
   - component: {fileID: 3767139560422895914}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Embers_AA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9651,7 +9651,7 @@ GameObject:
   - component: {fileID: 6204147605969033734}
   - component: {fileID: 6204147605969033735}
   - component: {fileID: 6204147605969033732}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TrafficCone_AA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14512,7 +14512,7 @@ GameObject:
   - component: {fileID: 8244026958353646891}
   - component: {fileID: 8244026958353646885}
   - component: {fileID: 8244026958353646884}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glow_AB
   m_TagString: Untagged
   m_Icon: {fileID: 0}

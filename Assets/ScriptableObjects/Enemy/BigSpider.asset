@@ -15,4 +15,5 @@ MonoBehaviour:
   speed: 2
   hp: 4
   damage: 12
+  score: 3
   enemyGameObject: {fileID: 4390474129905466866, guid: 36415e2d8cde49444bb7931131e84caa, type: 3}

@@ -10,7 +10,7 @@ public class VFXManager : MonoBehaviour
     {
         foreach (var i in configurations)
         {
-            _factories.Add(i,new Factory(i.VisualEffect.gameObject,i.CountElement));
+            _factories.Add(i,new Factory(i.VisualEffect.gameObject,i.CountElement,transform));
         }
     }
 

@@ -1,13 +1,12 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody),typeof(Collider))]
 
 public class ArmorPiercingAmmo : MonoBehaviour,IAmmo
 {
     [SerializeField] private int maxEnemyPenetration = 3;
-    [SerializeField][Range(0,100)] private int damageReduction = 25;
+    [SerializeField][Range(0,50)] private int damageReduction = 25;
 
     private int _enemyPassed;
     private float _currentDamage;

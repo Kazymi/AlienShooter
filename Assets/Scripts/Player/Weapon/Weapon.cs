@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using Zenject;
 
 public class Weapon : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class Weapon : MonoBehaviour
     public int Ammo { get; private set; }
     public bool Reloaded => _reloaded;
 
-    public void Initialize(WeaponConfiguration gunConfiguration)
+    public void Initialize(WeaponConfiguration gunConfiguration,Transform parentAmmo)
     {
         transform.localPosition = Vector3.zero;
         _reloaded = false;
@@ -24,7 +23,7 @@ public class Weapon : MonoBehaviour
         InitializeWeapon(gunConfiguration);
         if(_initialized) return;
         _initialized = true;
-        InitializeFactory();
+        InitializeFactory(parentAmmo);
         _currentWeaponConfiguration = gunConfiguration.AmmoConfiguration;
         Ammo = _weaponConfiguration.MaxAmmo;
     }
@@ -52,9 +51,9 @@ public class Weapon : MonoBehaviour
         _reloaded = false;
     }
     
-    private void InitializeFactory()
+    private void InitializeFactory(Transform parentAmmo)
     {
-        _factory = new Factory(_weaponConfiguration.AmmoConfiguration.AmmoGameObject,30);
+        _factory = new Factory(_weaponConfiguration.AmmoConfiguration.AmmoGameObject,30,parentAmmo);
     }
 
     private void InitializeWeapon(WeaponConfiguration weaponConfiguration)

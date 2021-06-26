@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3960179105624433368}
   - component: {fileID: 2924157706930057413}
   - component: {fileID: 537891743876002848}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: StandartAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,9 +75,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29463821875659943b2e2bf18f8c8f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 68
 --- !u!1001 &823152997520982835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,7 +88,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5481131208548253871, guid: 5e2a1164dc632754fb8914ce621c95c7, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5546156403083984208, guid: 5e2a1164dc632754fb8914ce621c95c7, type: 3}
       propertyPath: m_RootOrder

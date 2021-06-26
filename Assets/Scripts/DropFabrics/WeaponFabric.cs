@@ -5,11 +5,11 @@ public class WeaponFabric
 {
     private readonly Dictionary<WeaponConfiguration, Factory> _factories = new Dictionary<WeaponConfiguration, Factory>();
 
-    public WeaponFabric(IEnumerable<WeaponSpawn> weaponSpawns,int countElement)
+    public WeaponFabric(IEnumerable<WeaponSpawn> weaponSpawns,int countElement,Transform parent)
     {
         foreach (var i in weaponSpawns)
         {
-            _factories.Add(i.WeaponConfiguration,new Factory(i.gameObject, countElement));
+            _factories.Add(i.WeaponConfiguration,new Factory(i.gameObject, countElement,parent));
         }
     }
 

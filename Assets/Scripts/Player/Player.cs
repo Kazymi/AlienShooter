@@ -11,6 +11,7 @@ public class Player : MonoBehaviour,IDeathInitialize
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private PlayerLook playerLook;
 
+    private SignalBus _signalBus;
     private InputHandler _inputHandler;
     public WeaponControl WeaponControl => weaponControl;
     
@@ -24,13 +25,14 @@ public class Player : MonoBehaviour,IDeathInitialize
     }
 
     [Inject]
-    public void Construct(InputHandler inputHandler)
+    public void Construct(InputHandler inputHandler,SignalBus signalBus)
     {
         _inputHandler = inputHandler;
+        _signalBus = signalBus;
     }
     
     public void DeadInitialize()
     {
-        
+        _signalBus.Fire<PlayerDeadSignal>();
     }
 }

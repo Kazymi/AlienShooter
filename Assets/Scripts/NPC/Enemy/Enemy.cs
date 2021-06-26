@@ -11,12 +11,17 @@ public class Enemy : MonoBehaviour,IDeathInitialize
    
    private Factory _factory;
    private SpawnManager _spawnManager;
+   private GameMenu _gameMenu;
+   private EnemyConfiguration _enemyConfiguration;
    
-   public void Initialize(EnemyConfiguration enemyConfiguration,Transform playerTransform,Factory parentFactory,DropItems dropItems, SpawnManager spawnManager)
+   public void Initialize(EnemyConfiguration enemyConfiguration,Transform playerTransform,
+      Factory parentFactory,DropItems dropItems, SpawnManager spawnManager,GameMenu gameMenu)
    {
       _factory = parentFactory;
       _spawnManager = spawnManager;
-      
+      _gameMenu = gameMenu;
+      _enemyConfiguration = enemyConfiguration;
+
       enemyMove.Initialize(playerTransform,enemyConfiguration.Speed);
       enemyHealth.Initialize(enemyConfiguration.HP,this);
       enemyDamageDealer.Initialize(enemyConfiguration.Damage);
@@ -27,6 +32,7 @@ public class Enemy : MonoBehaviour,IDeathInitialize
    public void DeadInitialize()
    {
       dropItem.Spawn();
+      _gameMenu.AddScore(_enemyConfiguration.Score);
       var i = _spawnManager.Spawn(deathEffect);
       i.position = transform.position;
       _factory.Destroy(gameObject);

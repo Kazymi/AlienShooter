@@ -14,7 +14,7 @@ public class BuckshotAmmo : MonoBehaviour,IAmmo
 
     private void OnDrawGizmosSelected()
     {
-        const float rayRange = 1.0f;
+        var rayRange = 1.0f;
         var halfFOV = angle / 2.0f;
         var leftRayRotation = Quaternion.AngleAxis( -halfFOV, Vector3.up );
         var rightRayRotation = Quaternion.AngleAxis( halfFOV, Vector3.up );
@@ -32,7 +32,7 @@ public class BuckshotAmmo : MonoBehaviour,IAmmo
         StartCoroutine(Destroy());
         if (_initialized == false)
         {
-            _buckshotFactory = new Factory(buckshotAmmo,buckshotCount);
+            _buckshotFactory = new Factory(buckshotAmmo,buckshotCount,transform);
             _initialized = true;
         }
 

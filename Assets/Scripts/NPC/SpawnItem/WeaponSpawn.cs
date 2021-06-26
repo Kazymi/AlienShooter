@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject;
 
 [RequireComponent(typeof(Collider))]
 public class WeaponSpawn : MonoBehaviour
