@@ -37,6 +37,7 @@ public class VisualEffect : MonoBehaviour
 
     IEnumerator DestroyEffect()
     {
+        // TODO: DOTween can be used for simple animations
         while (transform.localScale.x > extinctionScale || transform.localScale.z > extinctionScale)
         {
             yield return null;

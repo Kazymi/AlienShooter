@@ -20,7 +20,7 @@ public class GamaManager : MonoBehaviour
 
     private void OnDisable()
     {
-        _signalBus.Unsubscribe<PlayerDeadSignal>(Save);;
+        _signalBus.Unsubscribe<PlayerDeadSignal>(Save);
     }
 
     [Inject]

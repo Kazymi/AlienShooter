@@ -9,7 +9,7 @@ public class  StatisticUI : MonoBehaviour
     private WeaponControl _weaponControl;
 
     [Inject]
-    public void Constract(Player player)
+    public void Construct(Player player)
     {
         _weaponControl = player.WeaponControl;
     }

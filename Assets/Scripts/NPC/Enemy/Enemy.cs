@@ -31,8 +31,10 @@ public class Enemy : MonoBehaviour,IDeathInitialize
 
    public void DeadInitialize()
    {
+      // TODO: it's not enemy's responsibility to spawn items or add score
       dropItem.Spawn();
       _gameMenu.AddScore(_enemyConfiguration.Score);
+      
       var i = _spawnManager.Spawn(deathEffect);
       i.position = transform.position;
       _factory.Destroy(gameObject);

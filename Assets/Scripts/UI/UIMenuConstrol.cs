@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// TODO: names, names, names
 public class UIMenuConstrol : MonoBehaviour
 {
     [SerializeField] private List<Canvas> canvases = new List<Canvas>();
