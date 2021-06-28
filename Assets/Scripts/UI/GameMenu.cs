@@ -4,7 +4,7 @@ using Zenject;
 
 public class GameMenu : MonoBehaviour
 {
-    [SerializeField] private UIMenuConstrol menu;
+    [SerializeField] private MenuButton menu;
     [SerializeField] private Canvas deadCanvas;
     [SerializeField] private TMP_Text scoreText;
 

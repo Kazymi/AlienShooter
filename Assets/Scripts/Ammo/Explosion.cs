@@ -1,23 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Explosion : MonoBehaviour
 {
     [SerializeField] private float radius;
-    [SerializeField] private float lifeTime;
+    [SerializeField] private float timeExplosion;
     [SerializeField] private GameObject effectExplosion;
-    [SerializeField] private bool exploded;
-
-    private void Update()
-    {
-        if (!exploded) return;
-        exploded = false;
-        Initialize(10);
-    }
 
     private float _damage;
 
-    public float Lifetime => lifeTime;
+    public float Lifetime => timeExplosion;
 
     private void OnDrawGizmos()
     {
@@ -43,7 +36,7 @@ public class Explosion : MonoBehaviour
                 damageDealer.TakeDamage(_damage);
             }
         }
-        yield return new WaitForSeconds(lifeTime);
+        yield return new WaitForSeconds(timeExplosion);
         effectExplosion.SetActive(false);
     }
     

@@ -6,7 +6,7 @@ using UnityEngine;
 public class FieldOfFire : MonoBehaviour
 {
     [SerializeField] private float lifetimer;
-    [SerializeField] private FireDamage _fireDamage;
+    [SerializeField] private FireDamageConfiguration _fireDamage;
     [SerializeField] private GameObject _fireEffect;
 
     private Collider _collider;

@@ -17,6 +17,7 @@ public abstract class Damageable : MonoBehaviour
    {
       _maxHealth = health;
       _alive = false;
+      _invincible = false;
       _currentHealth = health;
       _deathInitialize = deathInitialize;
    }

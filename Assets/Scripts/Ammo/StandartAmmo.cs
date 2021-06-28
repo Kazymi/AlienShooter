@@ -13,6 +13,17 @@ public class StandartAmmo : MonoBehaviour,IAmmo
         transform.position += transform.forward * (_ammoConfiguration.SpeedAmmo * Time.deltaTime);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        var i = (other.GetComponent<Damageable>());
+        if (i != null)
+        {
+            i.TakeDamage(_ammoConfiguration.Damage);
+        }
+        StopAllCoroutines();
+        _factory.Destroy(gameObject);
+    }
+    
     public void Initialize(AmmoConfiguration ammoConfiguration, Factory parentFactory)
     {
         _ammoConfiguration = ammoConfiguration;
@@ -23,17 +34,6 @@ public class StandartAmmo : MonoBehaviour,IAmmo
     private IEnumerator Destroy()
     {
         yield return new WaitForSeconds(_ammoConfiguration.LifeTime);
-        _factory.Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        var i = (other.GetComponent<Damageable>());
-        if (i != null)
-        {
-            i.TakeDamage(_ammoConfiguration.Damage);
-        }
-        StopAllCoroutines();
         _factory.Destroy(gameObject);
     }
 }

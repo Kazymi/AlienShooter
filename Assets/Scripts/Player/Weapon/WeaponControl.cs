@@ -11,7 +11,6 @@ public class WeaponControl : MonoBehaviour
 {
     [SerializeField] private WeaponConfiguration startWeapon;
     [SerializeField] private Transform positionWeapon;
-    [SerializeField] private StatisticUI statisticUI;
     [SerializeField] private Transform ammoParant;
     
     private Weapon _currentWeapon;
@@ -35,7 +34,6 @@ public class WeaponControl : MonoBehaviour
 
         if (_currentWeapon == null) return;
         if (!_inputHandler.Fire) return;
-        statisticUI.UpdateAmmo();
         _currentWeapon.Fire();
     }
 
@@ -87,7 +85,6 @@ public class WeaponControl : MonoBehaviour
         _currentWeapon.transform.localRotation = Quaternion.identity;
         _currentWeapon.Initialize(_spawnedWeapon[idWeapon],ammoParant);
         _currentWeapon.gameObject.SetActive(true);
-        statisticUI.UpdateAmmo();
     }
 
     private void SetWeapon(WeaponConfiguration weaponConfiguration, int id)

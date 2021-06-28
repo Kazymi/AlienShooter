@@ -13,7 +13,7 @@ public class Buffer : MonoBehaviour
     private List<VisualEffect> _visualEffects = new List<VisualEffect>();
     private bool _activeEffect;
     private VFXManager _vfxManager;
-    private EffectConfig _effectConfig;
+    private EffectConfiguration _effectConfig;
 
     public void Initialize(IMovenment changeSpeed, Damageable damageable)
     {
@@ -23,7 +23,7 @@ public class Buffer : MonoBehaviour
         }
 
         _effects = new Dictionary<TypeBuff, Effect>();
-        _effectConfig = new EffectConfig()
+        _effectConfig = new EffectConfiguration()
         {
             Damageable = damageable,
             Movenment = changeSpeed
@@ -33,7 +33,7 @@ public class Buffer : MonoBehaviour
     {
         if (_effects.ContainsKey(effectSystem.TypeBuff))
         {
-            _effects[effectSystem.TypeBuff].Timer += effectSystem.Timer;
+            _effects[effectSystem.TypeBuff].Timer += effectSystem.TimeEffect;
             return;
         }
         var effect = effectSystem.GenerateEffect(_effectConfig);
