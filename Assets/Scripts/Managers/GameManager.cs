@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 public class GameManager : MonoBehaviour
@@ -32,5 +33,10 @@ public class GameManager : MonoBehaviour
     private void Save()
     {
         _saveManager.Save(_saveData);
+    }
+    
+    public void LoadScene(int id)
+    {
+        SceneManager.LoadScene(id);
     }
 }

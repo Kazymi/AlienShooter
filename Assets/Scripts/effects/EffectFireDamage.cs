@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 public class EffectFireDamage : Effect
 {
     private float _damage;
@@ -6,7 +7,7 @@ public class EffectFireDamage : Effect
 
     protected override void EffectOnTick()
     {
-        _damageable.TakeDamage(_damage*Time.deltaTime);
+        _damageable.TakeDamage(_damage * Time.deltaTime);
     }
 
     public EffectFireDamage(Damageable damageable, float timerEffect, float damage) : base(timerEffect)

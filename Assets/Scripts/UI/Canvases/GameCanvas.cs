@@ -1,20 +1,17 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
-public class GameMenu : MonoBehaviour
+public class GameCanvas : MonoBehaviour
 {
-    [SerializeField] private MenuButton menu;
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private CanvasPicker menu;
     [SerializeField] private Canvas deadCanvas;
     [SerializeField] private TMP_Text scoreText;
 
     private SaveData _saveData;
     private SignalBus _signalBus;
-
-    private void Start()
-    {
-        UpdateScore();
-    }
 
     private void OnEnable()
     {
@@ -28,8 +25,19 @@ public class GameMenu : MonoBehaviour
         _signalBus.Unsubscribe<PlayerDeadSignal>(PlayerDead);
     }
 
+    private void Start()
+    {
+        UpdateScore();
+    }
+
+    public void UpdateHeal(float currentHealth)
+    {
+        healthBar.value = currentHealth;
+    }
+
     public void AddScore(int score)
     {
+        // TODO: move to game manager
         _saveData.Score += score;
         UpdateScore();
     }
@@ -43,13 +51,13 @@ public class GameMenu : MonoBehaviour
     {
         _saveData = loadSignal.SaveData;
     }
-    
+
     [Inject]
     private void Construct(SignalBus signalBus)
     {
         _signalBus = signalBus;
     }
-    
+
     private void PlayerDead()
     {
         menu.OpenCanvas(deadCanvas);

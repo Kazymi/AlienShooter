@@ -6,6 +6,7 @@ namespace ScriptableObjects.Effects
     public class FireDamageConfiguration : EffectSystem
     {
         [SerializeField] private float damage;
+
         public override Effect GenerateEffect(EffectConfiguration effectConfig)
         {
             return new EffectFireDamage(effectConfig.Damageable, timeEffect, damage);

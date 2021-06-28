@@ -11,15 +11,15 @@ public class Enemy : MonoBehaviour,IDeathInitialize
    
    private Factory _factory;
    private SpawnManager _spawnManager;
-   private GameMenu _gameMenu;
+   // private GameMenu _gameMenu;
    private EnemyConfiguration _enemyConfiguration;
    
    public void Initialize(EnemyConfiguration enemyConfiguration,Transform playerTransform,
-      Factory parentFactory,DropItems dropItems, SpawnManager spawnManager,GameMenu gameMenu)
+      Factory parentFactory,DropItems dropItems, SpawnManager spawnManager)
    {
       _factory = parentFactory;
       _spawnManager = spawnManager;
-      _gameMenu = gameMenu;
+      // _gameMenu = gameMenu;
       _enemyConfiguration = enemyConfiguration;
 
       enemyMove.Initialize(playerTransform,enemyConfiguration.Speed);
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour,IDeathInitialize
    {
       // TODO: it's not enemy's responsibility to spawn items or add score
       dropItem.Spawn();
-      _gameMenu.AddScore(_enemyConfiguration.Score);
+      // _gameMenu.AddScore(_enemyConfiguration.Score);
       
       var i = _spawnManager.Spawn(deathEffect);
       i.position = transform.position;

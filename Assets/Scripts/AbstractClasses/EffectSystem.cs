@@ -12,3 +12,18 @@ public abstract class EffectSystem : ScriptableObject
     public VFXConfiguration VFXConfiguration => vfxConfiguration;
     public abstract Effect GenerateEffect(EffectConfiguration effectConfig);
 }
+
+
+
+/*
+
+class Effect:
+
+Enable()
+
+Disable()
+
+Tick()
+
+
+*/

@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    [SerializeField]  private float _startSpeed;
-    
-    private Transform _playerTransform;
-    private PlayerMove _playerMove;
+    [SerializeField] private float startSpeed;
+    [SerializeField] private PlayerMovement target;
 
-    public void Initialize(PlayerMove playerMove)
+    private Transform _playerTransform;
+
+    public void Initialize(PlayerMovement playerMovement)
     {
-        _playerMove = playerMove;
-        _playerTransform = playerMove.transform;
+        target = playerMovement;
+        _playerTransform = playerMovement.transform;
     }
-    private void Update()
+
+    private void LateUpdate()
     {
-        float currentSpeed = _startSpeed + _playerMove.Speed;
-        var newPos = Vector3.MoveTowards(transform.position, _playerTransform.position, currentSpeed*Time.deltaTime);
+        float currentSpeed = startSpeed + target.Speed;
+        // var newPos = Vector3.SmoothDamp(transform.position, _playerTransform.position, currentSpeed * Time.deltaTime);
+        var newPos = Vector3.MoveTowards(transform.position, _playerTransform.position, currentSpeed * Time.deltaTime);
         transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
     }
 }

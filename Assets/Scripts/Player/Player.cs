@@ -8,7 +8,7 @@ public class Player : MonoBehaviour,IDeathInitialize
     [SerializeField] private PlayerScanner playerScanner;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private Buffer buffer;
-    [SerializeField] private PlayerMove playerMove;
+    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerLook playerLook;
     [SerializeField] private PlayerCamera playerCamera;
 
@@ -18,12 +18,12 @@ public class Player : MonoBehaviour,IDeathInitialize
     
     private void Start()
     {
-        playerMove.Initialize(playerConfiguration,_inputHandler);
+        playerMovement.Initialize(playerConfiguration,_inputHandler);
         playerLook.Initialize(_inputHandler);
         playerScanner.Initialize(playerLook);
         playerHealth.Initialize(playerConfiguration.HP,this);
-        buffer.Initialize(playerMove,playerHealth);
-        playerCamera.Initialize(playerMove);
+        buffer.Initialize(playerMovement,playerHealth);
+        playerCamera.Initialize(playerMovement);
     }
 
     [Inject]

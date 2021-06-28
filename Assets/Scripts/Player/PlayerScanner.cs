@@ -62,7 +62,7 @@ public class PlayerScanner : MonoBehaviour
         float num1 = a.x - b.x;
         float num2 = a.y - b.y;
         float num3 = a.z - b.z;
-        // TODO: It's actually returns square of distance
+
         return num1 * num1 + num2 * num2 + num3 * num3;
     }
 

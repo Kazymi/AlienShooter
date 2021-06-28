@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMove : MonoBehaviour,IMovenment
+public class PlayerMovement : MonoBehaviour, IMovenment
 {
     private InputHandler _inputHandler;
     private CharacterController _characterController;
@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour,IMovenment
         moveDir *= _currentSpeed * Time.deltaTime;
         if (!_characterController.isGrounded)
         {
-            moveDir.y -= 1f*Time.deltaTime;
+            moveDir.y -= 1f * Time.deltaTime;
         }
         _characterController.Move(moveDir);
     }

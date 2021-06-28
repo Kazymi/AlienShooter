@@ -12,10 +12,10 @@ public class SpawnerEnemy : MonoBehaviour
     [SerializeField] private DropItems dropItems;
     [SerializeField] private List<SpawnPosition> _spawnPositions;
 
-    private GameMenu _gameMenu;
     private Factory _factory;
     private SpawnManager _spawnManager;
     private SignalBus _signalBus;
+    
     private void Start()
     {
         _factory = new Factory(enemyConfiguration.EnemyGameObject,countEnemy,transform);
@@ -48,16 +48,15 @@ public class SpawnerEnemy : MonoBehaviour
            playerTranform,
            _factory,
            dropItems,
-           _spawnManager,
-           _gameMenu);
+           _spawnManager
+           );
     }
 
     [Inject]
-    private void Construct(SpawnManager spawnManager,SignalBus signalBus,GameMenu gameMenu)
+    private void Construct(SpawnManager spawnManager,SignalBus signalBus)
     {
         _spawnManager = spawnManager;
         _signalBus = signalBus;
-        _gameMenu = gameMenu;
     }
     
     private IEnumerator Spawn()
