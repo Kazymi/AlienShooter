@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2677598e2cdb64eb7de4182a352f65, type: 3}
   m_Name: FireDamage
   m_EditorClassIdentifier: 
-  timer: 25
+  timeEffect: 7
   vfxConfiguration: {fileID: 11400000, guid: bdbe9dccb99eece4d9821f33f9666bc0, type: 2}
+  typeBuff: 0
   damage: 1

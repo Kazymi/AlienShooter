@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4194fa19419e4a0896be5d99b8e5576c, type: 3}
   m_Name: Freeze
   m_EditorClassIdentifier: 
-  timer: 25
+  timeEffect: 12
   vfxConfiguration: {fileID: 11400000, guid: 6c3bb7a49e709e84e814d89d932013d5, type: 2}
   typeBuff: 2
   freezeValue: 1

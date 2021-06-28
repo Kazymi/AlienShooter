@@ -10,6 +10,7 @@ public class Player : MonoBehaviour,IDeathInitialize
     [SerializeField] private Buffer buffer;
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private PlayerLook playerLook;
+    [SerializeField] private PlayerCamera playerCamera;
 
     private SignalBus _signalBus;
     private InputHandler _inputHandler;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour,IDeathInitialize
         playerScanner.Initialize(playerLook);
         playerHealth.Initialize(playerConfiguration.HP,this);
         buffer.Initialize(playerMove,playerHealth);
+        playerCamera.Initialize(playerMove);
     }
 
     [Inject]

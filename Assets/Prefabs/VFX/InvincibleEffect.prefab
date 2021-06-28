@@ -24149,7 +24149,6 @@ GameObject:
   - component: {fileID: 2536249483195634442}
   - component: {fileID: 2536249483195634421}
   - component: {fileID: 2780772832773682189}
-  - component: {fileID: 4543481710852050018}
   - component: {fileID: -8680184322824797341}
   m_Layer: 0
   m_Name: InvincibleEffect
@@ -28979,19 +28978,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &4543481710852050018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2536249483195634420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e983e7e4de77347aa726b43efd6b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupEffect: {fileID: 7888857835762348946, guid: 84dab4a8cf751fc4181b5f09a6186c21, type: 3}
 --- !u!114 &-8680184322824797341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29001,11 +28987,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2536249483195634420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91dd0936d9769c94b8472ad712592e19, type: 3}
+  m_Script: {fileID: 11500000, guid: 89b40ddc93befa24ba4b8f599c8bd90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScale: 1
-  extinctionScale: 0.1
+  startScale: 0.4
+  extinctionScale: 0.048
   extinctionSpeed: 1
 --- !u!1 &3833293673929856295
 GameObject:

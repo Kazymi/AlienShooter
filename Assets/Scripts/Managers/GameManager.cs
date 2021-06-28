@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class GamaManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     private SignalBus _signalBus;
     private SaveData _saveData;

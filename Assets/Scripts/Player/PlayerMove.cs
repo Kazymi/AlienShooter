@@ -7,6 +7,8 @@ public class PlayerMove : MonoBehaviour,IMovenment
     private CharacterController _characterController;
     private float _speed;
 
+    public float Speed => _speed;
+
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();

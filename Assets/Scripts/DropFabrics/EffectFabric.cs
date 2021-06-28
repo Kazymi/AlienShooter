@@ -16,6 +16,7 @@ public class EffectFabric
 
     public Transform Spawn(EffectSystem effectSystem)
     {
+        Debug.Log(effectSystem);
         if (_factories.ContainsKey(effectSystem.TypeBuff))
         {
             var factory = _factories[effectSystem.TypeBuff];

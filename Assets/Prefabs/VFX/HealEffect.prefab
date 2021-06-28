@@ -4827,11 +4827,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 710952199178988783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91dd0936d9769c94b8472ad712592e19, type: 3}
+  m_Script: {fileID: 11500000, guid: 89b40ddc93befa24ba4b8f599c8bd90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScale: 0.4
-  extinctionScale: 0.04
+  startScale: 1
+  extinctionScale: 0.131
   extinctionSpeed: 1
 --- !u!1 &710952199555021973
 GameObject:

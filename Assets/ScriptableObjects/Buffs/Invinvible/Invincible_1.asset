@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a11dc2851c7406fa0d0c918bc1334a2, type: 3}
   m_Name: Invincible_1
   m_EditorClassIdentifier: 
-  timer: 20
+  timeEffect: 7
   vfxConfiguration: {fileID: 11400000, guid: 7bbd08aa25f23ff4784b4a37e6ae0586, type: 2}
   typeBuff: 1
