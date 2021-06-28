@@ -48,7 +48,8 @@ public class SpawnerEnemy : MonoBehaviour
            playerTranform,
            _factory,
            dropItems,
-           _spawnManager
+           _spawnManager, 
+           _signalBus
            );
     }
 

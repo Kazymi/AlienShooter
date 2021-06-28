@@ -9,6 +9,7 @@ public class GameCanvas : MonoBehaviour
     [SerializeField] private CanvasPicker menu;
     [SerializeField] private Canvas deadCanvas;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text AmmoText;
 
     private SaveData _saveData;
     private SignalBus _signalBus;
@@ -17,12 +18,18 @@ public class GameCanvas : MonoBehaviour
     {
         _signalBus.Subscribe<PlayerDeadSignal>(PlayerDead);
         _signalBus.Subscribe<LoadSignal>(Load);
+        _signalBus.Subscribe<UpdateScoreSignal>(UpdateScore);
+        _signalBus.Subscribe<UpdateHeathSignal>(UpdateHeal);
+        _signalBus.Subscribe<UpdateAmmoSignal>(UpdateAmmo);
     }
 
     private void OnDisable()
     {
         _signalBus.Unsubscribe<LoadSignal>(Load);
         _signalBus.Unsubscribe<PlayerDeadSignal>(PlayerDead);
+        _signalBus.Unsubscribe<UpdateScoreSignal>(UpdateScore);
+        _signalBus.Unsubscribe<UpdateHeathSignal>(UpdateHeal);
+        _signalBus.Unsubscribe<UpdateAmmoSignal>(UpdateAmmo);
     }
 
     private void Start()
@@ -30,18 +37,15 @@ public class GameCanvas : MonoBehaviour
         UpdateScore();
     }
 
-    public void UpdateHeal(float currentHealth)
+    public void UpdateHeal(UpdateHeathSignal updateHeathSignal)
     {
-        healthBar.value = currentHealth;
+        healthBar.value = updateHeathSignal.CurrentHealth;
     }
 
-    public void AddScore(int score)
+    public void UpdateAmmo(UpdateAmmoSignal updateAmmoSignal)
     {
-        // TODO: move to game manager
-        _saveData.Score += score;
-        UpdateScore();
+        AmmoText.text = updateAmmoSignal.Ammo.ToString();
     }
-
     private void UpdateScore()
     {
         scoreText.text = _saveData.Score.ToString();

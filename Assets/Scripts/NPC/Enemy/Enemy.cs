@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class Enemy : MonoBehaviour,IDeathInitialize
 {
@@ -11,15 +12,15 @@ public class Enemy : MonoBehaviour,IDeathInitialize
    
    private Factory _factory;
    private SpawnManager _spawnManager;
-   // private GameMenu _gameMenu;
    private EnemyConfiguration _enemyConfiguration;
+   private SignalBus _signalBus;
    
    public void Initialize(EnemyConfiguration enemyConfiguration,Transform playerTransform,
-      Factory parentFactory,DropItems dropItems, SpawnManager spawnManager)
+      Factory parentFactory,DropItems dropItems, SpawnManager spawnManager, SignalBus signalBus)
    {
+      _signalBus = signalBus;
       _factory = parentFactory;
       _spawnManager = spawnManager;
-      // _gameMenu = gameMenu;
       _enemyConfiguration = enemyConfiguration;
 
       enemyMove.Initialize(playerTransform,enemyConfiguration.Speed);
@@ -31,9 +32,8 @@ public class Enemy : MonoBehaviour,IDeathInitialize
 
    public void DeadInitialize()
    {
-      // TODO: it's not enemy's responsibility to spawn items or add score
-      dropItem.Spawn();
-      // _gameMenu.AddScore(_enemyConfiguration.Score);
+      dropItem.Spawn();//???
+      _signalBus.Fire(new EnemyDeadSignal(_enemyConfiguration.Score));
       
       var i = _spawnManager.Spawn(deathEffect);
       i.position = transform.position;

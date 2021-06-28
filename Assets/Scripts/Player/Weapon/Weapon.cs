@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class Weapon : MonoBehaviour
 {
@@ -11,12 +12,13 @@ public class Weapon : MonoBehaviour
     private bool _initialized;
     private bool _lockFire;
     private bool _reloaded;
+    private SignalBus _signalBus;
+    private int _ammo;
 
-    public int Ammo { get; private set; }
-    public bool Reloaded => _reloaded;
-
-    public void Initialize(WeaponConfiguration gunConfiguration,Transform parentAmmo)
+    public void Initialize(WeaponConfiguration gunConfiguration,Transform parentAmmo, SignalBus signalBus)
     {
+        _signalBus = signalBus;
+        _signalBus.Fire(new UpdateAmmoSignal(_ammo));
         transform.localPosition = Vector3.zero;
         _reloaded = false;
         _lockFire = false;
@@ -25,18 +27,20 @@ public class Weapon : MonoBehaviour
         _initialized = true;
         InitializeFactory(parentAmmo);
         _currentWeaponConfiguration = gunConfiguration.AmmoConfiguration;
-        Ammo = _weaponConfiguration.MaxAmmo;
+        _ammo = _weaponConfiguration.MaxAmmo;
+        _signalBus.Fire(new UpdateAmmoSignal(_ammo));
     }
     
     public void Fire()
     {
         if(_lockFire || _reloaded) return;
-        Ammo--;
-        if (Ammo <= 0)
+        _ammo--;
+        if (_ammo <= 0)
         { 
             StartCoroutine(StartReloaded());
             return;
         }
+        _signalBus.Fire(new UpdateAmmoSignal(_ammo));
         var ammo = _factory.Create(positionSpawnAmmo.position);
         ammo.GetComponent<IAmmo>().Initialize(_currentWeaponConfiguration,_factory);
         ammo.transform.position = positionSpawnAmmo.position;
@@ -47,7 +51,8 @@ public class Weapon : MonoBehaviour
     {
         _reloaded = true;
         yield return new WaitForSeconds(_weaponConfiguration.TimeReloaded);
-        Ammo = _weaponConfiguration.MaxAmmo;
+        _ammo = _weaponConfiguration.MaxAmmo;
+        _signalBus.Fire(new UpdateAmmoSignal(_ammo));
         _reloaded = false;
     }
     

@@ -8,14 +8,12 @@ public class LocationInstaller : MonoInstaller
     [SerializeField] private VFXManager vfxManager;
     [SerializeField] private SpawnManager spawnManager;
     [SerializeField] private Player player;
-    // [SerializeField] private GameMenu gameMenu;
 
     public override void InstallBindings()
     {
         BindWeaponManager();
         BindInputHandler();
         BindVFXManager();
-        // BindGameMenu();
         BindSpawnManger();
         BindPlayer();
         Signals();
@@ -27,14 +25,7 @@ public class LocationInstaller : MonoInstaller
               .Bind<WeaponManager>()
               .FromInstance(weaponManagerPrefab)
               .AsSingle();
-    } 
-    // private void BindGameMenu()
-    // {
-    //     Container
-    //         .Bind<GameMenu>()
-    //         .FromInstance(gameMenu)
-    //         .AsSingle();
-    // } 
+    }
     private void BindVFXManager()
     {
         Container
@@ -71,5 +62,9 @@ public class LocationInstaller : MonoInstaller
         SignalBusInstaller.Install(Container);
         Container.DeclareSignal<PlayerDeadSignal>();
         Container.DeclareSignal<LoadSignal>();
+        Container.DeclareSignal<EnemyDeadSignal>();
+        Container.DeclareSignal<UpdateHeathSignal>();
+        Container.DeclareSignal<UpdateScoreSignal>();
+        Container.DeclareSignal<UpdateAmmoSignal>();
     }
 }

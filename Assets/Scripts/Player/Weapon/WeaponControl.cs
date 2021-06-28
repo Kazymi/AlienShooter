@@ -18,8 +18,8 @@ public class WeaponControl : MonoBehaviour
     private List<WeaponConfiguration> _spawnedWeapon = new List<WeaponConfiguration>(){null,null};
     private WeaponManager _weaponManager;
     private int _idCurrentGun;
+    private SignalBus _signalBus;
 
-    public Weapon CurrentWeapon => _currentWeapon;
     private void Start()
     {
         StartCoroutine(SpawnStartGun());
@@ -38,10 +38,11 @@ public class WeaponControl : MonoBehaviour
     }
 
     [Inject]
-    public void Construct(WeaponManager weaponManager,InputHandler inputHandler)
+    public void Construct(WeaponManager weaponManager,InputHandler inputHandler, SignalBus signalBus)
     {
         _weaponManager = weaponManager;
         _inputHandler = inputHandler;
+        _signalBus = signalBus;
     }
     public void NewWeapon(WeaponConfiguration weaponConfiguration)
     {
@@ -83,7 +84,7 @@ public class WeaponControl : MonoBehaviour
         _currentWeapon = _weaponManager.GetWeaponByName(_spawnedWeapon[idWeapon].Name);
         _currentWeapon.transform.parent = positionWeapon;
         _currentWeapon.transform.localRotation = Quaternion.identity;
-        _currentWeapon.Initialize(_spawnedWeapon[idWeapon],ammoParant);
+        _currentWeapon.Initialize(_spawnedWeapon[idWeapon],ammoParant, _signalBus);
         _currentWeapon.gameObject.SetActive(true);
     }
 

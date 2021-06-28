@@ -21,7 +21,6 @@ public class SuperPenetrationAmmo : MonoBehaviour,IAmmo
             i.TakeDamage(_ammoConfiguration.Damage);
             return;
         }
-        Debug.Log(other.name);
         StopAllCoroutines();
         _factory.Destroy(gameObject);
     }

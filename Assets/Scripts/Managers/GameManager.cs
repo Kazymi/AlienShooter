@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 public class GameManager : MonoBehaviour
@@ -8,20 +7,23 @@ public class GameManager : MonoBehaviour
     private SaveData _saveData;
     private SaveManager _saveManager = new SaveManager();
     
-    private void Start()
+    private void Awake()
     {
         _saveData = _saveManager.Load();
         _signalBus.Fire(new LoadSignal(_saveData));
+        _signalBus.Fire<UpdateScoreSignal>();
     }
 
     private void OnEnable()
     {
         _signalBus.Subscribe<PlayerDeadSignal>(Save);
+        _signalBus.Subscribe<EnemyDeadSignal>(AddScore);
     }
 
     private void OnDisable()
     {
         _signalBus.Unsubscribe<PlayerDeadSignal>(Save);
+        _signalBus.Unsubscribe<EnemyDeadSignal>(AddScore);
     }
 
     [Inject]
@@ -34,9 +36,10 @@ public class GameManager : MonoBehaviour
     {
         _saveManager.Save(_saveData);
     }
-    
-    public void LoadScene(int id)
+
+    public void AddScore(EnemyDeadSignal deadSignal)
     {
-        SceneManager.LoadScene(id);
+        _saveData.Score += deadSignal.Score;
+        _signalBus.Fire<UpdateScoreSignal>();
     }
 }
