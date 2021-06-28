@@ -33,6 +33,6 @@ public class Player : MonoBehaviour,IDeathInitialize
     
     public void DeadInitialize()
     {
-        _signalBus.Fire<PlayerDeadSignal>();
+        _signalBus.Fire<PlayerDiedSignal>();
     }
 }

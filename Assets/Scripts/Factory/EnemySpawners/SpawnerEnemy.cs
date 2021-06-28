@@ -24,12 +24,12 @@ public class SpawnerEnemy : MonoBehaviour
 
     private void OnEnable()
     {
-        _signalBus.Subscribe<PlayerDeadSignal>(StopAllCoroutines);
+        _signalBus.Subscribe<PlayerDiedSignal>(StopAllCoroutines);
     }
 
     private void OnDisable()
     {
-        _signalBus.Unsubscribe<PlayerDeadSignal>(StopAllCoroutines);
+        _signalBus.Unsubscribe<PlayerDiedSignal>(StopAllCoroutines);
     }
 
     private void SpawnEnemy()

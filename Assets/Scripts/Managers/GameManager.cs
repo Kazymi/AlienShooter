@@ -10,19 +10,19 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _saveData = _saveManager.Load();
-        _signalBus.Fire(new LoadSignal(_saveData));
-        _signalBus.Fire<UpdateScoreSignal>();
+        _signalBus.Fire(new LoadedSignal(_saveData));
+        _signalBus.Fire(new ScoreChangedSignal(_saveData.Score));
     }
 
     private void OnEnable()
     {
-        _signalBus.Subscribe<PlayerDeadSignal>(Save);
+        _signalBus.Subscribe<PlayerDiedSignal>(Save);
         _signalBus.Subscribe<EnemyDeadSignal>(AddScore);
     }
 
     private void OnDisable()
     {
-        _signalBus.Unsubscribe<PlayerDeadSignal>(Save);
+        _signalBus.Unsubscribe<PlayerDiedSignal>(Save);
         _signalBus.Unsubscribe<EnemyDeadSignal>(AddScore);
     }
 
@@ -40,6 +40,6 @@ public class GameManager : MonoBehaviour
     public void AddScore(EnemyDeadSignal deadSignal)
     {
         _saveData.Score += deadSignal.Score;
-        _signalBus.Fire<UpdateScoreSignal>();
+        _signalBus.Fire(new ScoreChangedSignal(_saveData.Score));
     }
 }

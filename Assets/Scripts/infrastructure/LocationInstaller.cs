@@ -60,11 +60,11 @@ public class LocationInstaller : MonoInstaller
     private void Signals()
     {
         SignalBusInstaller.Install(Container);
-        Container.DeclareSignal<PlayerDeadSignal>();
-        Container.DeclareSignal<LoadSignal>();
+        Container.DeclareSignal<PlayerDiedSignal>();
+        Container.DeclareSignal<LoadedSignal>();
         Container.DeclareSignal<EnemyDeadSignal>();
         Container.DeclareSignal<UpdateHeathSignal>();
-        Container.DeclareSignal<UpdateScoreSignal>();
+        Container.DeclareSignal<ScoreChangedSignal>();
         Container.DeclareSignal<UpdateAmmoSignal>();
     }
 }
