@@ -18,3 +18,4 @@ MonoBehaviour:
   timeReloaded: 2.03
   weaponGameObject: {fileID: 1509990458203124470, guid: f62f25c0be45236478768af5fba42d6a, type: 3}
   ammoConfiguration: {fileID: 11400000, guid: 0a93f09d0a5ae9b41af774913984c836, type: 2}
+  price: 6000

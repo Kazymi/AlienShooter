@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -308,6 +308,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94ca56a40d5551a4d95906c8a3d875b2, type: 3}
+--- !u!4 &209041266 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 900247271, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
+  m_PrefabInstance: {fileID: 6652338050780929033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &218915739 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5212674803331259590, guid: 8e18caeb00733444fbf503740142f128, type: 3}
@@ -1008,9 +1013,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1012596283}
-  menu: {fileID: 0}
-  deadCanvas: {fileID: 0}
-  scoreText: {fileID: 0}
+  menu: {fileID: 1186887714}
+  deadCanvas: {fileID: 1509745883}
+  scoreText: {fileID: 1202497093}
+  ammoText: {fileID: 1740759129}
 --- !u!1 &696294346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,6 +1029,7 @@ GameObject:
   - component: {fileID: 696294350}
   - component: {fileID: 696294349}
   - component: {fileID: 696294348}
+  - component: {fileID: 696294351}
   m_Layer: 0
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
@@ -1202,6 +1209,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696294346}
   m_CullTransparentMesh: 1
+--- !u!114 &696294351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696294346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8f69da05f49ca4fbcfd631ac512a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneID: 0
 --- !u!1 &703681363
 GameObject:
   m_ObjectHideFlags: 0
@@ -3001,7 +3021,6 @@ GameObject:
   - component: {fileID: 1509745883}
   - component: {fileID: 1509745882}
   - component: {fileID: 1509745881}
-  - component: {fileID: 1509745884}
   m_Layer: 0
   m_Name: GameOverCanvas
   m_TagString: Untagged
@@ -3079,7 +3098,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509745879}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -3093,20 +3112,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1509745884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509745879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155e92f79135a8a42928dddcbbaa0335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  restartButton: {fileID: 0}
-  mainMenuButton: {fileID: 0}
 --- !u!1 &1526620753
 GameObject:
   m_ObjectHideFlags: 0
@@ -3283,7 +3288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9071c43d0c761114d98ed15f9cebfa9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 0
+  startSpeed: 12
+  target: {fileID: 1880079807}
 --- !u!81 &1639055710
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3927,6 +3933,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061428b4585e406439f0f335a4063caf, type: 3}
+--- !u!114 &1880079807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6404436335294824708, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
+  m_PrefabInstance: {fileID: 6652338050780929033}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1b3d70099fe564188f2820f418d178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1885846130
 GameObject:
   m_ObjectHideFlags: 0
@@ -3982,6 +3999,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1911818404}
   - component: {fileID: 1911818405}
+  - component: {fileID: 1911818406}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4015,6 +4033,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de609753dd0e20a48b6a77efd681dfae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1911818406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911818403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77443a413b9d4a808bbfe92bf14006ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1977810502
 GameObject:
   m_ObjectHideFlags: 0
@@ -4027,6 +4057,7 @@ GameObject:
   - component: {fileID: 1977810506}
   - component: {fileID: 1977810505}
   - component: {fileID: 1977810504}
+  - component: {fileID: 1977810507}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -4206,6 +4237,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977810502}
   m_CullTransparentMesh: 1
+--- !u!114 &1977810507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977810502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8f69da05f49ca4fbcfd631ac512a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneID: 1
 --- !u!1 &1985058039
 GameObject:
   m_ObjectHideFlags: 0
@@ -4623,8 +4667,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 559860981, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
+      propertyPath: rotatingPlayerTransform
+      value: 
+      objectReference: {fileID: 209041266}
     - target: {fileID: 559860985, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
       propertyPath: ammoParant
+      value: 
+      objectReference: {fileID: 178956096}
+    - target: {fileID: 559860985, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
+      propertyPath: ammoParent
       value: 
       objectReference: {fileID: 178956096}
     - target: {fileID: 957283599, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}

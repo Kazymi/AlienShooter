@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using Zenject;
 // TODO: **Let's discuss it on Monday**
 public class WeaponControl : MonoBehaviour
 {
-    [SerializeField] private WeaponConfiguration startWeapon;
+    [SerializeField] private string startWeapon;
     [SerializeField] private Transform positionWeapon;
     [SerializeField] private Transform ammoParent;
 
@@ -19,15 +20,6 @@ public class WeaponControl : MonoBehaviour
     private WeaponManager _weaponManager;
     private int _idCurrentGun;
     private SignalBus _signalBus;
-
-    private void Start()
-    {
-        StartCoroutine(SpawnStartGun());
-        // if (startWeapon != null)
-        // {
-        //     NewWeapon(startWeapon);
-        // }
-    }
 
     private void Update()
     {
@@ -39,6 +31,16 @@ public class WeaponControl : MonoBehaviour
         if (_currentWeapon == null) return;
         if (!_inputHandler.Fire) return;
         _currentWeapon.Fire();
+    }
+
+    private void OnEnable()
+    {
+        _signalBus.Subscribe<LoadedSignal>(OnLoaded);
+    }
+
+    private void OnDisable()
+    {
+        _signalBus.Unsubscribe<LoadedSignal>(OnLoaded);
     }
 
     [Inject]
@@ -60,6 +62,16 @@ public class WeaponControl : MonoBehaviour
         SetWeapon(weaponConfiguration, _idCurrentGun);
     }
 
+    private void OnLoaded(LoadedSignal loadedSignal)
+    {
+        if (startWeapon != null)
+        {
+            var weapon = 
+                _weaponManager.GetWeaponConfigurationByWeapon(
+                    _weaponManager.GetWeaponByName(loadedSignal.saveData.SelectedWeaponName));
+            NewWeapon(weapon);
+        }
+    }
     private void NextWeapon()
     {
         if (_spawnedWeapon[0] == null && _spawnedWeapon[1] == null) return;
@@ -71,10 +83,7 @@ public class WeaponControl : MonoBehaviour
     private IEnumerator SpawnStartGun()
     {
         yield return new WaitForEndOfFrame();
-        if (startWeapon != null)
-        {
-            NewWeapon(startWeapon);
-        }
+        
     }
 
     private void OffAllGun()

@@ -5,41 +5,43 @@ public class GameManager : MonoBehaviour
 {
     private SignalBus _signalBus;
     private SaveData _saveData;
-    private SaveManager _saveManager = new SaveManager();
-    
-    private void Awake()
+    private void Start()
     {
-        _saveData = _saveManager.Load();
-        _signalBus.Fire(new LoadedSignal(_saveData));
-        _signalBus.Fire(new ScoreChangedSignal(_saveData.Score));
+        _signalBus.Fire(new ScoreChangedSignal());
     }
 
     private void OnEnable()
     {
         _signalBus.Subscribe<PlayerDiedSignal>(Save);
         _signalBus.Subscribe<EnemyDeadSignal>(AddScore);
+        _signalBus.Subscribe<LoadedSignal>(OnLoaded);
     }
 
     private void OnDisable()
     {
         _signalBus.Unsubscribe<PlayerDiedSignal>(Save);
+        _signalBus.Unsubscribe<LoadedSignal>(OnLoaded);
         _signalBus.Unsubscribe<EnemyDeadSignal>(AddScore);
     }
 
+    private void Save()
+    {
+    _signalBus.Fire<SaveSignal>();    
+    }
+    
     [Inject]
     private void Construct(SignalBus signalBus)
     {
         _signalBus = signalBus;
     }
 
-    private void Save()
+    public void OnLoaded(LoadedSignal loadedSignal)
     {
-        _saveManager.Save(_saveData);
+        _saveData = loadedSignal.saveData;
     }
-
     public void AddScore(EnemyDeadSignal deadSignal)
     {
-        _saveData.Score += deadSignal.Score;
-        _signalBus.Fire(new ScoreChangedSignal(_saveData.Score));
+        _saveData.Money += deadSignal.Score;
+        _signalBus.Fire<ScoreChangedSignal>();
     }
 }

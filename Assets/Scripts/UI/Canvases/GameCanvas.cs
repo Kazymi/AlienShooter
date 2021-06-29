@@ -32,12 +32,6 @@ public class GameCanvas : MonoBehaviour
         _signalBus.Unsubscribe<UpdateAmmoSignal>(OnUpdateAmmo);
     }
 
-    // TODO: just fire score signal after data has been loaded
-    /*private void Start()
-    {
-        OnUpdateScore();
-    }*/
-
     public void OnUpdateHeal(UpdateHeathSignal updateHeathSignal)
     {
         healthBar.value = updateHeathSignal.CurrentHealth;
@@ -48,16 +42,15 @@ public class GameCanvas : MonoBehaviour
         ammoText.text = updateAmmoSignal.Ammo.ToString();
     }
 
-    private void OnScoreChanged(ScoreChangedSignal changedSignal)
+    private void OnScoreChanged()
     {
-        // TODO:
-        // scoreText.text = _saveData.Score.ToString();
-        scoreText.text = changedSignal.Score.ToString();
+        scoreText.text = _saveData.Money.ToString();
     }
 
     private void OnLoaded(LoadedSignal loadedSignal)
     {
         _saveData = loadedSignal.saveData;
+        OnScoreChanged();
     }
 
     private void OnPlayerDied()

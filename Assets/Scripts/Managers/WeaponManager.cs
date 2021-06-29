@@ -14,6 +14,38 @@ public class WeaponManager : MonoBehaviour
            NewWeapon(i.WeaponGameObject, i.Name);
        }
     }
+
+    public List<Weapon> GetAllWeapon()
+    {
+        var i = new List<Weapon>();
+        foreach (var VARIABLE in _weapons)
+        {
+            i.Add(VARIABLE.Value);
+        }
+
+        return i;
+    }
+
+    public WeaponConfiguration GetWeaponConfigurationByWeapon(Weapon weapon)
+    {
+        var name = GetNameByWeapon(weapon);
+        foreach (var i in weaponConfigurations)
+        {
+            if (i.Name == name) return i;
+        }
+
+        return null;
+    }
+
+    public string GetNameByWeapon(Weapon weapon)
+    {
+        foreach (var i in _weapons)
+        {
+            if (i.Value == weapon) return i.Key;
+        }
+
+        return null;
+    }
     
     public Weapon GetWeaponByName(string name)
     {

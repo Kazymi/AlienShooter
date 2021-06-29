@@ -9,7 +9,9 @@ public class WeaponConfiguration : ScriptableObject
     [Range(0,3)] [SerializeField] private float timeReloaded;
     [SerializeField] private Weapon weaponGameObject;
     [SerializeField] private AmmoConfiguration ammoConfiguration;
-    
+    [SerializeField] private int price;
+
+    public int Price => price;
     public string Name => nameGun;
     public Weapon WeaponGameObject => weaponGameObject;
     public AmmoConfiguration AmmoConfiguration => ammoConfiguration;

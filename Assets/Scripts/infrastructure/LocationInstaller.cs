@@ -66,5 +66,7 @@ public class LocationInstaller : MonoInstaller
         Container.DeclareSignal<UpdateHeathSignal>();
         Container.DeclareSignal<ScoreChangedSignal>();
         Container.DeclareSignal<UpdateAmmoSignal>();
+        Container.DeclareSignal<SaveSignal>();
+        
     }
 }

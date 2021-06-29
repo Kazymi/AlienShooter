@@ -25,7 +25,6 @@ public class ShopMenu : MonoBehaviour
         pastWeaponButton.onClick.AddListener(PastWeapon);
         buyWeaponButton.onClick.AddListener(BuyWeapon);
         StartCoroutine(ShopStateUpdate());
-        moneyText.text = _saveData.Money.ToString();
     }
 
     private void OnEnable()
@@ -80,6 +79,7 @@ public class ShopMenu : MonoBehaviour
     private void OnLoaded(LoadedSignal loadedSignal)
     {
         _saveData = loadedSignal.saveData;
+        moneyText.text = _saveData.Money.ToString();
     }
 
     [Inject]
