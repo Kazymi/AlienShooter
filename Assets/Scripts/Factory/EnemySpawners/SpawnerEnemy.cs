@@ -18,7 +18,7 @@ public class SpawnerEnemy : MonoBehaviour
     
     private void Start()
     {
-        _factory = new Factory(enemyConfiguration.EnemyGameObject,countEnemy,transform);
+        _factory = new Factory(enemyConfiguration.EnemyPrefab,countEnemy,transform);
         StartCoroutine(Spawn());
     }
 

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -37,7 +36,7 @@ public class Shop : MonoBehaviour
     public void PastWeapon()
     {
         _currentID--;
-        if (_currentID < 0) _currentID = _weapons.Count-1;
+        if (_currentID < 0) _currentID = _weapons.Count - 1;
         SpawnWeapon(_weapons[_currentID]);
     }
 
@@ -46,38 +45,38 @@ public class Shop : MonoBehaviour
         Price = _weaponManager.GetWeaponConfigurationByWeapon(_weapons[_currentID]).Price;
         UnlockBuy = UnlockBuyingWeapon(_weapons[_currentID]);
     }
-    
+
     public void Buy()
     {
         if (!UnlockBuy) return;
         _moneySave.RemoveMoney(Price);
         _weaponSave.UnlockNewWeapon(_weaponManager.GetNameByWeapon(_weapons[_currentID]));
-        _signalBus.Fire<SaveSignal>();
+        _signalBus.Fire<SavedSignal>();
     }
 
     public void EquipWeapon()
     {
         _weaponSave.NewSelectedWeapon(_weaponManager.GetNameByWeapon(_weapons[_currentID]));
-        _signalBus.Fire<SaveSignal>();
+        _signalBus.Fire<SavedSignal>();
     }
-    
+
     public bool CheckBoughtWeapon()
     {
-        foreach (var i in _weaponSave.UnlockedWeapon)
+        foreach (var i in _weaponSave.UnlockedWeapons)
         {
-            if(_weaponManager.GetNameByWeapon(_weapons[_currentID]) == i) return true;
+            if (_weaponManager.GetNameByWeapon(_weapons[_currentID]) == i) return true;
         }
         return false;
     }
-    
+
     private bool UnlockBuyingWeapon(Weapon weapon)
     {
         var returnValue = true;
-        returnValue = !CheckBoughtWeapon();
+        returnValue = CheckBoughtWeapon() == false;
         if (_moneySave.CompareMoney(Price)) returnValue = false;
         return returnValue;
     }
-    
+
     private void SpawnWeapon(Weapon spawnWeapon)
     {
         foreach (var i in _weapons)
@@ -94,7 +93,7 @@ public class Shop : MonoBehaviour
     }
 
     [Inject]
-    private void Construct(WeaponManager weaponManager,SignalBus signalBus,SaveDataManager saveDataManager)
+    private void Construct(WeaponManager weaponManager, SignalBus signalBus, SaveDataManager saveDataManager)
     {
         _weaponManager = weaponManager;
         _signalBus = signalBus;

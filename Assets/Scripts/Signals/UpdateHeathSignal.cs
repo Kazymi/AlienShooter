@@ -1,10 +1,9 @@
-﻿
-    public class UpdateHeathSignal
-    {
-        public float CurrentHealth;
+﻿public class UpdateHeathSignal
+{
+    public float CurrentHealth { get; }
 
-        public UpdateHeathSignal(float currentHealth)
-        {
-            CurrentHealth = currentHealth;
-        }
+    public UpdateHeathSignal(float currentHealth)
+    {
+        CurrentHealth = currentHealth;
     }
+}

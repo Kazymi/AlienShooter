@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -30,20 +28,6 @@ public class WeaponControl : MonoBehaviour
         _currentWeapon.Fire();
     }
 
-    [Inject]
-    public void Construct(WeaponManager weaponManager, InputHandler inputHandler, SaveDataManager saveDataManager)
-    {
-        _weaponManager = weaponManager;
-        _inputHandler = inputHandler;
-        if (startWeapon != null)
-        {
-            var weapon = 
-                _weaponManager.GetWeaponConfigurationByWeapon(
-                    _weaponManager.GetWeaponByName(saveDataManager.WeaponSave.SelectedWeaponName));
-            NewWeapon(weapon);
-        }
-    }
-
     public void NewWeapon(WeaponConfiguration weaponConfiguration)
     {
         for (var i = 0; i < _spawnedWeapon.Count; i++)
@@ -54,18 +38,13 @@ public class WeaponControl : MonoBehaviour
         }
         SetWeapon(weaponConfiguration, _idCurrentGun);
     }
+
     private void NextWeapon()
     {
         if (_spawnedWeapon[0] == null && _spawnedWeapon[1] == null) return;
         _idCurrentGun = _idCurrentGun == 0 ? 1 : 0;
         if (_spawnedWeapon[_idCurrentGun] == null) return;
         SpawnGun(_idCurrentGun);
-    }
-
-    private IEnumerator SpawnStartGun()
-    {
-        yield return new WaitForEndOfFrame();
-        
     }
 
     private void OffAllGun()
@@ -90,8 +69,24 @@ public class WeaponControl : MonoBehaviour
     {
         OffAllGun();
         if (_spawnedWeapon[id] != null)
+        {
             _weaponManager.GetWeaponByName(_spawnedWeapon[id].Name).transform.parent = _weaponManager.transform;
+        }
+
         _spawnedWeapon[id] = weaponConfiguration;
         SpawnGun(id);
+    }
+
+    [Inject]
+    private void Construct(WeaponManager weaponManager, InputHandler inputHandler, SaveDataManager saveDataManager)
+    {
+        _weaponManager = weaponManager;
+        _inputHandler = inputHandler;
+        if (startWeapon != null)
+        {
+            var weapon = _weaponManager.GetWeaponConfigurationByWeapon(
+                _weaponManager.GetWeaponByName(saveDataManager.WeaponSave.SelectedWeaponName));
+            NewWeapon(weapon);
+        }
     }
 }

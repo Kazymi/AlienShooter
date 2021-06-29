@@ -19,7 +19,7 @@ public class GameCanvas : MonoBehaviour
         _signalBus.Subscribe<PlayerDiedSignal>(OnPlayerDied);
         _signalBus.Subscribe<ScoreChangedSignal>(OnScoreChanged);
         _signalBus.Subscribe<UpdateHeathSignal>(OnUpdateHeal);
-        _signalBus.Subscribe<UpdateAmmoSignal>(OnUpdateAmmo);
+        _signalBus.Subscribe<AmmoChangedSignal>(OnUpdateAmmo);
     }
 
     private void OnDisable()
@@ -27,17 +27,17 @@ public class GameCanvas : MonoBehaviour
         _signalBus.Unsubscribe<PlayerDiedSignal>(OnPlayerDied);
         _signalBus.Unsubscribe<ScoreChangedSignal>(OnScoreChanged);
         _signalBus.Unsubscribe<UpdateHeathSignal>(OnUpdateHeal);
-        _signalBus.Unsubscribe<UpdateAmmoSignal>(OnUpdateAmmo);
+        _signalBus.Unsubscribe<AmmoChangedSignal>(OnUpdateAmmo);
     }
 
-    public void OnUpdateHeal(UpdateHeathSignal updateHeathSignal)
+    private void OnUpdateHeal(UpdateHeathSignal updateHeathSignal)
     {
         healthBar.value = updateHeathSignal.CurrentHealth;
     }
 
-    public void OnUpdateAmmo(UpdateAmmoSignal updateAmmoSignal)
+    private void OnUpdateAmmo(AmmoChangedSignal ammoChangedSignal)
     {
-        ammoText.text = updateAmmoSignal.Ammo.ToString();
+        ammoText.text = ammoChangedSignal.Ammo.ToString();
     }
 
     private void OnScoreChanged()

@@ -23,12 +23,12 @@ public class SaveDataManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _signalBus.Subscribe<SaveSignal>(Save);
+        _signalBus.Subscribe<SavedSignal>(Save);
     }
 
     private void OnDisable()
     {
-        _signalBus.Unsubscribe<SaveSignal>(Save);
+        _signalBus.Unsubscribe<SavedSignal>(Save);
     }
 
     private void Save()

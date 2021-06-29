@@ -1,10 +1,11 @@
 using UnityEngine;
 using Zenject;
 
-public class LocationInstallerMainMenu : MonoInstaller
+public class MainMenuInstaller : MonoInstaller
 {
     [SerializeField] private WeaponManager weaponManager;
     [SerializeField] private SaveDataManager saveDataManager;
+
     public override void InstallBindings()
     {
         Signals();
@@ -19,7 +20,7 @@ public class LocationInstallerMainMenu : MonoInstaller
             .FromInstance(weaponManager)
             .AsSingle();
     }
-    
+
     private void BindSaveDataManager()
     {
         Container
@@ -32,7 +33,6 @@ public class LocationInstallerMainMenu : MonoInstaller
     {
         SignalBusInstaller.Install(Container);
         Container.DeclareSignal<LoadedSignal>();
-        Container.DeclareSignal<SaveSignal>();
+        Container.DeclareSignal<SavedSignal>();
     }
-    
 }

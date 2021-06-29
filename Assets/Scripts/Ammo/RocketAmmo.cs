@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class RocketAmmo : MonoBehaviour, IAmmo
 {
@@ -24,25 +23,30 @@ public class RocketAmmo : MonoBehaviour, IAmmo
         rocketGameObject.SetActive(true);
         StartCoroutine(Destroy());
     }
-    
+
     private IEnumerator Destroy()
     {
         yield return new WaitForSeconds(_ammoConfiguration.LifeTime);
-        StartCoroutine(Explostion());
+        StartCoroutine(Explosion());
     }
 
-    private IEnumerator Explostion()
+    private IEnumerator Explosion()
     {
         rocketGameObject.SetActive(false);
         explosion.Initialize(_ammoConfiguration.Damage);
-        yield return new WaitForSeconds(explosion.Lifetime+0.1f);
+        yield return new WaitForSeconds(explosion.Lifetime + 0.1f);
         _factory.Destroy(gameObject);
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(_exploded) return;
+        if (_exploded)
+        {
+            return;
+        }
+
         _exploded = true;
         StopAllCoroutines();
-        StartCoroutine(Explostion());
+        StartCoroutine(Explosion());
     }
 }

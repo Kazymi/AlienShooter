@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour,IDeathInitialize
       _enemyConfiguration = enemyConfiguration;
 
       enemyMove.Initialize(playerTransform,enemyConfiguration.Speed);
-      enemyHealth.Initialize(enemyConfiguration.HP,this);
+      enemyHealth.Initialize(enemyConfiguration.Health,this);
       enemyDamageDealer.Initialize(enemyConfiguration.Damage);
       dropItem.Initialize(dropItems,spawnManager);
       buffer?.Initialize(enemyMove,enemyHealth);
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour,IDeathInitialize
    public void DeadInitialize()
    {
       dropItem.Spawn();//???
-      _signalBus.Fire(new EnemyDeadSignal(_enemyConfiguration.Score));
+      _signalBus.Fire(new EnemyDiedSignal(_enemyConfiguration.Score));
       
       var i = _spawnManager.Spawn(deathEffect);
       i.position = transform.position;

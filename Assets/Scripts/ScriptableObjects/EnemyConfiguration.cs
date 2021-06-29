@@ -4,14 +4,14 @@ using UnityEngine;
 public class EnemyConfiguration : ScriptableObject
 {
     [SerializeField] private float speed;
-    [SerializeField] private float hp;
+    [SerializeField] private float health;
     [SerializeField] private float damage;
     [SerializeField] private int score;
-    [SerializeField] private GameObject enemyGameObject;
+    [SerializeField] private GameObject enemyPrefab;
 
     public float Speed => speed;
     public float Damage => damage;
-    public float HP => hp;
-    public GameObject EnemyGameObject => enemyGameObject;
+    public float Health => health;
+    public GameObject EnemyPrefab => enemyPrefab;
     public int Score => score;
 }

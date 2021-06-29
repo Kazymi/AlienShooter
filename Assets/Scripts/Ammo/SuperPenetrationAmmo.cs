@@ -1,9 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody),typeof(Collider))]
-
-public class SuperPenetrationAmmo : MonoBehaviour,IAmmo
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
+public class SuperPenetrationAmmo : MonoBehaviour, IAmmo
 {
     private AmmoConfiguration _ammoConfiguration;
     private Factory _factory;
@@ -24,14 +23,14 @@ public class SuperPenetrationAmmo : MonoBehaviour,IAmmo
         StopAllCoroutines();
         _factory.Destroy(gameObject);
     }
-    
+
     public void Initialize(AmmoConfiguration ammoConfiguration, Factory parentFactory)
     {
         _ammoConfiguration = ammoConfiguration;
         _factory = parentFactory;
         StartCoroutine(Destroy());
     }
-    
+
     private IEnumerator Destroy()
     {
         yield return new WaitForSeconds(_ammoConfiguration.LifeTime);

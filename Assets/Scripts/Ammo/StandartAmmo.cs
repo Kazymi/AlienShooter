@@ -1,9 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody),typeof(Collider))]
-
-public class StandartAmmo : MonoBehaviour,IAmmo
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
+public class StandartAmmo : MonoBehaviour, IAmmo
 {
     private AmmoConfiguration _ammoConfiguration;
     private Factory _factory;
@@ -15,22 +14,22 @@ public class StandartAmmo : MonoBehaviour,IAmmo
 
     private void OnTriggerEnter(Collider other)
     {
-        var i = (other.GetComponent<Damageable>());
-        if (i != null)
+        var damageable = other.GetComponent<Damageable>();
+        if (damageable != null)
         {
-            i.TakeDamage(_ammoConfiguration.Damage);
+            damageable.TakeDamage(_ammoConfiguration.Damage);
         }
         StopAllCoroutines();
         _factory.Destroy(gameObject);
     }
-    
+
     public void Initialize(AmmoConfiguration ammoConfiguration, Factory parentFactory)
     {
         _ammoConfiguration = ammoConfiguration;
         _factory = parentFactory;
         StartCoroutine(Destroy());
     }
-    
+
     private IEnumerator Destroy()
     {
         yield return new WaitForSeconds(_ammoConfiguration.LifeTime);

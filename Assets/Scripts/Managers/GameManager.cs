@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     private SignalBus _signalBus;
     private MoneySave _moneySave;
+
     private void Start()
     {
         _signalBus.Fire(new ScoreChangedSignal());
@@ -13,30 +14,30 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         _signalBus.Subscribe<PlayerDiedSignal>(Save);
-        _signalBus.Subscribe<EnemyDeadSignal>(AddScore);
+        _signalBus.Subscribe<EnemyDiedSignal>(AddScore);
     }
 
     private void OnDisable()
     {
         _signalBus.Unsubscribe<PlayerDiedSignal>(Save);
-        _signalBus.Unsubscribe<EnemyDeadSignal>(AddScore);
+        _signalBus.Unsubscribe<EnemyDiedSignal>(AddScore);
     }
 
     private void Save()
     {
-    _signalBus.Fire<SaveSignal>();    
+        _signalBus.Fire<SavedSignal>();
     }
-    
+
+    private void AddScore(EnemyDiedSignal diedSignal)
+    {
+        _moneySave.AddMoney(diedSignal.Score);
+        _signalBus.Fire<ScoreChangedSignal>();
+    }
+
     [Inject]
-    private void Construct(SignalBus signalBus,SaveDataManager saveDataManager)
+    private void Construct(SignalBus signalBus, SaveDataManager saveDataManager)
     {
         _signalBus = signalBus;
         _moneySave = saveDataManager.MoneySave;
-    }
-    
-    public void AddScore(EnemyDeadSignal deadSignal)
-    {
-        _moneySave.AddMoney(deadSignal.Score);
-        _signalBus.Fire<ScoreChangedSignal>();
     }
 }

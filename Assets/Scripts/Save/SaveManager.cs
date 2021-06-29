@@ -2,17 +2,18 @@ using UnityEngine;
 
 public class SaveManager
 {
+    private const string SaveKey = "Save";
+
     public void Save(SaveData saveData)
     {
         var saveString = JsonUtility.ToJson(saveData);
-        PlayerPrefs.SetString("Save",saveString);   
+        PlayerPrefs.SetString(SaveKey, saveString);
     }
 
     public SaveData Load()
     {
-        var loadedDate = PlayerPrefs.GetString("Save");
+        var loadedDate = PlayerPrefs.GetString(SaveKey);
         var saveDate = JsonUtility.FromJson<SaveData>(loadedDate);
-        if (saveDate == null) return new SaveData();
-        return saveDate;
+        return saveDate ?? new SaveData();
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+
 [CreateAssetMenu(fileName = "New ammo config", menuName = "AmmoConfiguration")]
 public class AmmoConfiguration : ScriptableObject
 {

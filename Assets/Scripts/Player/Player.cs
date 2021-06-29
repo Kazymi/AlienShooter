@@ -20,7 +20,7 @@ public class Player : MonoBehaviour,IDeathInitialize
         playerMovement.Initialize(playerConfiguration,_inputHandler);
         playerLook.Initialize(_inputHandler);
         playerScanner.Initialize(playerLook);
-        playerHealth.Initialize(playerConfiguration.HP,this);
+        playerHealth.Initialize(playerConfiguration.Health,this);
         buffer.Initialize(playerMovement,playerHealth);
     }
 

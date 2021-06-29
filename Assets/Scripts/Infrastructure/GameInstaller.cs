@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class LocationInstaller : MonoInstaller
+public class GameInstaller : MonoInstaller
 {
     [SerializeField] private WeaponManager weaponManagerPrefab;
     [SerializeField] private InputHandler inputHandlerPrefab;
@@ -24,23 +24,25 @@ public class LocationInstaller : MonoInstaller
     private void BindWeaponManager()
     {
         Container
-              .Bind<WeaponManager>()
-              .FromInstance(weaponManagerPrefab)
-              .AsSingle();
+            .Bind<WeaponManager>()
+            .FromInstance(weaponManagerPrefab)
+            .AsSingle();
     }
+
     private void BindVFXManager()
     {
         Container
-              .Bind<VFXManager>()
-              .FromInstance(vfxManager)
-              .AsSingle();
-    } 
+            .Bind<VFXManager>()
+            .FromInstance(vfxManager)
+            .AsSingle();
+    }
+
     private void BindInputHandler()
     {
         Container
-              .Bind<InputHandler>()
-              .FromInstance(inputHandlerPrefab)
-              .AsSingle();
+            .Bind<InputHandler>()
+            .FromInstance(inputHandlerPrefab)
+            .AsSingle();
     }
 
     private void BindSpawnManger()
@@ -58,6 +60,7 @@ public class LocationInstaller : MonoInstaller
             .FromInstance(player)
             .AsSingle();
     }
+
     private void BindSaveDataManager()
     {
         Container
@@ -71,11 +74,10 @@ public class LocationInstaller : MonoInstaller
         SignalBusInstaller.Install(Container);
         Container.DeclareSignal<PlayerDiedSignal>();
         Container.DeclareSignal<LoadedSignal>();
-        Container.DeclareSignal<EnemyDeadSignal>();
+        Container.DeclareSignal<EnemyDiedSignal>();
         Container.DeclareSignal<UpdateHeathSignal>();
         Container.DeclareSignal<ScoreChangedSignal>();
-        Container.DeclareSignal<UpdateAmmoSignal>();
-        Container.DeclareSignal<SaveSignal>();
-        
+        Container.DeclareSignal<AmmoChangedSignal>();
+        Container.DeclareSignal<SavedSignal>();
     }
 }

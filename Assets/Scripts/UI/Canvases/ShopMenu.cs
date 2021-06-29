@@ -15,13 +15,14 @@ public class ShopMenu : MonoBehaviour
     [SerializeField] private Shop shop;
 
     private MoneySave _moneySave;
-    private const string _buy = "Buy";
-    private const string _equip = "Equip";
+
+    private const string BuyKey = "Buy";
+    private const string EquipKey = "Equip";
 
     private void Start()
     {
         nextWeaponButton.onClick.AddListener(NextWeapon);
-        pastWeaponButton.onClick.AddListener(PastWeapon);
+        pastWeaponButton.onClick.AddListener(PreviousWeapon);
         buyWeaponButton.onClick.AddListener(BuyWeapon);
         StartCoroutine(ShopStateUpdate());
         moneyText.text = _moneySave.Money.ToString();
@@ -31,16 +32,14 @@ public class ShopMenu : MonoBehaviour
     {
         priceText.text = shop.Price.ToString();
 
-        if (!shop.UnlockBuy && shop.CheckBoughtWeapon())
+        if (shop.UnlockBuy == false && shop.CheckBoughtWeapon())
         {
             buyWeaponButton.interactable = true;
-            buyText.text = _equip;
+            buyText.text = EquipKey;
             return;
         }
-        else
-        {
-            buyText.text = _buy;
-        }
+
+        buyText.text = BuyKey;
 
         buyWeaponButton.interactable = shop.UnlockBuy;
     }
@@ -51,7 +50,7 @@ public class ShopMenu : MonoBehaviour
         UpdateShopState();
     }
 
-    private void PastWeapon()
+    private void PreviousWeapon()
     {
         shop.PastWeapon();
         UpdateShopState();
@@ -66,15 +65,15 @@ public class ShopMenu : MonoBehaviour
         UpdateShopState();
     }
 
-    [Inject]
-    private void Construct(SaveDataManager saveDataManager)
-    {
-        _moneySave = saveDataManager.MoneySave;
-    }
-
     private IEnumerator ShopStateUpdate()
     {
         yield return new WaitForEndOfFrame();
         UpdateShopState();
+    }
+
+    [Inject]
+    private void Construct(SaveDataManager saveDataManager)
+    {
+        _moneySave = saveDataManager.MoneySave;
     }
 }

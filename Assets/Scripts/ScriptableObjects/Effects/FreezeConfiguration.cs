@@ -9,7 +9,7 @@ namespace ScriptableObjects.Effects
 
         public override Effect GenerateEffect(EffectConfiguration effectConfig)
         {
-            return new EffectFreeze(timeEffect,effectConfig.Movenment,freezeValue);
+            return new EffectFreeze(timeEffect, effectConfig.Movenment, freezeValue);
         }
     }
 }

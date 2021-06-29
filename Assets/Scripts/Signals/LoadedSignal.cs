@@ -1,9 +1,9 @@
 public class LoadedSignal
 {
-    public SaveData saveData;
+    public SaveData SaveData { get; }
 
     public LoadedSignal(SaveData saveData)
     {
-        this.saveData = saveData;
+        SaveData = saveData;
     }
 }

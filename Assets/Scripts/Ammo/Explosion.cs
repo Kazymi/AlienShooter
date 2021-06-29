@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Explosion : MonoBehaviour
 {
@@ -14,10 +13,10 @@ public class Explosion : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color=Color.red;
-        Gizmos.DrawWireSphere(transform.position,radius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
-    
+
     public void Initialize(float damage)
     {
         _damage = damage;
@@ -39,6 +38,4 @@ public class Explosion : MonoBehaviour
         yield return new WaitForSeconds(timeExplosion);
         effectExplosion.SetActive(false);
     }
-    
-    
 }

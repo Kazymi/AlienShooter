@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
     public void Initialize(WeaponConfiguration gunConfiguration,Transform parentAmmo, SignalBus signalBus)
     {
         _signalBus = signalBus;
-        _signalBus.Fire(new UpdateAmmoSignal(_ammo));
+        _signalBus.Fire(new AmmoChangedSignal(_ammo));
         transform.localPosition = Vector3.zero;
         _reloaded = false;
         _lockFire = false;
@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
         InitializeFactory(parentAmmo);
         _currentWeaponConfiguration = gunConfiguration.AmmoConfiguration;
         _ammo = _weaponConfiguration.MaxAmmo;
-        _signalBus.Fire(new UpdateAmmoSignal(_ammo));
+        _signalBus.Fire(new AmmoChangedSignal(_ammo));
     }
     
     public void Fire()
@@ -40,7 +40,7 @@ public class Weapon : MonoBehaviour
             StartCoroutine(StartReloaded());
             return;
         }
-        _signalBus.Fire(new UpdateAmmoSignal(_ammo));
+        _signalBus.Fire(new AmmoChangedSignal(_ammo));
         var ammo = _factory.Create(positionSpawnAmmo.position);
         ammo.GetComponent<IAmmo>().Initialize(_currentWeaponConfiguration,_factory);
         ammo.transform.position = positionSpawnAmmo.position;
@@ -52,7 +52,7 @@ public class Weapon : MonoBehaviour
         _reloaded = true;
         yield return new WaitForSeconds(_weaponConfiguration.TimeReloaded);
         _ammo = _weaponConfiguration.MaxAmmo;
-        _signalBus.Fire(new UpdateAmmoSignal(_ammo));
+        _signalBus.Fire(new AmmoChangedSignal(_ammo));
         _reloaded = false;
     }
     

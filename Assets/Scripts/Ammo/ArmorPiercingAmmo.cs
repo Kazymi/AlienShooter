@@ -1,13 +1,11 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-[RequireComponent(typeof(Rigidbody),typeof(Collider))]
-
-public class ArmorPiercingAmmo : MonoBehaviour,IAmmo
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
+public class ArmorPiercingAmmo : MonoBehaviour, IAmmo
 {
     [SerializeField] private int maxPenetrationInEnemy = 3;
-    [SerializeField][Range(0,50)] private int damageReduction = 25;
+    [SerializeField] [Range(0, 50)] private int damageReduction = 25;
 
     private int _enemyPassed;
     private float _currentDamage;
@@ -25,7 +23,7 @@ public class ArmorPiercingAmmo : MonoBehaviour,IAmmo
         if (i != null)
         {
             _enemyPassed++;
-            _currentDamage -= _currentDamage * (damageReduction / 100);  
+            _currentDamage -= _currentDamage * (damageReduction / 100);
             i.TakeDamage(_ammoConfiguration.Damage);
         }
         else
@@ -38,7 +36,7 @@ public class ArmorPiercingAmmo : MonoBehaviour,IAmmo
         StopAllCoroutines();
         _factory.Destroy(gameObject);
     }
-    
+
     public void Initialize(AmmoConfiguration ammoConfiguration, Factory parentFactory)
     {
         _ammoConfiguration = ammoConfiguration;
@@ -47,7 +45,7 @@ public class ArmorPiercingAmmo : MonoBehaviour,IAmmo
         _factory = parentFactory;
         StartCoroutine(Destroy());
     }
-    
+
     private IEnumerator Destroy()
     {
         yield return new WaitForSeconds(_ammoConfiguration.LifeTime);

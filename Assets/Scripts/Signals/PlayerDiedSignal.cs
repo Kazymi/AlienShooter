@@ -1,4 +1,3 @@
-public class PlayerDiedSignal 
+public class PlayerDiedSignal
 {
-    
 }
