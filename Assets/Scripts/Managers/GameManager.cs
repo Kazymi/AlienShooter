@@ -4,7 +4,7 @@ using Zenject;
 public class GameManager : MonoBehaviour
 {
     private SignalBus _signalBus;
-    private SaveData _saveData;
+    private MoneySave _moneySave;
     private void Start()
     {
         _signalBus.Fire(new ScoreChangedSignal());
@@ -14,13 +14,11 @@ public class GameManager : MonoBehaviour
     {
         _signalBus.Subscribe<PlayerDiedSignal>(Save);
         _signalBus.Subscribe<EnemyDeadSignal>(AddScore);
-        _signalBus.Subscribe<LoadedSignal>(OnLoaded);
     }
 
     private void OnDisable()
     {
         _signalBus.Unsubscribe<PlayerDiedSignal>(Save);
-        _signalBus.Unsubscribe<LoadedSignal>(OnLoaded);
         _signalBus.Unsubscribe<EnemyDeadSignal>(AddScore);
     }
 
@@ -30,18 +28,15 @@ public class GameManager : MonoBehaviour
     }
     
     [Inject]
-    private void Construct(SignalBus signalBus)
+    private void Construct(SignalBus signalBus,SaveDataManager saveDataManager)
     {
         _signalBus = signalBus;
+        _moneySave = saveDataManager.MoneySave;
     }
-
-    public void OnLoaded(LoadedSignal loadedSignal)
-    {
-        _saveData = loadedSignal.saveData;
-    }
+    
     public void AddScore(EnemyDeadSignal deadSignal)
     {
-        _saveData.Money += deadSignal.Score;
+        _moneySave.AddMoney(deadSignal.Score);
         _signalBus.Fire<ScoreChangedSignal>();
     }
 }

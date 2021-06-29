@@ -4,11 +4,12 @@ using Zenject;
 public class LocationInstallerMainMenu : MonoInstaller
 {
     [SerializeField] private WeaponManager weaponManager;
-
+    [SerializeField] private SaveDataManager saveDataManager;
     public override void InstallBindings()
     {
         Signals();
         BindGameManager();
+        BindSaveDataManager();
     }
 
     private void BindGameManager()
@@ -18,6 +19,14 @@ public class LocationInstallerMainMenu : MonoInstaller
             .FromInstance(weaponManager)
             .AsSingle();
     }
+    
+    private void BindSaveDataManager()
+    {
+        Container
+            .Bind<SaveDataManager>()
+            .FromInstance(saveDataManager)
+            .AsSingle();
+    }
 
     private void Signals()
     {
@@ -25,4 +34,5 @@ public class LocationInstallerMainMenu : MonoInstaller
         Container.DeclareSignal<LoadedSignal>();
         Container.DeclareSignal<SaveSignal>();
     }
+    
 }

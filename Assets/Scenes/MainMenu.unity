@@ -1732,6 +1732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponManager: {fileID: 723794545}
+  saveDataManager: {fileID: 1068314391}
 --- !u!114 &1068314393
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,8 @@ public class Shop : MonoBehaviour
     private WeaponManager _weaponManager;
     private List<Weapon> _weapons;
     private int _currentID;
-    private SaveData _saveData;
+    private WeaponSave _weaponSave;
+    private MoneySave _moneySave;
     private SignalBus _signalBus;
 
     public bool UnlockBuy { get; private set; }
@@ -24,16 +25,6 @@ public class Shop : MonoBehaviour
             i.GetComponent<Weapon>().enabled = false;
         }
         SpawnWeapon(_weapons[0]);
-    }
-
-    private void OnEnable()
-    {
-        _signalBus.Subscribe<LoadedSignal>(OnLoaded);
-    }
-
-    private void OnDisable()
-    {
-        _signalBus.Unsubscribe<LoadedSignal>(OnLoaded);
     }
 
     public void NextWeapon()
@@ -59,20 +50,20 @@ public class Shop : MonoBehaviour
     public void Buy()
     {
         if (!UnlockBuy) return;
-        _saveData.Money -= Price;
-        _saveData.UnlockedWeapon.Add(_weaponManager.GetNameByWeapon(_weapons[_currentID]));
+        _moneySave.RemoveMoney(Price);
+        _weaponSave.UnlockNewWeapon(_weaponManager.GetNameByWeapon(_weapons[_currentID]));
         _signalBus.Fire<SaveSignal>();
     }
 
     public void EquipWeapon()
     {
-        _saveData.SelectedWeaponName = _weaponManager.GetNameByWeapon(_weapons[_currentID]);
+        _weaponSave.NewSelectedWeapon(_weaponManager.GetNameByWeapon(_weapons[_currentID]));
         _signalBus.Fire<SaveSignal>();
     }
     
     public bool CheckBoughtWeapon()
     {
-        foreach (var i in _saveData.UnlockedWeapon)
+        foreach (var i in _weaponSave.UnlockedWeapon)
         {
             if(_weaponManager.GetNameByWeapon(_weapons[_currentID]) == i) return true;
         }
@@ -83,7 +74,7 @@ public class Shop : MonoBehaviour
     {
         var returnValue = true;
         returnValue = !CheckBoughtWeapon();
-        if (Price > _saveData.Money) returnValue = false;
+        if (_moneySave.CompareMoney(Price)) returnValue = false;
         return returnValue;
     }
     
@@ -102,15 +93,12 @@ public class Shop : MonoBehaviour
         UpdateWeaponState();
     }
 
-    private void OnLoaded(LoadedSignal loadedSignal)
-    {
-        _saveData = loadedSignal.saveData;
-    }
-    
     [Inject]
-    private void Construct(WeaponManager weaponManager,SignalBus signalBus)
+    private void Construct(WeaponManager weaponManager,SignalBus signalBus,SaveDataManager saveDataManager)
     {
         _weaponManager = weaponManager;
         _signalBus = signalBus;
+        _moneySave = saveDataManager.MoneySave;
+        _weaponSave = saveDataManager.WeaponSave;
     }
 }

@@ -5,9 +5,6 @@ using System.Linq;
 using UnityEngine;
 using Zenject;
 
-// TODO: Looks like WeaponControl and Weapon can be merged. All you really need is to pickup/switch weapon and shoot it. Any other parameter or visual can be found in WeaponConfig
-// TODO: at the same time it will be to long
-// TODO: **Let's discuss it on Monday**
 public class WeaponControl : MonoBehaviour
 {
     [SerializeField] private string startWeapon;
@@ -33,22 +30,18 @@ public class WeaponControl : MonoBehaviour
         _currentWeapon.Fire();
     }
 
-    private void OnEnable()
-    {
-        _signalBus.Subscribe<LoadedSignal>(OnLoaded);
-    }
-
-    private void OnDisable()
-    {
-        _signalBus.Unsubscribe<LoadedSignal>(OnLoaded);
-    }
-
     [Inject]
-    public void Construct(WeaponManager weaponManager, InputHandler inputHandler, SignalBus signalBus)
+    public void Construct(WeaponManager weaponManager, InputHandler inputHandler, SaveDataManager saveDataManager)
     {
         _weaponManager = weaponManager;
         _inputHandler = inputHandler;
-        _signalBus = signalBus;
+        if (startWeapon != null)
+        {
+            var weapon = 
+                _weaponManager.GetWeaponConfigurationByWeapon(
+                    _weaponManager.GetWeaponByName(saveDataManager.WeaponSave.SelectedWeaponName));
+            NewWeapon(weapon);
+        }
     }
 
     public void NewWeapon(WeaponConfiguration weaponConfiguration)
@@ -60,17 +53,6 @@ public class WeaponControl : MonoBehaviour
             return;
         }
         SetWeapon(weaponConfiguration, _idCurrentGun);
-    }
-
-    private void OnLoaded(LoadedSignal loadedSignal)
-    {
-        if (startWeapon != null)
-        {
-            var weapon = 
-                _weaponManager.GetWeaponConfigurationByWeapon(
-                    _weaponManager.GetWeaponByName(loadedSignal.saveData.SelectedWeaponName));
-            NewWeapon(weapon);
-        }
     }
     private void NextWeapon()
     {

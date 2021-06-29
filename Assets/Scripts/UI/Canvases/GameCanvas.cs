@@ -11,13 +11,12 @@ public class GameCanvas : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text ammoText;
 
-    private SaveData _saveData;
+    private MoneySave _moneySave;
     private SignalBus _signalBus;
 
     private void OnEnable()
     {
         _signalBus.Subscribe<PlayerDiedSignal>(OnPlayerDied);
-        _signalBus.Subscribe<LoadedSignal>(OnLoaded);
         _signalBus.Subscribe<ScoreChangedSignal>(OnScoreChanged);
         _signalBus.Subscribe<UpdateHeathSignal>(OnUpdateHeal);
         _signalBus.Subscribe<UpdateAmmoSignal>(OnUpdateAmmo);
@@ -25,7 +24,6 @@ public class GameCanvas : MonoBehaviour
 
     private void OnDisable()
     {
-        _signalBus.Unsubscribe<LoadedSignal>(OnLoaded);
         _signalBus.Unsubscribe<PlayerDiedSignal>(OnPlayerDied);
         _signalBus.Unsubscribe<ScoreChangedSignal>(OnScoreChanged);
         _signalBus.Unsubscribe<UpdateHeathSignal>(OnUpdateHeal);
@@ -44,13 +42,7 @@ public class GameCanvas : MonoBehaviour
 
     private void OnScoreChanged()
     {
-        scoreText.text = _saveData.Money.ToString();
-    }
-
-    private void OnLoaded(LoadedSignal loadedSignal)
-    {
-        _saveData = loadedSignal.saveData;
-        OnScoreChanged();
+        scoreText.text = _moneySave.Money.ToString();
     }
 
     private void OnPlayerDied()
@@ -59,8 +51,10 @@ public class GameCanvas : MonoBehaviour
     }
 
     [Inject]
-    private void Construct(SignalBus signalBus)
+    private void Construct(SignalBus signalBus, SaveDataManager saveDataManager)
     {
         _signalBus = signalBus;
+        _moneySave = saveDataManager.MoneySave;
+        OnScoreChanged();
     }
 }

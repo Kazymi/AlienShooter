@@ -14,8 +14,7 @@ public class ShopMenu : MonoBehaviour
     [SerializeField] private TMP_Text buyText;
     [SerializeField] private Shop shop;
 
-    private SaveData _saveData = new SaveData();
-    private SignalBus _signalBus;
+    private MoneySave _moneySave;
     private const string _buy = "Buy";
     private const string _equip = "Equip";
 
@@ -25,16 +24,7 @@ public class ShopMenu : MonoBehaviour
         pastWeaponButton.onClick.AddListener(PastWeapon);
         buyWeaponButton.onClick.AddListener(BuyWeapon);
         StartCoroutine(ShopStateUpdate());
-    }
-
-    private void OnEnable()
-    {
-        _signalBus.Subscribe<LoadedSignal>(OnLoaded);
-    }
-
-    private void OnDisable()
-    {
-        _signalBus.Unsubscribe<LoadedSignal>(OnLoaded);
+        moneyText.text = _moneySave.Money.ToString();
     }
 
     private void UpdateShopState()
@@ -71,21 +61,15 @@ public class ShopMenu : MonoBehaviour
     {
         if (shop.CheckBoughtWeapon()) shop.EquipWeapon();
         else shop.Buy();
-        moneyText.text = _saveData.Money.ToString();
+        moneyText.text = _moneySave.Money.ToString();
         shop.UpdateWeaponState();
         UpdateShopState();
     }
 
-    private void OnLoaded(LoadedSignal loadedSignal)
-    {
-        _saveData = loadedSignal.saveData;
-        moneyText.text = _saveData.Money.ToString();
-    }
-
     [Inject]
-    private void Construct(SignalBus signalBus)
+    private void Construct(SaveDataManager saveDataManager)
     {
-        _signalBus = signalBus;
+        _moneySave = saveDataManager.MoneySave;
     }
 
     private IEnumerator ShopStateUpdate()

@@ -7,6 +7,7 @@ public class LocationInstaller : MonoInstaller
     [SerializeField] private InputHandler inputHandlerPrefab;
     [SerializeField] private VFXManager vfxManager;
     [SerializeField] private SpawnManager spawnManager;
+    [SerializeField] private SaveDataManager saveDataManager;
     [SerializeField] private Player player;
 
     public override void InstallBindings()
@@ -15,6 +16,7 @@ public class LocationInstaller : MonoInstaller
         BindInputHandler();
         BindVFXManager();
         BindSpawnManger();
+        BindSaveDataManager();
         BindPlayer();
         Signals();
     }
@@ -54,6 +56,13 @@ public class LocationInstaller : MonoInstaller
         Container
             .Bind<Player>()
             .FromInstance(player)
+            .AsSingle();
+    }
+    private void BindSaveDataManager()
+    {
+        Container
+            .Bind<SaveDataManager>()
+            .FromInstance(saveDataManager)
             .AsSingle();
     }
 

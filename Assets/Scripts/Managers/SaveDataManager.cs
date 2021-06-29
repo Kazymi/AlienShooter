@@ -7,11 +7,18 @@ public class SaveDataManager : MonoBehaviour
     private SignalBus _signalBus;
     private SaveData _saveData;
     private SaveManager _saveManager = new SaveManager();
-    
-    private void Start()
+    private WeaponSave _weaponSave;
+    private MoneySave _moneySave;
+
+    public WeaponSave WeaponSave => _weaponSave;
+    public MoneySave MoneySave => _moneySave;
+
+
+    private void Awake()
     {
         _saveData = _saveManager.Load();
-        _signalBus.Fire(new LoadedSignal(_saveData));
+        _weaponSave = new WeaponSave(_saveData);
+        _moneySave = new MoneySave(_saveData);
     }
 
     private void OnEnable()
