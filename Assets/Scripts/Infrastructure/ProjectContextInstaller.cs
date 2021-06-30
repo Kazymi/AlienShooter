@@ -1,13 +1,26 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
-public class ProjectContextInstaller : MonoInstaller,IInitializable
+public class ProjectContextInstaller : MonoInstaller
 {
     [SerializeField] private SaveDataManager saveDataManager;
-
+    [SerializeField] private WeaponManager weaponManager;
     public override void InstallBindings()
     {
-        //BindSaveDataManager();
+        BindSaveDataManager();
+        BindWeaponManager();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += Initialize;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= Initialize;
     }
 
     private void BindSaveDataManager()
@@ -18,8 +31,16 @@ public class ProjectContextInstaller : MonoInstaller,IInitializable
             .AsSingle();
     }
 
-    public void Initialize()
+    private void BindWeaponManager()
     {
-        BindSaveDataManager();
+        Container
+            .Bind<WeaponManager>()
+            .FromInstance(weaponManager)
+            .AsSingle();
+    }
+
+    public void Initialize(Scene scene, LoadSceneMode mode)
+    {
+        weaponManager.Initialize();
     }
 }

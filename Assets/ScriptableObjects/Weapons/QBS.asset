@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c0e3046db3cb0142ad96b7bc7f87b69, type: 3}
-  m_Name: M4
+  m_Name: QBS
   m_EditorClassIdentifier: 
-  nameGun: M4
-  maxAmmo: 25
-  fireRate: 0.12
-  timeReloaded: 1
-  weaponGameObject: {fileID: 6086792541865072287, guid: cce9184596f248443b7f93e179d27dda, type: 3}
-  ammoConfiguration: {fileID: 11400000, guid: fdbc49d6823346147bc17b1feac5259b, type: 2}
-  price: 2500
+  nameGun: QBZ
+  maxAmmo: 30
+  fireRate: 0.098
+  timeReloaded: 1.33
+  weaponGameObject: {fileID: 6699690927712639915, guid: a1de9cc72caf75e4a81921a6bc29d390, type: 3}
+  ammoConfiguration: {fileID: 11400000, guid: c38b80f9316e26446bfecd6b06b2ce5e, type: 2}
+  price: 3000

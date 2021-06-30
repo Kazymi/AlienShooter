@@ -2,26 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class WeaponManager : MonoInstaller, IInitializable
+public class WeaponManager : MonoBehaviour, IInitializable
 {
     [SerializeField] private List<WeaponConfiguration> weaponConfigurations;
 
     private Dictionary<string, Weapon> _weapons = new Dictionary<string, Weapon>();
-
-    public override void InstallBindings()
-    {
-        Container.Bind(typeof(WeaponManager), typeof(IInitializable)).FromInstance(this).AsSingle();
-        foreach (var i in _weapons)
-        {
-            Destroy(i.Value.gameObject);
-        }
-
-        _weapons = new Dictionary<string, Weapon>();
-        foreach (var i in weaponConfigurations)
-        {
-            NewWeapon(i.WeaponGameObject, i.Name);
-        }
-    }
 
     public List<Weapon> GetAllWeapon()
     {

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c0e3046db3cb0142ad96b7bc7f87b69, type: 3}
-  m_Name: M4
+  m_Name: AWM
   m_EditorClassIdentifier: 
-  nameGun: M4
-  maxAmmo: 25
-  fireRate: 0.12
-  timeReloaded: 1
-  weaponGameObject: {fileID: 6086792541865072287, guid: cce9184596f248443b7f93e179d27dda, type: 3}
-  ammoConfiguration: {fileID: 11400000, guid: fdbc49d6823346147bc17b1feac5259b, type: 2}
-  price: 2500
+  nameGun: AWM
+  maxAmmo: 5
+  fireRate: 1
+  timeReloaded: 1.33
+  weaponGameObject: {fileID: 7324709112319412076, guid: d6a7e9cd24ebb654fa0c049b9c184b41, type: 3}
+  ammoConfiguration: {fileID: 11400000, guid: e87b9d10c0dd96b4580e91deb7718d66, type: 2}
+  price: 19000

@@ -53,6 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5463887867615291393}
   - component: {fileID: 8047054602031344996}
+  - component: {fileID: 4999477247525913740}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -90,8 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 858840676}
-  - {fileID: 7389175426057072809}
+  - {fileID: 4999477247525913740}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -106,6 +106,20 @@ MonoBehaviour:
       _missingHandlerDefaultResponse: 2
       _requireStrictUnsubscribe: 0
       _defaultAsyncTickPriority: 1
+--- !u!114 &4999477247525913740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2660325424173119703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd91a427bb45ff84ead47d3a0e45488e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveDataManager: {fileID: 858840676}
+  weaponManager: {fileID: 7389175426057072809}
 --- !u!1 &7091986165174479595
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,9 +164,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponConfigurations:
+  - {fileID: 11400000, guid: 4427a26fb3f805f4caaa658f0482ac99, type: 2}
+  - {fileID: 11400000, guid: cc532544ee97b1044ae345a7e447c990, type: 2}
+  - {fileID: 11400000, guid: 4db80465af761db4894c8453578d619b, type: 2}
+  - {fileID: 11400000, guid: 27b26b178876637419e812707d23e36c, type: 2}
+  - {fileID: 11400000, guid: d04a9efc167fa5942bd85ff2ba58f4a9, type: 2}
   - {fileID: 11400000, guid: 047c36ed386b65641b635ef3e63e6a0f, type: 2}
   - {fileID: 11400000, guid: 4df076357a4c8e5468e674b4a52f9d3d, type: 2}
+  - {fileID: 11400000, guid: b30d0c5f767af1f459bb99e306128f9e, type: 2}
+  - {fileID: 11400000, guid: 5d2b11c9aa308af44ac95cc4e5d9b18e, type: 2}
+  - {fileID: 11400000, guid: a7ae1865dac3c854eb9f7a503c0dedae, type: 2}
   - {fileID: 11400000, guid: 1453fb4e83d2b86499e28e6859ccad4a, type: 2}
   - {fileID: 11400000, guid: 85568502f846e2c409481e47bcce9cab, type: 2}
-  - {fileID: 11400000, guid: 5d2b11c9aa308af44ac95cc4e5d9b18e, type: 2}
   - {fileID: 11400000, guid: 61bc61a5167d00b448c14b689fabde56, type: 2}
+  - {fileID: 11400000, guid: ddbe44e2eb3df30468866f3214389da4, type: 2}

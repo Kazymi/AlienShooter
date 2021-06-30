@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
-public class SaveDataManager : MonoInstaller
+public class SaveDataManager : MonoBehaviour
 {
     private SignalBus _signalBus;
     private SaveData _saveData;
@@ -11,11 +10,6 @@ public class SaveDataManager : MonoInstaller
 
     public WeaponSave WeaponSave => _weaponSave;
     public MoneySave MoneySave => _moneySave;
-
-    public override void InstallBindings()
-    {
-        Container.Bind(typeof(SaveDataManager)).FromInstance(this).AsSingle();
-    }
 
     private void Awake()
     {

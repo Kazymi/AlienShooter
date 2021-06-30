@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5139d21297e5cf4e823eb3dba3c91c3, type: 3}
-  m_Name: BuckshotAmmo
+  m_Name: 5.45 39
   m_EditorClassIdentifier: 
-  ammoGameObject: {fileID: 6537170405328664152, guid: 87c81de2c8df498419f18f5fe3c4535c, type: 3}
-  speedAmmo: 25
+  ammoGameObject: {fileID: 6537170405328664152, guid: 9a03c2d9f86fa784487004f37f264394, type: 3}
+  speedAmmo: 16
   damage: 4
-  lifeTime: 1
+  lifeTime: 5

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SaveManager
 {
-    private const string SaveKey = "Saves";
+   private const string SaveKey = "Saves";
 
     public void Save(SaveData saveData)
     {
@@ -15,6 +15,7 @@ public class SaveManager
     {
         var loadedDate = PlayerPrefs.GetString(SaveKey);
         var saveDate = JsonUtility.FromJson<SaveData>(loadedDate);
-        return saveDate;
+        return saveDate ?? new SaveData();
     }
+
 }

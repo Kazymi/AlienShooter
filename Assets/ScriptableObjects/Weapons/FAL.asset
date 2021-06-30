@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c0e3046db3cb0142ad96b7bc7f87b69, type: 3}
-  m_Name: M4
+  m_Name: FAL
   m_EditorClassIdentifier: 
-  nameGun: M4
-  maxAmmo: 25
-  fireRate: 0.12
-  timeReloaded: 1
-  weaponGameObject: {fileID: 6086792541865072287, guid: cce9184596f248443b7f93e179d27dda, type: 3}
-  ammoConfiguration: {fileID: 11400000, guid: fdbc49d6823346147bc17b1feac5259b, type: 2}
-  price: 2500
+  nameGun: FAL
+  maxAmmo: 20
+  fireRate: 0.214
+  timeReloaded: 1.69
+  weaponGameObject: {fileID: 4048880318321079722, guid: 713555ab7e61a0847893d4dcded697da, type: 3}
+  ammoConfiguration: {fileID: 11400000, guid: eabf361437509a6429dab22387f5a316, type: 2}
+  price: 5000

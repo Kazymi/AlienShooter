@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf7a959887847804797686291645a34d, type: 3}
-  m_Name: BigSpider
+  m_Script: {fileID: 11500000, guid: b5139d21297e5cf4e823eb3dba3c91c3, type: 3}
+  m_Name: 7.62 51
   m_EditorClassIdentifier: 
-  speed: 2
-  health: 0
-  damage: 12
-  score: 3
-  enemyPrefab: {fileID: 4390474129905466866, guid: 36415e2d8cde49444bb7931131e84caa, type: 3}
+  ammoGameObject: {fileID: 6537170405328664152, guid: 5eed79fad57c508419ec146cfcc1be58, type: 3}
+  speedAmmo: 18
+  damage: 9
+  lifeTime: 7

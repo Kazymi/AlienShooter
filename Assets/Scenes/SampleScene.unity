@@ -740,7 +740,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6012356689482448283, guid: af596ed187240be4a93228d9a2958984, type: 3}
       propertyPath: mobile
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6012356689482448283, guid: af596ed187240be4a93228d9a2958984, type: 3}
       propertyPath: fireButton
@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f69da05f49ca4fbcfd631ac512a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneID: 0
+  sceneID: 1
 --- !u!1 &703681363
 GameObject:
   m_ObjectHideFlags: 0
@@ -4135,7 +4135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f69da05f49ca4fbcfd631ac512a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneID: 1
+  sceneID: 2
 --- !u!1 &1985058039
 GameObject:
   m_ObjectHideFlags: 0
