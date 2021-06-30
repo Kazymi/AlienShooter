@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 858840677}
   - component: {fileID: 858840676}
   m_Layer: 0
-  m_Name: SaveDataContext
+  m_Name: SaveDataManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -13.639749, y: -2.0958984, z: 11.570959}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5463887867615291393}
   m_RootOrder: 0
@@ -73,6 +74,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 858840677}
   - {fileID: 3375927129077862670}
@@ -133,7 +135,7 @@ GameObject:
   - component: {fileID: 3375927129077862670}
   - component: {fileID: 7389175426057072809}
   m_Layer: 0
-  m_Name: WeaponContext
+  m_Name: WeaponManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,6 +151,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5463887867615291393}
   m_RootOrder: 1

@@ -1,11 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
+
 public class SaveDataManager : MonoBehaviour
 {
-    [SerializeField] private bool GenerateNewSave;
-    [SerializeField] private WeaponManager _weaponManager;
-    
+    [SerializeField] private bool generateNewSave;
+    [SerializeField] private WeaponManager weaponManager;
+
     private SignalBus _signalBus;
     private SaveData _saveData;
     private SaveManager _saveManager = new SaveManager();
@@ -23,16 +23,18 @@ public class SaveDataManager : MonoBehaviour
         _upgradeSave = new UpgradeSave(_saveData);
         _weaponSave = new WeaponSave(_saveData);
         _moneySave = new MoneySave(_saveData);
+        // TODO: I guess that was for debugging purposes
         _moneySave.AddMoney(2000);
         Save();
     }
 
+    // TODO: грязь
     private void Update()
     {
-        if (GenerateNewSave)
+        if (generateNewSave)
         {
-            GenerateNewSave = false;
-            _upgradeSave.Initialize(_weaponManager.WeaponConfigurations);
+            generateNewSave = false;
+            _upgradeSave.Initialize(weaponManager.WeaponConfigurations);
             Save();
         }
     }

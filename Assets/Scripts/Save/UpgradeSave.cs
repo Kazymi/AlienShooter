@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 public class UpgradeSave
 {
@@ -9,30 +8,31 @@ public class UpgradeSave
     {
         _saveData = saveData;
     }
-    public WeaponCharacteristics GetWeaponCharacteristics(string name)
-    {
-        foreach (var i in _saveData.WeaponCharacteristicsList)
-        {
-            if (i.Name == name) return i;
-        }
-        return null;
-    }
 
     public void Initialize(List<WeaponConfiguration> weaponConfigurations)
     {
         _saveData.WeaponCharacteristicsList = new List<WeaponCharacteristics>();
-        foreach (var i in weaponConfigurations)
+        foreach (var weaponConfiguration in weaponConfigurations)
         {
-            var ammo = i.AmmoConfiguration;
+            var ammo = weaponConfiguration.AmmoConfiguration;
             var newWeaponCharacteristics = new WeaponCharacteristics(
                 ammo.Damage,
-                i.FireRate,
-                i.TimeReloaded,
+                weaponConfiguration.FireRate,
+                weaponConfiguration.TimeReloaded,
                 ammo.SpeedAmmo,
-                i.MaxAmmo,
-                i.Name
+                weaponConfiguration.MaxAmmo,
+                weaponConfiguration.Name
             );
             _saveData.WeaponCharacteristicsList.Add(newWeaponCharacteristics);
         }
+    }
+
+    public WeaponCharacteristics GetWeaponCharacteristics(string name)
+    {
+        foreach (var weaponCharacteristics in _saveData.WeaponCharacteristicsList)
+        {
+            if (weaponCharacteristics.Name == name) return weaponCharacteristics;
+        }
+        return null;
     }
 }

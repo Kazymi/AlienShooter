@@ -9,23 +9,24 @@ public class WeaponManager : MonoBehaviour, IInitializable
     private Dictionary<string, Weapon> _weapons = new Dictionary<string, Weapon>();
 
     public List<WeaponConfiguration> WeaponConfigurations => weaponConfigurations;
+
     public List<Weapon> GetAllWeapon()
     {
-        var i = new List<Weapon>();
-        foreach (var VARIABLE in _weapons)
+        var weapons = new List<Weapon>();
+        foreach (var weaponEntry in _weapons)
         {
-            i.Add(VARIABLE.Value);
+            weapons.Add(weaponEntry.Value);
         }
 
-        return i;
+        return weapons;
     }
 
     public WeaponConfiguration GetWeaponConfigurationByWeapon(Weapon weapon)
     {
-        var name = GetNameByWeapon(weapon);
-        foreach (var i in weaponConfigurations)
+        var weaponName = GetNameByWeapon(weapon);
+        foreach (var weaponEntry in weaponConfigurations)
         {
-            if (i.Name == name) return i;
+            if (weaponEntry.Name == weaponName) return weaponEntry;
         }
 
         return null;

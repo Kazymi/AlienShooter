@@ -15,6 +15,7 @@ public class SaveData
         get => weaponCharacteristicsList;
         set => weaponCharacteristicsList = value;
     }
+
     public int Money
     {
         get => money;
@@ -33,3 +34,24 @@ public class SaveData
         set => selectedWeaponName = value;
     }
 }
+
+// TODO:
+/*
+ // SaveDataManager is the only class that stores this data
+public class SaveData
+{
+    private _moneyData;
+    private _upgradeData;
+    private _weaponData;
+}
+
+
+public class SaveDataManager
+{
+    private SaveData;
+
+    public MoneyData {get;}
+    ...
+    ...
+}
+*/

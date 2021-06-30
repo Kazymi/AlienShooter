@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -7,6 +6,7 @@ public class ProjectContextInstaller : MonoInstaller
 {
     [SerializeField] private SaveDataManager saveDataManager;
     [SerializeField] private WeaponManager weaponManager;
+
     public override void InstallBindings()
     {
         BindSaveDataManager();
@@ -39,6 +39,7 @@ public class ProjectContextInstaller : MonoInstaller
             .AsSingle();
     }
 
+    // TODO: weapon manager can initialize it self on it's own
     public void Initialize(Scene scene, LoadSceneMode mode)
     {
         weaponManager.Initialize();
