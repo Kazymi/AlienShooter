@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 public class GameInstaller : MonoInstaller
 {
-    [SerializeField] private WeaponManager weaponManagerPrefab;
     [SerializeField] private InputHandler inputHandlerPrefab;
     [SerializeField] private VFXManager vfxManager;
     [SerializeField] private SpawnManager spawnManager;
-    [SerializeField] private SaveDataManager saveDataManager;
     [SerializeField] private Player player;
 
+    private WeaponManager _weaponManager;
+    private SaveDataManager _saveDataManager;
     public override void InstallBindings()
     {
         BindWeaponManager();
@@ -25,7 +26,7 @@ public class GameInstaller : MonoInstaller
     {
         Container
             .Bind<WeaponManager>()
-            .FromInstance(weaponManagerPrefab)
+            .FromInstance(_weaponManager)
             .AsSingle();
     }
 
@@ -65,7 +66,7 @@ public class GameInstaller : MonoInstaller
     {
         Container
             .Bind<SaveDataManager>()
-            .FromInstance(saveDataManager)
+            .FromInstance(_saveDataManager)
             .AsSingle();
     }
 
@@ -79,5 +80,13 @@ public class GameInstaller : MonoInstaller
         Container.DeclareSignal<ScoreChangedSignal>();
         Container.DeclareSignal<AmmoChangedSignal>();
         Container.DeclareSignal<SavedSignal>();
+    }
+    
+    [Inject]
+    private void Construct(SaveDataManager saveDataManager,WeaponManager weaponManager)
+    {
+        weaponManager.Initialize();
+        _weaponManager = weaponManager;
+        _saveDataManager = saveDataManager;
     }
 }

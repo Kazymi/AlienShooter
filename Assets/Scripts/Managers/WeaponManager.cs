@@ -1,18 +1,26 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : MonoInstaller, IInitializable
 {
     [SerializeField] private List<WeaponConfiguration> weaponConfigurations;
-    
+
     private Dictionary<string, Weapon> _weapons = new Dictionary<string, Weapon>();
 
-    private void Start()
+    public override void InstallBindings()
     {
-       foreach(var i in weaponConfigurations)
-       {
-           NewWeapon(i.WeaponGameObject, i.Name);
-       }
+        Container.Bind(typeof(WeaponManager), typeof(IInitializable)).FromInstance(this).AsSingle();
+        foreach (var i in _weapons)
+        {
+            Destroy(i.Value.gameObject);
+        }
+
+        _weapons = new Dictionary<string, Weapon>();
+        foreach (var i in weaponConfigurations)
+        {
+            NewWeapon(i.WeaponGameObject, i.Name);
+        }
     }
 
     public List<Weapon> GetAllWeapon()
@@ -46,16 +54,30 @@ public class WeaponManager : MonoBehaviour
 
         return null;
     }
-    
+
     public Weapon GetWeaponByName(string name)
     {
         return _weapons[name];
     }
-    
-    private void NewWeapon(Weapon weapon,string name)
+
+    private void NewWeapon(Weapon weapon, string nameWeapon)
     {
-        var newGun = Instantiate(weapon,transform);
+        var newGun = Instantiate(weapon, transform);
         newGun.gameObject.SetActive(false);
-        _weapons.Add(name, newGun);
+        _weapons.Add(nameWeapon, newGun);
+    }
+
+    public void Initialize()
+    {
+        while (transform.childCount > 0)
+        {
+            DestroyImmediate(transform.GetChild(0).gameObject);
+        }
+
+        _weapons = new Dictionary<string, Weapon>();
+        foreach (var i in weaponConfigurations)
+        {
+            NewWeapon(i.WeaponGameObject, i.Name);
+        }
     }
 }

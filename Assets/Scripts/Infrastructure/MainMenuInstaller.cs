@@ -3,8 +3,8 @@ using Zenject;
 
 public class MainMenuInstaller : MonoInstaller
 {
-    [SerializeField] private WeaponManager weaponManager;
-    [SerializeField] private SaveDataManager saveDataManager;
+    private WeaponManager _weaponManager;
+    private SaveDataManager _saveDataManager;
 
     public override void InstallBindings()
     {
@@ -17,7 +17,7 @@ public class MainMenuInstaller : MonoInstaller
     {
         Container
             .Bind<WeaponManager>()
-            .FromInstance(weaponManager)
+            .FromInstance(_weaponManager)
             .AsSingle();
     }
 
@@ -25,7 +25,7 @@ public class MainMenuInstaller : MonoInstaller
     {
         Container
             .Bind<SaveDataManager>()
-            .FromInstance(saveDataManager)
+            .FromInstance(_saveDataManager)
             .AsSingle();
     }
 
@@ -34,5 +34,13 @@ public class MainMenuInstaller : MonoInstaller
         SignalBusInstaller.Install(Container);
         Container.DeclareSignal<LoadedSignal>();
         Container.DeclareSignal<SavedSignal>();
+    }
+
+    [Inject]
+    private void Construct(SaveDataManager saveDataManager,WeaponManager weaponManager)
+    {
+        _weaponManager = weaponManager;
+        _weaponManager.Initialize();
+        _saveDataManager = saveDataManager;
     }
 }

@@ -11,7 +11,7 @@ public class Shop : MonoBehaviour
     private int _currentID;
     private WeaponSave _weaponSave;
     private MoneySave _moneySave;
-    private SignalBus _signalBus;
+    private SaveDataManager _saveDataManager;
 
     public bool UnlockBuy { get; private set; }
     public int Price { get; private set; }
@@ -51,13 +51,13 @@ public class Shop : MonoBehaviour
         if (!UnlockBuy) return;
         _moneySave.RemoveMoney(Price);
         _weaponSave.UnlockNewWeapon(_weaponManager.GetNameByWeapon(_weapons[_currentID]));
-        _signalBus.Fire<SavedSignal>();
+        _saveDataManager.Save();
     }
 
     public void EquipWeapon()
     {
         _weaponSave.NewSelectedWeapon(_weaponManager.GetNameByWeapon(_weapons[_currentID]));
-        _signalBus.Fire<SavedSignal>();
+        _saveDataManager.Save();
     }
 
     public bool CheckBoughtWeapon()
@@ -73,7 +73,7 @@ public class Shop : MonoBehaviour
     {
         var returnValue = true;
         returnValue = CheckBoughtWeapon() == false;
-        if (_moneySave.CompareMoney(Price)) returnValue = false;
+        if (_moneySave.CompareMoney(Price) == false) returnValue = false;
         return returnValue;
     }
 
@@ -96,7 +96,7 @@ public class Shop : MonoBehaviour
     private void Construct(WeaponManager weaponManager, SignalBus signalBus, SaveDataManager saveDataManager)
     {
         _weaponManager = weaponManager;
-        _signalBus = signalBus;
+        _saveDataManager = saveDataManager;
         _moneySave = saveDataManager.MoneySave;
         _weaponSave = saveDataManager.WeaponSave;
     }

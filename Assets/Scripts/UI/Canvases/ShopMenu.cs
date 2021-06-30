@@ -75,5 +75,6 @@ public class ShopMenu : MonoBehaviour
     private void Construct(SaveDataManager saveDataManager)
     {
         _moneySave = saveDataManager.MoneySave;
+        moneyText.text = _moneySave.Money.ToString();
     }
 }

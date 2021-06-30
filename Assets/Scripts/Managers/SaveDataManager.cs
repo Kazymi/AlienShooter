@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
-
-public class SaveDataManager : MonoBehaviour
+public class SaveDataManager : MonoInstaller
 {
     private SignalBus _signalBus;
     private SaveData _saveData;
@@ -13,32 +12,25 @@ public class SaveDataManager : MonoBehaviour
     public WeaponSave WeaponSave => _weaponSave;
     public MoneySave MoneySave => _moneySave;
 
+    public override void InstallBindings()
+    {
+        Container.Bind(typeof(SaveDataManager)).FromInstance(this).AsSingle();
+    }
 
     private void Awake()
     {
         _saveData = _saveManager.Load();
+        Debug.Log(_saveData.Money);
         _weaponSave = new WeaponSave(_saveData);
         _moneySave = new MoneySave(_saveData);
+        _moneySave.AddMoney(2000);
+        Save();
     }
 
-    private void OnEnable()
+    public void Save()
     {
-        _signalBus.Subscribe<SavedSignal>(Save);
-    }
-
-    private void OnDisable()
-    {
-        _signalBus.Unsubscribe<SavedSignal>(Save);
-    }
-
-    private void Save()
-    {
+        Debug.Log(_moneySave.Money);
+        Debug.Log(_saveData.Money);
         _saveManager.Save(_saveData);
-    }
-    
-    [Inject]
-    private void Construct(SignalBus signalBus)
-    {
-        _signalBus = signalBus;
     }
 }

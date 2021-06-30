@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -78,15 +79,18 @@ public class WeaponControl : MonoBehaviour
     }
 
     [Inject]
-    private void Construct(WeaponManager weaponManager, InputHandler inputHandler, SaveDataManager saveDataManager)
+    private void Construct(WeaponManager weaponManager, InputHandler inputHandler, SaveDataManager saveDataManager, SignalBus signalBus)
     {
+        _signalBus = signalBus;
         _weaponManager = weaponManager;
         _inputHandler = inputHandler;
-        if (startWeapon != null)
+        if (string.IsNullOrEmpty(saveDataManager.WeaponSave.SelectedWeaponName) == false)
         {
             var weapon = _weaponManager.GetWeaponConfigurationByWeapon(
                 _weaponManager.GetWeaponByName(saveDataManager.WeaponSave.SelectedWeaponName));
             NewWeapon(weapon);
         }
     }
+
+   
 }

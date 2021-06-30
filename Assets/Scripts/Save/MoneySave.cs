@@ -21,7 +21,6 @@
 
     public void RemoveMoney(int value)
     {
-        if (CompareMoney(value)) _saveData.Money -= value;
-        else _saveData.Money = 0;
+        _saveData.Money -= value;
     }
 }
