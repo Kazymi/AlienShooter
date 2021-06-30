@@ -1,4 +1,4 @@
 public interface IAmmo
 {
-   void Initialize(AmmoConfiguration ammoConfiguration, Factory factory);
+   void Initialize(WeaponCharacteristics ammoConfiguration,float lifeTime, Factory parentFactory);
 }

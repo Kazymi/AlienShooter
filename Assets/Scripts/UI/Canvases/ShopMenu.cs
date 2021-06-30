@@ -45,11 +45,11 @@ public class ShopMenu : MonoBehaviour
             return;
         }
         var i = shop.WeaponCharacteristics;
-        damageSlider.value = i.Damage;
+        damageSlider.value = i.Damage/100;
         ammoSlider.value = i.CountAmmo/100;
-        speedAmmoSlider.value = i.SpeedAmmo;
-        reloadedSlider.value = i.SpeedReloaded;
-        fireRateSlider.value = i.FireRate;
+        speedAmmoSlider.value = i.SpeedAmmo/100;
+        reloadedSlider.value = i.SpeedReloaded/3;
+        fireRateSlider.value = i.FireRate/1;
         buyText.text = BuyKey;
         buyWeaponButton.interactable = shop.UnlockBuy;
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Zenject;
@@ -8,27 +9,27 @@ public class Weapon : MonoBehaviour
     
     private Factory _factory;
     private WeaponConfiguration _weaponConfiguration;
-    private AmmoConfiguration _currentWeaponConfiguration;
     private bool _initialized;
     private bool _lockFire;
     private bool _reloaded;
     private SignalBus _signalBus;
     private int _ammo;
-
-    public AmmoConfiguration AmmoConfiguration => _currentWeaponConfiguration;
-    public void Initialize(WeaponConfiguration gunConfiguration,Transform parentAmmo, SignalBus signalBus)
+    private int _maxAmmo;
+    private WeaponCharacteristics _weaponCharacteristics;
+    public void Initialize(WeaponConfiguration weaponConfiguration,Transform parentAmmo, SignalBus signalBus,WeaponCharacteristics weaponCharacteristics)
     {
+        _weaponCharacteristics = weaponCharacteristics;
         _signalBus = signalBus;
         _signalBus.Fire(new AmmoChangedSignal(_ammo));
         transform.localPosition = Vector3.zero;
         _reloaded = false;
         _lockFire = false;
-        InitializeWeapon(gunConfiguration);
+        InitializeWeapon(weaponConfiguration);
         if(_initialized) return;
         _initialized = true;
         InitializeFactory(parentAmmo);
-        _currentWeaponConfiguration = gunConfiguration.AmmoConfiguration;
-        _ammo = _weaponConfiguration.MaxAmmo;
+        _maxAmmo = Convert.ToInt32(weaponCharacteristics.CountAmmo);
+        _ammo = _maxAmmo;
         _signalBus.Fire(new AmmoChangedSignal(_ammo));
     }
     
@@ -43,7 +44,7 @@ public class Weapon : MonoBehaviour
         }
         _signalBus.Fire(new AmmoChangedSignal(_ammo));
         var ammo = _factory.Create(positionSpawnAmmo.position);
-        ammo.GetComponent<IAmmo>().Initialize(_currentWeaponConfiguration,_factory);
+        ammo.GetComponent<IAmmo>().Initialize(_weaponCharacteristics,_weaponConfiguration.AmmoConfiguration.LifeTime,_factory);
         ammo.transform.position = positionSpawnAmmo.position;
         ammo.transform.rotation = positionSpawnAmmo.rotation;
         StartCoroutine(FireRateTimer());
@@ -52,7 +53,7 @@ public class Weapon : MonoBehaviour
     {
         _reloaded = true;
         yield return new WaitForSeconds(_weaponConfiguration.TimeReloaded);
-        _ammo = _weaponConfiguration.MaxAmmo;
+        _ammo = _maxAmmo;
         _signalBus.Fire(new AmmoChangedSignal(_ammo));
         _reloaded = false;
     }
@@ -70,7 +71,7 @@ public class Weapon : MonoBehaviour
     private IEnumerator FireRateTimer()
     {
         _lockFire = true;
-        yield return new WaitForSeconds(_weaponConfiguration.FireRate);
+        yield return new WaitForSeconds(_weaponCharacteristics.FireRate);
         _lockFire = false;
     }
 }

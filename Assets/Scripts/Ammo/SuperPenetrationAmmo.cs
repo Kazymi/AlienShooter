@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class SuperPenetrationAmmo : MonoBehaviour, IAmmo
 {
-    private AmmoConfiguration _ammoConfiguration;
+    private WeaponCharacteristics _ammoConfiguration;
     private Factory _factory;
 
     private void Update()
@@ -24,16 +24,16 @@ public class SuperPenetrationAmmo : MonoBehaviour, IAmmo
         _factory.Destroy(gameObject);
     }
 
-    public void Initialize(AmmoConfiguration ammoConfiguration, Factory parentFactory)
+    public void Initialize(WeaponCharacteristics ammoConfiguration,float lifetime, Factory parentFactory)
     {
         _ammoConfiguration = ammoConfiguration;
         _factory = parentFactory;
-        StartCoroutine(Destroy());
+        StartCoroutine(Destroy(lifetime));
     }
 
-    private IEnumerator Destroy()
+    private IEnumerator Destroy(float lifetime)
     {
-        yield return new WaitForSeconds(_ammoConfiguration.LifeTime);
+        yield return new WaitForSeconds(lifetime);
         _factory.Destroy(gameObject);
     }
 }

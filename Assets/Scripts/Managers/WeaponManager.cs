@@ -8,6 +8,7 @@ public class WeaponManager : MonoBehaviour, IInitializable
 
     private Dictionary<string, Weapon> _weapons = new Dictionary<string, Weapon>();
 
+    public List<WeaponConfiguration> WeaponConfigurations => weaponConfigurations;
     public List<Weapon> GetAllWeapon()
     {
         var i = new List<Weapon>();

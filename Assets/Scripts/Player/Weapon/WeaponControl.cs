@@ -16,6 +16,7 @@ public class WeaponControl : MonoBehaviour
     private WeaponManager _weaponManager;
     private int _idCurrentGun;
     private SignalBus _signalBus;
+    private UpgradeSave _upgradeSave;
 
     private void Update()
     {
@@ -62,7 +63,8 @@ public class WeaponControl : MonoBehaviour
         _currentWeapon = _weaponManager.GetWeaponByName(_spawnedWeapon[idWeapon].Name);
         _currentWeapon.transform.parent = positionWeapon;
         _currentWeapon.transform.localRotation = Quaternion.identity;
-        _currentWeapon.Initialize(_spawnedWeapon[idWeapon], ammoParent, _signalBus);
+        _currentWeapon.Initialize(_spawnedWeapon[idWeapon], ammoParent, _signalBus,
+            _upgradeSave.GetWeaponCharacteristics(_spawnedWeapon[idWeapon].Name));
         _currentWeapon.gameObject.SetActive(true);
     }
 
@@ -84,6 +86,7 @@ public class WeaponControl : MonoBehaviour
         _signalBus = signalBus;
         _weaponManager = weaponManager;
         _inputHandler = inputHandler;
+        _upgradeSave = saveDataManager.UpgradeSave;
         if (string.IsNullOrEmpty(saveDataManager.WeaponSave.SelectedWeaponName) == false)
         {
             var weapon = _weaponManager.GetWeaponConfigurationByWeapon(

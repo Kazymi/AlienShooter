@@ -55,7 +55,8 @@ public class Shop : MonoBehaviour
             weapon.FireRate,
             weapon.TimeReloaded,
             ammo.SpeedAmmo,
-            weapon.MaxAmmo
+            weapon.MaxAmmo,
+            weapon.Name
         );
     }
 

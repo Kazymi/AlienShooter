@@ -9,7 +9,7 @@ public class ArmorPiercingAmmo : MonoBehaviour, IAmmo
 
     private int _enemyPassed;
     private float _currentDamage;
-    private AmmoConfiguration _ammoConfiguration;
+    private WeaponCharacteristics _ammoConfiguration;
     private Factory _factory;
 
     private void Update()
@@ -37,18 +37,18 @@ public class ArmorPiercingAmmo : MonoBehaviour, IAmmo
         _factory.Destroy(gameObject);
     }
 
-    public void Initialize(AmmoConfiguration ammoConfiguration, Factory parentFactory)
+    public void Initialize(WeaponCharacteristics ammoConfiguration,float lifeTime, Factory parentFactory)
     {
         _ammoConfiguration = ammoConfiguration;
         _currentDamage = ammoConfiguration.Damage;
         _enemyPassed = 0;
         _factory = parentFactory;
-        StartCoroutine(Destroy());
+        StartCoroutine(Destroy(lifeTime));
     }
 
-    private IEnumerator Destroy()
+    private IEnumerator Destroy(float lifeTime)
     {
-        yield return new WaitForSeconds(_ammoConfiguration.LifeTime);
+        yield return new WaitForSeconds(lifeTime);
         _factory.Destroy(gameObject);
     }
 }

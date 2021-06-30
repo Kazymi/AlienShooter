@@ -7,7 +7,7 @@ public class RocketAmmo : MonoBehaviour, IAmmo
     [SerializeField] private GameObject rocketGameObject;
 
     private bool _exploded;
-    private AmmoConfiguration _ammoConfiguration;
+    private WeaponCharacteristics _ammoConfiguration;
     private Factory _factory;
 
     private void Update()
@@ -15,18 +15,18 @@ public class RocketAmmo : MonoBehaviour, IAmmo
         transform.position += transform.forward * (_ammoConfiguration.SpeedAmmo * Time.deltaTime);
     }
 
-    public void Initialize(AmmoConfiguration ammoConfiguration, Factory parentFactory)
+    public void Initialize(WeaponCharacteristics ammoConfiguration,float time, Factory parentFactory)
     {
         _exploded = false;
         _ammoConfiguration = ammoConfiguration;
         _factory = parentFactory;
         rocketGameObject.SetActive(true);
-        StartCoroutine(Destroy());
+        StartCoroutine(Destroy(time));
     }
 
-    private IEnumerator Destroy()
+    private IEnumerator Destroy(float lifeTime)
     {
-        yield return new WaitForSeconds(_ammoConfiguration.LifeTime);
+        yield return new WaitForSeconds(lifeTime);
         StartCoroutine(Explosion());
     }
 

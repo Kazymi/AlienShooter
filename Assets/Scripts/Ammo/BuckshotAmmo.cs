@@ -7,7 +7,7 @@ public class BuckshotAmmo : MonoBehaviour, IAmmo
     [SerializeField] private GameObject buckshotAmmo;
     [SerializeField] private float angle;
 
-    private AmmoConfiguration _ammoConfiguration;
+    private WeaponCharacteristics _ammoConfiguration;
     private int _enemyPassed;
     private Factory _factory;
     private Factory _buckshotFactory;
@@ -25,12 +25,12 @@ public class BuckshotAmmo : MonoBehaviour, IAmmo
         Gizmos.DrawRay(transform.position, rightRayDirection * rayRange);
     }
 
-    public void Initialize(AmmoConfiguration ammoConfiguration, Factory parentFactory)
+    public void Initialize(WeaponCharacteristics ammoConfiguration,float lifeTime, Factory parentFactory)
     {
         _ammoConfiguration = ammoConfiguration;
         _enemyPassed = 0;
         _factory = parentFactory;
-        StartCoroutine(Destroy());
+        StartCoroutine(Destroy(lifeTime));
         if (_initialized == false)
         {
             _buckshotFactory = new Factory(buckshotAmmo, buckshotCount, transform);
@@ -45,7 +45,7 @@ public class BuckshotAmmo : MonoBehaviour, IAmmo
             var iAmmo = newBuckshot.GetComponent<IAmmo>();
             if (iAmmo != null)
             {
-                iAmmo.Initialize(ammoConfiguration, _buckshotFactory);
+                iAmmo.Initialize(ammoConfiguration,lifeTime, _buckshotFactory);
             }
             newBuckshot.transform.localPosition = Vector3.zero;
             newBuckshot.transform.localRotation = Quaternion.identity;
@@ -53,9 +53,9 @@ public class BuckshotAmmo : MonoBehaviour, IAmmo
         }
     }
 
-    private IEnumerator Destroy()
+    private IEnumerator Destroy(float lifeTime)
     {
-        yield return new WaitForSeconds(_ammoConfiguration.LifeTime);
+        yield return new WaitForSeconds(lifeTime);
         _factory.Destroy(gameObject);
     }
 }
