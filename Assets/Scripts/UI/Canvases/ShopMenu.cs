@@ -42,16 +42,19 @@ public class ShopMenu : MonoBehaviour
         {
             buyWeaponButton.interactable = true;
             buyText.text = EquipKey;
-            return;
         }
+        else
+        {
+            buyText.text = BuyKey;
+            buyWeaponButton.interactable = shop.UnlockBuy;
+        }
+
         var i = shop.WeaponCharacteristics;
         damageSlider.value = i.Damage/100;
         ammoSlider.value = i.CountAmmo/100;
         speedAmmoSlider.value = i.SpeedAmmo/100;
         reloadedSlider.value = i.SpeedReloaded/3;
         fireRateSlider.value = i.FireRate/1;
-        buyText.text = BuyKey;
-        buyWeaponButton.interactable = shop.UnlockBuy;
     }
 
     private void NextWeapon()

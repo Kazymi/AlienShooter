@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77443a413b9d4a808bbfe92bf14006ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GenerateNewSave: 1
+  GenerateNewSave: 0
   _weaponManager: {fileID: 7389175426057072809}
 --- !u!1 &2660325424173119703
 GameObject:

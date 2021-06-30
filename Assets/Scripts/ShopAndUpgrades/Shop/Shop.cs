@@ -44,19 +44,18 @@ public class Shop : MonoBehaviour
 
     public void UpdateWeaponState()
     {
-        Price = _weaponManager.GetWeaponConfigurationByWeapon(_weapons[_currentID]).Price;
+        var config = _weaponManager.GetWeaponConfigurationByWeapon(_weapons[_currentID]);
+        Price = config.Price;
         UnlockBuy = UnlockBuyingWeapon(_weapons[_currentID]);
-        var weapon = _weaponManager.GetWeaponConfigurationByWeapon(_weapons[_currentID]);
-        var ammo = weapon.AmmoConfiguration;
-        
-        Debug.Log(weapon +"11"+ammo);
+        var ammo = config.AmmoConfiguration;
+        Debug.Log("++s");
         _characteristicsCurrentWeapon = new WeaponCharacteristics(
             ammo.Damage,
-            weapon.FireRate,
-            weapon.TimeReloaded,
+            config.FireRate,
+            config.TimeReloaded,
             ammo.SpeedAmmo,
-            weapon.MaxAmmo,
-            weapon.Name
+            config.MaxAmmo,
+            config.Name
         );
     }
 
