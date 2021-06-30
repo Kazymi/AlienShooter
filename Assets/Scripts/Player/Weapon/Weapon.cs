@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
     private SignalBus _signalBus;
     private int _ammo;
 
+    public AmmoConfiguration AmmoConfiguration => _currentWeaponConfiguration;
     public void Initialize(WeaponConfiguration gunConfiguration,Transform parentAmmo, SignalBus signalBus)
     {
         _signalBus = signalBus;

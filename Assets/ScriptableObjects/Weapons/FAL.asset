@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: FAL
   m_EditorClassIdentifier: 
   nameGun: FAL
-  maxAmmo: 20
-  fireRate: 0.214
-  timeReloaded: 1.69
+  maxAmmo: 35
+  fireRate: 0.148
+  timeReloaded: 2.34
   weaponGameObject: {fileID: 4048880318321079722, guid: 713555ab7e61a0847893d4dcded697da, type: 3}
   ammoConfiguration: {fileID: 11400000, guid: eabf361437509a6429dab22387f5a316, type: 2}
   price: 5000

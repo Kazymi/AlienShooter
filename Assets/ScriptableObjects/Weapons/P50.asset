@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameGun: P50
   maxAmmo: 30
-  fireRate: 0.1
-  timeReloaded: 1.33
+  fireRate: 0.13
+  timeReloaded: 1.06
   weaponGameObject: {fileID: 8438342884704549154, guid: 13d15383acc296848b1666ab8a248510, type: 3}
   ammoConfiguration: {fileID: 11400000, guid: e17752c20a27c0242a7b6c8d7d7d077d, type: 2}
   price: 1200

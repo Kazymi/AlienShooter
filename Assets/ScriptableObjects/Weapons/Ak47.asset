@@ -15,7 +15,7 @@ MonoBehaviour:
   nameGun: Ak-47
   maxAmmo: 30
   fireRate: 0.142
-  timeReloaded: 1.78
+  timeReloaded: 1.01
   weaponGameObject: {fileID: 6086792541865072287, guid: 3fb5433795c33b448994faacad65bcd0, type: 3}
   ammoConfiguration: {fileID: 11400000, guid: fdbc49d6823346147bc17b1feac5259b, type: 2}
   price: 2000

@@ -14,6 +14,12 @@ public class ShopMenu : MonoBehaviour
     [SerializeField] private TMP_Text buyText;
     [SerializeField] private Shop shop;
 
+    [SerializeField] private Slider damageSlider;
+    [SerializeField] private Slider ammoSlider;
+    [SerializeField] private Slider fireRateSlider;
+    [SerializeField] private Slider speedAmmoSlider;
+    [SerializeField] private Slider reloadedSlider;
+
     private MoneySave _moneySave;
 
     private const string BuyKey = "Buy";
@@ -38,9 +44,13 @@ public class ShopMenu : MonoBehaviour
             buyText.text = EquipKey;
             return;
         }
-
+        var i = shop.WeaponCharacteristics;
+        damageSlider.value = i.Damage;
+        ammoSlider.value = i.CountAmmo/100;
+        speedAmmoSlider.value = i.SpeedAmmo;
+        reloadedSlider.value = i.SpeedReloaded;
+        fireRateSlider.value = i.FireRate;
         buyText.text = BuyKey;
-
         buyWeaponButton.interactable = shop.UnlockBuy;
     }
 

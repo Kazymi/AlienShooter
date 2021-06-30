@@ -12,7 +12,9 @@ public class Shop : MonoBehaviour
     private WeaponSave _weaponSave;
     private MoneySave _moneySave;
     private SaveDataManager _saveDataManager;
+    private WeaponCharacteristics _characteristicsCurrentWeapon;
 
+    public WeaponCharacteristics WeaponCharacteristics => _characteristicsCurrentWeapon;
     public bool UnlockBuy { get; private set; }
     public int Price { get; private set; }
 
@@ -44,6 +46,17 @@ public class Shop : MonoBehaviour
     {
         Price = _weaponManager.GetWeaponConfigurationByWeapon(_weapons[_currentID]).Price;
         UnlockBuy = UnlockBuyingWeapon(_weapons[_currentID]);
+        var weapon = _weaponManager.GetWeaponConfigurationByWeapon(_weapons[_currentID]);
+        var ammo = weapon.AmmoConfiguration;
+        
+        Debug.Log(weapon +"11"+ammo);
+        _characteristicsCurrentWeapon = new WeaponCharacteristics(
+            ammo.Damage,
+            weapon.FireRate,
+            weapon.TimeReloaded,
+            ammo.SpeedAmmo,
+            weapon.MaxAmmo
+        );
     }
 
     public void Buy()
