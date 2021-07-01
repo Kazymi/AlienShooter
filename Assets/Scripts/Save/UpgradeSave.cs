@@ -1,17 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
+[Serializable]
 public class UpgradeSave
 {
-    private SaveData _saveData;
+   [SerializeField] private List<WeaponCharacteristics> _weaponCharacteristicsList = new List<WeaponCharacteristics>();
 
-    public UpgradeSave(SaveData saveData)
+    public List<WeaponCharacteristics> WeaponCharacteristicsList
     {
-        _saveData = saveData;
+        get => _weaponCharacteristicsList;
+        set => _weaponCharacteristicsList = value;
     }
 
     public void Initialize(List<WeaponConfiguration> weaponConfigurations)
     {
-        _saveData.WeaponCharacteristicsList = new List<WeaponCharacteristics>();
+        _weaponCharacteristicsList = new List<WeaponCharacteristics>();
         foreach (var weaponConfiguration in weaponConfigurations)
         {
             var ammo = weaponConfiguration.AmmoConfiguration;
@@ -23,13 +27,13 @@ public class UpgradeSave
                 weaponConfiguration.MaxAmmo,
                 weaponConfiguration.Name
             );
-            _saveData.WeaponCharacteristicsList.Add(newWeaponCharacteristics);
+            _weaponCharacteristicsList.Add(newWeaponCharacteristics);
         }
     }
 
     public WeaponCharacteristics GetWeaponCharacteristics(string name)
     {
-        foreach (var weaponCharacteristics in _saveData.WeaponCharacteristicsList)
+        foreach (var weaponCharacteristics in _weaponCharacteristicsList)
         {
             if (weaponCharacteristics.Name == name) return weaponCharacteristics;
         }

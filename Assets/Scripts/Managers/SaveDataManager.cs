@@ -9,22 +9,15 @@ public class SaveDataManager : MonoBehaviour
     private SignalBus _signalBus;
     private SaveData _saveData;
     private SaveManager _saveManager = new SaveManager();
-    private UpgradeSave _upgradeSave;
-    private WeaponSave _weaponSave;
-    private MoneySave _moneySave;
 
-    public UpgradeSave UpgradeSave => _upgradeSave;
-    public WeaponSave WeaponSave => _weaponSave;
-    public MoneySave MoneySave => _moneySave;
+    public UpgradeSave UpgradeSave => _saveData.UpgradeSave;
+    public WeaponSave WeaponSave => _saveData.WeaponSave;
+    public MoneySave MoneySave => _saveData.MoneySave;
 
     private void Awake()
     {
         _saveData = _saveManager.Load();
-        _upgradeSave = new UpgradeSave(_saveData);
-        _weaponSave = new WeaponSave(_saveData);
-        _moneySave = new MoneySave(_saveData);
-        // TODO: I guess that was for debugging purposes
-        _moneySave.AddMoney(2000);
+        _saveData.MoneySave.AddMoney(2000);
         Save();
     }
 
@@ -34,7 +27,7 @@ public class SaveDataManager : MonoBehaviour
         if (generateNewSave)
         {
             generateNewSave = false;
-            _upgradeSave.Initialize(weaponManager.WeaponConfigurations);
+            _saveData.UpgradeSave.Initialize(weaponManager.WeaponConfigurations);
             Save();
         }
     }

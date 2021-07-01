@@ -5,53 +5,26 @@ using UnityEngine;
 [Serializable]
 public class SaveData
 {
-    [SerializeField] private int money;
-    [SerializeField] private List<string> unlockedWeapon = new List<string>();
-    [SerializeField] private string selectedWeaponName;
-    [SerializeField] private List<WeaponCharacteristics> weaponCharacteristicsList = new List<WeaponCharacteristics>();
+    [SerializeField] private MoneySave _moneySave = new MoneySave();
+    [SerializeField] private WeaponSave _weaponSave =  new WeaponSave();
+    [SerializeField] private UpgradeSave _upgradeSave = new UpgradeSave();
 
-    public List<WeaponCharacteristics> WeaponCharacteristicsList
+    public MoneySave MoneySave
     {
-        get => weaponCharacteristicsList;
-        set => weaponCharacteristicsList = value;
+        get => _moneySave;
+        set => _moneySave = value;
     }
 
-    public int Money
+    public WeaponSave WeaponSave
     {
-        get => money;
-        set => money = value;
+        get => _weaponSave;
+        set => _weaponSave = value;
     }
 
-    public List<string> UnlockedWeapon
+    public UpgradeSave UpgradeSave
     {
-        get => unlockedWeapon;
-        set => unlockedWeapon = value;
+        get => _upgradeSave;
+        set => _upgradeSave = value;
     }
 
-    public string SelectedWeaponName
-    {
-        get => selectedWeaponName;
-        set => selectedWeaponName = value;
-    }
 }
-
-// TODO:
-/*
- // SaveDataManager is the only class that stores this data
-public class SaveData
-{
-    private _moneyData;
-    private _upgradeData;
-    private _weaponData;
-}
-
-
-public class SaveDataManager
-{
-    private SaveData;
-
-    public MoneyData {get;}
-    ...
-    ...
-}
-*/

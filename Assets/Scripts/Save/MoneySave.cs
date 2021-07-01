@@ -1,26 +1,29 @@
-﻿public class MoneySave
+﻿using System;
+using UnityEngine;
+
+[Serializable]
+public class MoneySave
 {
-    private readonly SaveData _saveData;
+    [SerializeField] private int _money;
 
-    public MoneySave(SaveData saveData)
+    public int Money
     {
-        _saveData = saveData;
+        get => _money;
+        set => _money = value;
     }
-
-    public int Money => _saveData.Money;
 
     public bool CompareMoney(int value)
     {
-        return _saveData.Money >= value;
+        return _money >= value;
     }
 
     public void AddMoney(int value)
     {
-        _saveData.Money += value;
+        _money += value;
     }
 
     public void RemoveMoney(int value)
     {
-        _saveData.Money -= value;
+        _money -= value;
     }
 }
