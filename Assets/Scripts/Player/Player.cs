@@ -10,7 +10,7 @@ public class Player : MonoBehaviour,IDeathInitialize
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerLook playerLook;
 
-    private SaveDataManager _saveDataManager;
+    private SignalBus _signalBus;
     private InputHandler _inputHandler;
 
     private void Start()
@@ -23,14 +23,14 @@ public class Player : MonoBehaviour,IDeathInitialize
     }
 
     [Inject]
-    public void Construct(InputHandler inputHandler,SaveDataManager saveDataManager)
+    public void Construct(InputHandler inputHandler,SignalBus signalBus)
     {
         _inputHandler = inputHandler;
-        _saveDataManager = saveDataManager;
+        _signalBus = signalBus;
     }
     
     public void DeadInitialize()
     {
-        _saveDataManager.Save();
+        _signalBus.Fire<PlayerDiedSignal>();
     }
 }

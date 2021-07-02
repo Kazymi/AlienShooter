@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     private SignalBus _signalBus;
     private MoneySave _moneySave;
+    private SaveDataManager _saveDataManager;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     private void Save()
     {
-        _signalBus.Fire<SavedSignal>();
+     _saveDataManager.Save();   
     }
 
     private void AddScore(EnemyDiedSignal diedSignal)
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
     [Inject]
     private void Construct(SignalBus signalBus, SaveDataManager saveDataManager)
     {
+        _saveDataManager = saveDataManager;
         _signalBus = signalBus;
         _moneySave = saveDataManager.MoneySave;
     }
