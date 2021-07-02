@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1165327946058495848}
-  roketGameObject: {fileID: 2713521740392504494}
+  rocketGameObject: {fileID: 2713521740392504494}
 --- !u!54 &8708334601565923142
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -269,6 +269,10 @@ PrefabInstance:
     - target: {fileID: 7210974195320757533, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852915001482709074, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}
+      propertyPath: timeExplosion
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5af339a9890e26e449f59ed22dfe1f46, type: 3}

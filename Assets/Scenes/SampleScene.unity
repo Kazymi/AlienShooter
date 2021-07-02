@@ -740,7 +740,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6012356689482448283, guid: af596ed187240be4a93228d9a2958984, type: 3}
       propertyPath: mobile
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6012356689482448283, guid: af596ed187240be4a93228d9a2958984, type: 3}
       propertyPath: fireButton
