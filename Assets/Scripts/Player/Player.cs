@@ -4,17 +4,15 @@ using Zenject;
 public class Player : MonoBehaviour,IDeathInitialize
 {
     [SerializeField] private PlayerConfiguration playerConfiguration;
-    [SerializeField] private WeaponControl weaponControl;
     [SerializeField] private PlayerScanner playerScanner;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private Buffer buffer;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerLook playerLook;
 
-    private SignalBus _signalBus;
+    private SaveDataManager _saveDataManager;
     private InputHandler _inputHandler;
-    public WeaponControl WeaponControl => weaponControl;
-    
+
     private void Start()
     {
         playerMovement.Initialize(playerConfiguration,_inputHandler);
@@ -25,14 +23,14 @@ public class Player : MonoBehaviour,IDeathInitialize
     }
 
     [Inject]
-    public void Construct(InputHandler inputHandler,SignalBus signalBus)
+    public void Construct(InputHandler inputHandler,SaveDataManager saveDataManager)
     {
         _inputHandler = inputHandler;
-        _signalBus = signalBus;
+        _saveDataManager = saveDataManager;
     }
     
     public void DeadInitialize()
     {
-        _signalBus.Fire<PlayerDiedSignal>();
+        _saveDataManager.Save();
     }
 }
