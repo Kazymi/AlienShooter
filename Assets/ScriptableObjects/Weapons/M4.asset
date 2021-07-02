@@ -19,3 +19,4 @@ MonoBehaviour:
   weaponGameObject: {fileID: 6086792541865072287, guid: cce9184596f248443b7f93e179d27dda, type: 3}
   ammoConfiguration: {fileID: 11400000, guid: fdbc49d6823346147bc17b1feac5259b, type: 2}
   price: 2500
+  upgradeConfiguration: {fileID: 11400000, guid: 6732c2b0a0995554381ee6bb1217c13d, type: 2}

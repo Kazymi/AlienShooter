@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,12 +7,15 @@ using Zenject;
 
 public class ShopMenu : MonoBehaviour
 {
-    [SerializeField] private TMP_Text priceText;
-    [SerializeField] private TMP_Text moneyText;
     [SerializeField] private Button nextWeaponButton;
     [SerializeField] private Button pastWeaponButton;
     [SerializeField] private Button buyWeaponButton;
+    [SerializeField] private Button initializeButton;
+    
     [SerializeField] private TMP_Text buyText;
+    [SerializeField] private TMP_Text priceText;
+    [SerializeField] private TMP_Text moneyText;
+
     [SerializeField] private Shop shop;
 
     [SerializeField] private Slider damageSlider;
@@ -25,13 +29,27 @@ public class ShopMenu : MonoBehaviour
     private const string BuyKey = "Buy";
     private const string EquipKey = "Equip";
 
-    private void Start()
+    private void Initialize()
+    {
+        shop.Initialize();
+        StartCoroutine(ShopStateUpdate());
+        moneyText.text = _moneySave.Money.ToString();
+    }
+
+    private void OnEnable()
     {
         nextWeaponButton.onClick.AddListener(NextWeapon);
         pastWeaponButton.onClick.AddListener(PreviousWeapon);
         buyWeaponButton.onClick.AddListener(BuyWeapon);
-        StartCoroutine(ShopStateUpdate());
-        moneyText.text = _moneySave.Money.ToString();
+        initializeButton.onClick.AddListener(Initialize);
+    }
+
+    private void OnDisable()
+    {
+        nextWeaponButton.onClick.RemoveListener(NextWeapon);
+        pastWeaponButton.onClick.RemoveListener(PreviousWeapon);
+        buyWeaponButton.onClick.RemoveListener(BuyWeapon);
+        initializeButton.onClick.RemoveListener(Initialize);
     }
 
     private void UpdateShopState()

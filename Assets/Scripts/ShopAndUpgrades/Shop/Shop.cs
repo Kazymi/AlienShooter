@@ -18,7 +18,7 @@ public class Shop : MonoBehaviour
     public bool UnlockBuy { get; private set; }
     public int Price { get; private set; }
 
-    private void Start()
+    public void Initialize()
     {
         _weapons = _weaponManager.GetAllWeapon();
         foreach (var i in _weapons)
@@ -27,7 +27,6 @@ public class Shop : MonoBehaviour
         }
         SpawnWeapon(_weapons[0]);
     }
-
     public void NextWeapon()
     {
         _currentID++;
@@ -48,7 +47,6 @@ public class Shop : MonoBehaviour
         Price = config.Price;
         UnlockBuy = UnlockBuyingWeapon(_weapons[_currentID]);
         var ammo = config.AmmoConfiguration;
-        Debug.Log("++s");
         _characteristicsCurrentWeapon = new WeaponCharacteristics(
             ammo.Damage,
             config.FireRate,

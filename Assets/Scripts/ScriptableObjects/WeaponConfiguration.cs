@@ -10,7 +10,9 @@ public class WeaponConfiguration : ScriptableObject
     [SerializeField] private Weapon weaponGameObject;
     [SerializeField] private AmmoConfiguration ammoConfiguration;
     [SerializeField] private int price;
+    [SerializeField] private UpgradeConfiguration upgradeConfiguration;
 
+    public UpgradeConfiguration UpgradeConfiguration => upgradeConfiguration;
     public int Price => price;
     public string Name => nameGun;
     public Weapon WeaponGameObject => weaponGameObject;
