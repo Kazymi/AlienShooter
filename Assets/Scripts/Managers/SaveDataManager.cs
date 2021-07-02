@@ -3,7 +3,6 @@ using Zenject;
 
 public class SaveDataManager : MonoBehaviour
 {
-    [SerializeField] private bool generateNewSave;
     [SerializeField] private WeaponManager weaponManager;
 
     private SignalBus _signalBus;
@@ -17,19 +16,11 @@ public class SaveDataManager : MonoBehaviour
     private void Awake()
     {
         _saveData = _saveManager.Load();
-        _saveData.MoneySave.AddMoney(2000);
+        if (_saveData != null) return;
+        _saveData = new SaveData();
+        UpgradeSave.Initialize(weaponManager.WeaponConfigurations);
+        _saveData.MoneySave.AddMoney(10000);
         Save();
-    }
-
-    // TODO: грязь
-    private void Update()
-    {
-        if (generateNewSave)
-        {
-            generateNewSave = false;
-            _saveData.UpgradeSave.Initialize(weaponManager.WeaponConfigurations);
-            Save();
-        }
     }
 
     public void Save()
