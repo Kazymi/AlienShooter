@@ -46,6 +46,7 @@ public class UpgradeShopMenu : MonoBehaviour
 
     private void Initialize()
     {
+        if(upgradeShop.WeaponSelected() == false) return;
         upgradeShop.Initialize();
         UpdateState();
     }

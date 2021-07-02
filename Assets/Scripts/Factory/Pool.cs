@@ -11,8 +11,8 @@ public class Pool
     public Pool(GameObject element, int count, Transform poolParent)
     {
         _elementSpawn = element;
-        Prepolulate(count);
         _poolParent = poolParent;
+        Prepolulate(count);
     }
 
     public GameObject Pull()
@@ -47,7 +47,7 @@ public class Pool
 
     private GameObject CreateNewElement()
     {
-        var newElement = GameObject.Instantiate(_elementSpawn);
+        var newElement = GameObject.Instantiate(_elementSpawn, _poolParent, true);
         newElement.SetActive(false);
         return newElement;
     }

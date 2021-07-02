@@ -4,13 +4,18 @@ using UnityEngine;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMove : MonoBehaviour,IMovenment
 {
+    [SerializeField]  private Animator animator;
+    
     private NavMeshAgent _navMeshAgent;
     private float _currentSpeed;
     private Transform _target;
 
+    private const string _speed = "Speed";
+
     private void Update()
     {
         _navMeshAgent.SetDestination(_target.position);
+        animator.SetFloat(_speed, _navMeshAgent.velocity.magnitude);
     }
     
     public void Initialize(Transform playerTransform, float speed)

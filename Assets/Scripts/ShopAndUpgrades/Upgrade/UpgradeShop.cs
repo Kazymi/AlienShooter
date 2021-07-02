@@ -74,6 +74,10 @@
             EndBuy();
         }
 
+        public bool WeaponSelected()
+        {
+            return string.IsNullOrEmpty(_weaponSave.SelectedWeaponName) == false;
+        }
         private void EndBuy()
         {
             _upgradePriceList = _upgradeConfiguration.GetPriceList(_weaponCharacteristics, _moneySave.Money);
