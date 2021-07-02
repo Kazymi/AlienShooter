@@ -4569,6 +4569,22 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 696697984896398669, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 696697984896398669, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 696697984896398669, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
+      propertyPath: m_StepOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 696697984896398669, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
+      propertyPath: m_MinMoveDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1366279287935770359, guid: e29836c0226dc664cab0035a1cb11d8a, type: 3}
       propertyPath: _startSpeed
       value: 1
